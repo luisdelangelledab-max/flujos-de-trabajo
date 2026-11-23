@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual Visual Operativo · WF-ING-DOC-01 · Ingeniería Cabinet Vision → Leader Studio → Nitro → Odoo</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --border: #dce3ec;
+      --text: #17212b;
+      --muted: #526171;
+      --primary: #1d4ed8;
+      --primary-soft: #eff6ff;
+      --critical: #b91c1c;
+      --critical-soft: #fef2f2;
+      --cond: #b45309;
+      --cond-soft: #fffbeb;
+      --ok: #047857;
+      --ok-soft: #ecfdf5;
+      --radius: 10px;
+      --shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 3px solid var(--primary);
+    }
+    .container { max-width: 1240px; margin: 0 auto; padding: 1rem 1.25rem 3rem; }
+    .header-inner { max-width: 1240px; margin: 0 auto; }
+    .eyebrow { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #93c5fd; font-weight: 700; }
+    h1 { margin: 0.25rem 0 0.4rem; font-size: clamp(1.2rem, 2.5vw, 1.75rem); line-height: 1.25; }
+    .subtitle { margin: 0; color: #cbd5e1; font-size: 0.92rem; }
+    .kpi-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 0.65rem; margin-top: 1rem; }
+    .kpi { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 8px; padding: 0.55rem 0.75rem; }
+    .kpi strong { display: block; font-size: 1.15rem; color: #fff; }
+    .kpi span { font-size: 0.76rem; color: #cbd5e1; }
+
+    nav.tabs {
+      display: flex; flex-wrap: wrap; gap: 0.45rem; margin: 1rem 0 1.25rem;
+      position: sticky; top: 0; z-index: 20; background: var(--bg); padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      padding: 0.5rem 0.85rem; border-radius: 999px; font-size: 0.86rem; font-weight: 600; cursor: pointer;
+    }
+    .tab-btn[aria-selected="true"] { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .tab-btn:focus-visible, .filter-pill:focus-visible, .node-btn:focus-visible { outline: 3px solid #2563eb; outline-offset: 2px; }
+
+    section.panel { display: none; }
+    section.panel.active { display: block; }
+
+    .card {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 1rem 1.15rem; box-shadow: var(--shadow); margin-bottom: 1rem;
+    }
+    h2 { margin: 0 0 0.75rem; font-size: 1.2rem; color: #0f172a; }
+    h3 { margin: 0.75rem 0 0.45rem; font-size: 1.02rem; }
+
+    .badge { display: inline-block; padding: 0.16rem 0.5rem; border-radius: 999px; font-size: 0.74rem; font-weight: 700; vertical-align: middle; }
+    .badge-id { background: #e2e8f0; color: #0f172a; font-family: ui-monospace, Consolas, monospace; }
+    .badge-crit { background: var(--critical-soft); color: var(--critical); border: 1px solid #fecaca; }
+    .badge-obl { background: var(--primary-soft); color: var(--primary); border: 1px solid #bfdbfe; }
+    .badge-cond { background: var(--cond-soft); color: var(--cond); border: 1px solid #fde68a; }
+    .badge-ok { background: var(--ok-soft); color: var(--ok); border: 1px solid #a7f3d0; }
+
+    .scope-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem; }
+    .scope-box { border: 1px solid var(--border); border-radius: 8px; padding: 0.8rem 0.95rem; background: var(--surface-alt); }
+    .scope-box.ok { border-left: 4px solid var(--ok); }
+    .scope-box.no { border-left: 4px solid var(--critical); }
+
+    .map-wrap { overflow-x: auto; background: var(--surface-alt); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem; }
+    .map-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.75rem; margin-top: 0.75rem; }
+    .stage-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 0.7rem 0.85rem; }
+    .stage-head { display: flex; justify-content: space-between; align-items: center; gap: 0.4rem; margin-bottom: 0.35rem; }
+    .node-links { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.45rem; }
+    .node-btn {
+      background: var(--primary-soft); color: var(--primary); border: 1px solid #bfdbfe;
+      border-radius: 6px; padding: 0.22rem 0.5rem; font-size: 0.78rem; font-weight: 700; cursor: pointer;
+    }
+    .node-btn:hover { background: #dbeafe; }
+
+    .toolbar { display: flex; flex-wrap: wrap; gap: 0.65rem; align-items: center; margin-bottom: 1rem; }
+    .search-input { flex: 1 1 260px; padding: 0.55rem 0.8rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.92rem; background: var(--surface); }
+    .filter-row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .filter-pill { border: 1px solid var(--border); background: var(--surface); padding: 0.35rem 0.7rem; border-radius: 999px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+    .filter-pill.active { background: #0f172a; color: #fff; border-color: #0f172a; }
+
+    .ficha {
+      background: var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--primary);
+      border-radius: var(--radius); padding: 1rem 1.15rem; margin-bottom: 1rem; box-shadow: var(--shadow);
+    }
+    .ficha.is-critical { border-left-color: var(--critical); }
+    .ficha.highlight { box-shadow: 0 0 0 3px #93c5fd; }
+    .ficha-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.65rem; }
+    .ficha-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .ficha-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 0.65rem 1rem; font-size: 0.9rem; }
+    .field-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); font-weight: 700; margin-bottom: 0.15rem; }
+    .capture-box { margin-top: 0.7rem; background: #f8fafc; border: 1px dashed #94a3b8; border-radius: 6px; padding: 0.5rem 0.75rem; font-size: 0.84rem; color: #334155; }
+    .ficha-foot { margin-top: 0.6rem; padding-top: 0.5rem; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; font-size: 0.8rem; color: var(--muted); }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.86rem; }
+    th, td { border: 1px solid var(--border); padding: 0.55rem 0.65rem; text-align: left; vertical-align: top; }
+    th { background: var(--surface-alt); font-weight: 700; }
+    .table-scroll { overflow-x: auto; }
+    code { background: #f1f5f9; padding: 0.1rem 0.32rem; border-radius: 4px; font-size: 0.84em; font-family: ui-monospace, Consolas, monospace; }
+    .empty-msg { padding: 1.5rem; text-align: center; color: var(--muted); background: var(--surface); border: 1px dashed var(--border); border-radius: var(--radius); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="eyebrow">Manual Visual Operativo · Código WF-ING-DOC-01 · Rev. 1.0</div>
+      <h1>Generación de Ingeniería: Cabinet Vision → Leader Studio Bulldog Design → Nitro PDF → Odoo</h1>
+      <p class="subtitle">Área: <strong>Ingeniería de Producto</strong> · Proyecto de referencia: <strong>Ibero</strong> (Copy Station / Espacio de Descanso) · Estado: Pendiente de validación mediante simulación operativa</p>
+      <div class="kpi-strip">
+        <div class="kpi"><strong>10 Etapas</strong><span>ET-01 a ET-10 (33 pasos)</span></div>
+        <div class="kpi"><strong>19 Fichas</strong><span>ING-01 a ING-19</span></div>
+        <div class="kpi"><strong>10 Controles</strong><span>C01 a C10</span></div>
+        <div class="kpi"><strong>6 Incidencias</strong><span>INC-01 a INC-06</span></div>
+        <div class="kpi"><strong>7 Pendientes</strong><span>PEND-A a PEND-G</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs" role="tablist" aria-label="Vistas del manual">
+      <button class="tab-btn" role="tab" aria-selected="true" data-tab="mapa">1. Mapa y Alcance</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="fichas">2. Fichas Paso a Paso (19)</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="controles">3. Controles e Incidencias</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="transferencia">4. Mapa de Transferencia</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="pendientes">5. Simulación y Pendientes</button>
+    </nav>
+
+    <!-- TAB 1 -->
+    <section id="panel-mapa" class="panel active" role="tabpanel">
+      <div class="card">
+        <h2>Alcance Geométrico del Procedimiento</h2>
+        <div class="scope-grid">
+          <div class="scope-box ok">
+            <strong>Mobiliario compatible (SÍ aplica)</strong>
+            <ul style="margin:0.4rem 0 0;padding-left:1.2rem;font-size:0.88rem;">
+              <li>Geometría convencional, componentes rectos y formas rectangulares.</li>
+              <li>Gabinetes, libreros convencionales, torres de almacenamiento, escritorios regulares y modulares rectos.</li>
+            </ul>
+          </div>
+          <div class="scope-box no">
+            <strong>Mobiliario NO compatible (NO usar este flujo)</strong>
+            <ul style="margin:0.4rem 0 0;padding-left:1.2rem;font-size:0.88rem;">
+              <li>Componentes curvos, esquinas redondeadas, <em>fillets</em> o radios complejos.</li>
+              <li>Superficies orgánicas o geometrías especiales (documentar por separado).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Flujo Visual End-to-End (clic en cualquier nodo para ir a su ficha)</h2>
+        <div class="map-wrap">
+          <svg viewBox="0 0 1120 365" width="100%" style="min-width:860px;height:auto;" role="img" aria-label="Diagrama de flujo WF-ING-DOC-01">
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#475569"/>
+              </marker>
+            </defs>
+            <!-- Row 1: Cabinet Vision -->
+            <g class="svg-node" data-jump="ING-01" style="cursor:pointer">
+              <rect x="15" y="20" width="185" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="107" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-01 · ING-01 [C01, C02]</text>
+              <text x="107" y="59" text-anchor="middle" font-size="11" fill="#1e293b">Abrir, validar y GUARDAR</text>
+              <text x="107" y="73" text-anchor="middle" font-size="10" fill="#475569">Geometría recta · Proyecto Ibero</text>
+            </g>
+            <line x1="200" y1="51" x2="225" y2="51" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="ING-02" style="cursor:pointer">
+              <rect x="228" y="20" width="200" height="62" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.8"/>
+              <text x="328" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">ET-02 · ING-02</text>
+              <text x="328" y="59" text-anchor="middle" font-size="11" fill="#1e293b">Plantas y Elevaciones</text>
+              <text x="328" y="73" text-anchor="middle" font-size="10" fill="#475569">Planta/Elevación Luis · Por cuarto</text>
+            </g>
+            <line x1="428" y1="51" x2="453" y2="51" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="ING-03" style="cursor:pointer">
+              <rect x="456" y="20" width="215" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="563" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-03 · ING-03..05 [C03, C04]</text>
+              <text x="563" y="59" text-anchor="middle" font-size="11" fill="#1e293b">Hojas de Ensamble (Lote)</text>
+              <text x="563" y="73" text-anchor="middle" font-size="10" fill="#475569">Bulldog Luis 1 → 2 → 3</text>
+            </g>
+            <line x1="671" y1="51" x2="696" y2="51" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="ING-06" style="cursor:pointer">
+              <rect x="699" y="20" width="195" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="796" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-04 · ING-06 [C05]</text>
+              <text x="796" y="59" text-anchor="middle" font-size="11" fill="#1e293b">Explosivos Manuales</text>
+              <text x="796" y="73" text-anchor="middle" font-size="10" fill="#475569">Mueble 1..N · Explotar+Transp.</text>
+            </g>
+            <line x1="894" y1="51" x2="919" y2="51" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="ING-08" style="cursor:pointer">
+              <rect x="922" y="20" width="183" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="1013" y="42" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-05 · ING-07..08 [C06]</text>
+              <text x="1013" y="59" text-anchor="middle" font-size="11" fill="#1e293b">Vistas imprimir</text>
+              <text x="1013" y="73" text-anchor="middle" font-size="10" fill="#475569">Integrar explosivos y verificar</text>
+            </g>
+
+            <!-- Connector -->
+            <path d="M1013,82 L1013,120 L107,120 L107,145" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <!-- Row 2: PDF Base, Leader Studio, Nitro -->
+            <g class="svg-node" data-jump="ING-09" style="cursor:pointer">
+              <rect x="15" y="148" width="215" height="64" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="122" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-06 · ING-09 [C08]</text>
+              <text x="122" y="187" text-anchor="middle" font-size="11" fill="#1e293b">Imprimir Ingeniería Base</text>
+              <text x="122" y="201" text-anchor="middle" font-size="10" fill="#475569">BASE V1.pdf (no sobrescribir)</text>
+            </g>
+            <line x1="230" y1="180" x2="260" y2="180" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="ING-11" style="cursor:pointer">
+              <rect x="263" y="148" width="250" height="64" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="388" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-07 · ING-10..12 [C07, C08]</text>
+              <text x="388" y="187" text-anchor="middle" font-size="11" fill="#1e293b">Leader Studio Bulldog Design</text>
+              <text x="388" y="201" text-anchor="middle" font-size="10" fill="#475569">Ajustar leaders → FINAL MAESTRO.pdf</text>
+            </g>
+            <line x1="513" y1="180" x2="543" y2="180" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="ING-14" style="cursor:pointer">
+              <rect x="546" y="148" width="270" height="64" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+              <text x="681" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">ET-08 · ING-13..15 [C08, C09]</text>
+              <text x="681" y="187" text-anchor="middle" font-size="11" fill="#1e293b">Nitro PDF · Separar por cuarto</text>
+              <text x="681" y="201" text-anchor="middle" font-size="10" fill="#475569">Método A (Extraer) o B (Guardar como)</text>
+            </g>
+            <line x1="816" y1="180" x2="846" y2="180" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="ING-16" style="cursor:pointer">
+              <rect x="849" y="148" width="256" height="64" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="977" y="170" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-09 · ING-16..17 [C10]</text>
+              <text x="977" y="187" text-anchor="middle" font-size="11" fill="#1e293b">Odoo · Publicar Ingeniería</text>
+              <text x="977" y="201" text-anchor="middle" font-size="10" fill="#475569">Documentos + Verificar vínculo red</text>
+            </g>
+
+            <!-- Connector down -->
+            <path d="M977,212 L977,250 L560,250 L560,275" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <!-- Row 3: Simulación y cierre -->
+            <g class="svg-node" data-jump="ING-18" style="cursor:pointer">
+              <rect x="330" y="278" width="460" height="62" rx="8" fill="#ecfdf5" stroke="#047857" stroke-width="2"/>
+              <text x="560" y="300" text-anchor="middle" font-size="11" font-weight="700" fill="#047857">ET-10 · ING-18 y ING-19</text>
+              <text x="560" y="317" text-anchor="middle" font-size="11" fill="#1e293b">Simulación de comprobación (15 muebles) y Checklist de Cierre (11 pts)</text>
+              <text x="560" y="331" text-anchor="middle" font-size="10" fill="#475569">Base + Maestro Final + PDFs por cuarto + Odoo verificado</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Las 10 Etapas Operativas (ET-01 a ET-10)</h2>
+        <div class="map-grid" id="stages-grid"></div>
+      </div>
+    </section>
+
+    <!-- TAB 2 -->
+    <section id="panel-fichas" class="panel" role="tabpanel">
+      <div class="toolbar">
+        <input id="search-box" class="search-input" type="search" placeholder="Buscar por ID, plantilla, botón, error, Nitro, Leader Studio... (atajo: /)" aria-label="Buscar en fichas" />
+        <div class="filter-row" id="filter-row">
+          <button class="filter-pill active" data-filter="all">Todas (19)</button>
+          <button class="filter-pill" data-filter="critical">Puntos Críticos</button>
+          <button class="filter-pill" data-filter="cv">Cabinet Vision</button>
+          <button class="filter-pill" data-filter="ls">Leader Studio</button>
+          <button class="filter-pill" data-filter="nitro">Nitro PDF</button>
+          <button class="filter-pill" data-filter="odoo">Odoo / Cierre</button>
+        </div>
+      </div>
+      <div id="fichas-list"></div>
+    </section>
+
+    <!-- TAB 3 -->
+    <section id="panel-controles" class="panel" role="tabpanel">
+      <div class="card">
+        <h2>Controles Críticos para Prevenir Errores (C01–C10)</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Control</th><th>Ficha</th><th>Verificación</th><th>Criterio de aceptación</th><th>Acción si falla</th></tr></thead>
+            <tbody id="controls-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Incidencias y Errores Frecuentes (INC-01–INC-06)</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>ID</th><th>Ficha</th><th>Incidencia</th><th>Impacto</th><th>Recuperación conocida</th></tr></thead>
+            <tbody id="incidents-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4 -->
+    <section id="panel-transferencia" class="panel" role="tabpanel">
+      <div class="card">
+        <h2>Mapa de Transferencia entre Aplicaciones (TR-01–TR-05)</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>ID</th><th>Emisor</th><th>Destino funcional</th><th>Objeto y formato</th><th>Convención</th><th>Comprobación</th><th>Pendiente</th></tr></thead>
+            <tbody id="transfer-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5 -->
+    <section id="panel-pendientes" class="panel" role="tabpanel">
+      <div class="card">
+        <h2>Aspectos Pendientes de Comprobar en Ejecución Real (PEND-A a PEND-G)</h2>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>ID</th><th>Área / Aplicación</th><th>Aspecto por validar en operación real</th></tr></thead>
+            <tbody id="pend-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Criterio de Cierre (11 Condiciones Simultáneas)</h2>
+        <ol style="font-size:0.9rem;margin:0;padding-left:1.25rem;">
+          <li>Proyecto original de Cabinet Vision guardado.</li>
+          <li>Plantas y elevaciones necesarias generadas.</li>
+          <li>Tres hojas de ensamble generadas por cada mueble aplicable (<code>Bulldog Luis 1 → 2 → 3</code>).</li>
+          <li>Cada lista de partes contiene su explosivo correcto.</li>
+          <li>Exportaciones Base (<code>BASE V1</code>) y Maestra Final (<code>FINAL MAESTRO</code>) conservadas.</li>
+          <li>Leaders correctamente direccionados en Leader Studio.</li>
+          <li>Ingeniería separada y organizada por cuarto en Nitro PDF.</li>
+          <li>Sin páginas faltantes ni mezcladas entre cuartos.</li>
+          <li>Archivos guardados en la estructura documental del proyecto.</li>
+          <li>Ingeniería asociada a los productos correspondientes en Odoo.</li>
+          <li>Vínculos de consulta funcionando correctamente.</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const STAGES = [
+      { id: "ET-01", name: "Preparación y guardado", out: "Proyecto validado y guardado", type: "Obligatoria", nodes: ["ING-01"] },
+      { id: "ET-02", name: "Plantas y elevaciones", out: "1 PDF por cada cuarto", type: "Obligatoria", nodes: ["ING-02"] },
+      { id: "ET-03", name: "Hojas de ensamble", out: "Bulldog Luis 1 → 2 → 3 en lote", type: "Obligatoria", nodes: ["ING-03", "ING-04", "ING-05"] },
+      { id: "ET-04", name: "Explosivos manuales", out: "1 vista 3D por mueble en orden", type: "Obligatoria", nodes: ["ING-06"] },
+      { id: "ET-05", name: "Vistas imprimir", out: "Explosivos integrados y verificados", type: "Obligatoria", nodes: ["ING-07", "ING-08"] },
+      { id: "ET-06", name: "Ingeniería base", out: "BASE V1.pdf conservado", type: "Obligatoria", nodes: ["ING-09"] },
+      { id: "ET-07", name: "Leader Studio", out: "Apuntadores ajustados + FINAL MAESTRO", type: "Obligatoria", nodes: ["ING-10", "ING-11", "ING-12"] },
+      { id: "ET-08", name: "Nitro PDF (cuartos)", out: "PDFs por cuarto + maestros", type: "Variante A/B", nodes: ["ING-13", "ING-14", "ING-15"] },
+      { id: "ET-09", name: "Publicación Odoo", out: "Documentos y vínculo verificados", type: "Obligatoria", nodes: ["ING-16", "ING-17"] },
+      { id: "ET-10", name: "Simulación y cierre", out: "Caso 15 muebles y 11 condiciones", type: "Verificación", nodes: ["ING-18", "ING-19"] }
+    ];
+
+    const FICHAS = [
+      { id: "ING-01", stage: "ET-01", app: "Cabinet Vision", cat: "cv", crit: "C01, C02", title: "Abrir proyecto, validar geometría compatible y GUARDAR (Pasos 1–2)",
+        start: "Lanzador de Cabinet Vision", loc: "Proyecto Ibero → Guardar",
+        action: "Abrir proyecto, confirmar cuartos/muebles y que tengan geometría convencional recta; GUARDAR antes de ejecutar reportes.",
+        config: "No usar en componentes curvos, esquinas redondeadas, fillets o radios complejos.",
+        io: "Modelo 3D → Proyecto guardado y validado.", check: "Sin cambios pendientes de guardar.",
+        err: "Pérdida de trabajo o plantillas incompatibles. Recuperación: guardar previo; derivar curvos a flujo especial.",
+        cap: "Captura pendiente — proyecto Ibero abierto y guardado.", src: "§§2–3" },
+      { id: "ING-02", stage: "ET-02", app: "Cabinet Vision", cat: "cv", crit: null, title: "Generar plantas y elevaciones por cuarto (Pasos 3–6)",
+        start: "Workflow Diseño", loc: "Reportes → Plan and Elevation Sheet → Planta Luis / Elevación Luis → Imprimir → Microsoft Print to PDF",
+        action: "Filtrar por cuarto (salvo 1 solo cuarto a escala real), usar plantillas Planta Luis y Elevación Luis, seleccionar todo, imprimir a Microsoft Print to PDF y guardar 1 PDF por cuarto.",
+        config: "Plantillas personalizadas basadas en Bulldog Design.",
+        io: "Cuartos en Diseño → 1 PDF de planta y elevación por cuarto.", check: "Cuarto correcto y medidas legibles.",
+        err: "Mezclar cuartos (INC-01). Recuperación: aplicar filtro por cuarto.",
+        cap: "Captura pendiente — Plan and Elevation Sheet con filtro de cuarto y plantillas.", src: "§4" },
+      { id: "ING-03", stage: "ET-03", app: "Cabinet Vision", cat: "cv", crit: "C03, C04", title: "Hojas de ensamble: Plantilla 1 Bulldog Luis 1 (Pasos 7–8)",
+        start: "Apartado Reportes", loc: "Reportes → Hojas de ensamble (Assembly Sheets) → Bulldog Luis 1",
+        action: "Seleccionar Bulldog Luis 1 (frontal, superior, lateral, isométrica), clic en Seleccionar todo, Guardar vista y esperar finalización.",
+        config: "Todos los muebles en una sola ejecución (sin filtrar por cuarto).",
+        io: "Proyecto guardado → Vistas generales guardadas.", check: "Procesamiento concluido antes de cambiar de plantilla.",
+        err: "Cambiar de plantilla antes de tiempo. Recuperación: esperar finalización.",
+        cap: "Captura pendiente — Assembly Sheets con Bulldog Luis 1.", src: "§5" },
+      { id: "ING-04", stage: "ET-03", app: "Cabinet Vision", cat: "cv", crit: "C03, C04", title: "Hojas de ensamble: Plantilla 2 Bulldog Luis 2 (Paso 9)",
+        start: "Hojas de ensamble", loc: "Hojas de ensamble → Bulldog Luis 2",
+        action: "Cambiar a Bulldog Luis 2 (corte frontal y lateral), Seleccionar todo, Guardar vista y esperar.",
+        config: "Secuencia estricta 1 → 2 → 3.",
+        io: "Lote completo → Cortes frontal y lateral guardados.", check: "Fin de procesamiento confirmado.",
+        err: "Invertir orden 1 → 2 → 3. Recuperación: respetar secuencia.",
+        cap: "Captura pendiente — Assembly Sheets con Bulldog Luis 2.", src: "§5" },
+      { id: "ING-05", stage: "ET-03", app: "Cabinet Vision", cat: "cv", crit: "C03, C04", title: "Hojas de ensamble: Plantilla 3 Bulldog Luis 3 (Paso 10)",
+        start: "Hojas de ensamble", loc: "Hojas de ensamble → Bulldog Luis 3",
+        action: "Seleccionar Bulldog Luis 3 (lista de partes + espacio para explosivo), Seleccionar todo, Guardar vista y esperar.",
+        config: "Tercera hoja automática; explosivo se integra manualmente en ET-05.",
+        io: "Lote completo → 3 hojas automáticas por mueble.", check: "Fin de las 3 plantillas.",
+        err: "Omitir plantilla 3 deja sin listas de partes. Recuperación: ejecutar Bulldog Luis 3.",
+        cap: "Captura pendiente — Assembly Sheets con Bulldog Luis 3.", src: "§5" },
+      { id: "ING-06", stage: "ET-04", app: "Cabinet Vision", cat: "cv", crit: "C05", title: "Crear vistas 3D explosivas manuales en orden numérico (Pasos 11–13)",
+        start: "Espacio de Diseño", loc: "Mueble 1..N → Explotar → Transparencia → clic secundario → Guardar vista (parte superior menú)",
+        action: "Identificar Mueble 1..N con plantas/elevaciones; entrar a cada mueble en orden, orientar 3D, clic en Explotar, clic en Transparencia, clic secundario → Guardar vista.",
+        config: "Orden estricto 1 → 2 → 3 → ... porque las vistas manuales pueden no mostrar el número de orden.",
+        io: "Modelo 3D → 1 vista explosiva guardada por mueble.", check: "Total de vistas = total de muebles.",
+        err: "Alterar el orden (INC-02). Recuperación: validar contra plantas y geometría.",
+        cap: "Captura pendiente — vista 3D con Explotar + Transparencia y menú Guardar vista.", src: "§6" },
+      { id: "ING-07", stage: "ET-05", app: "Cabinet Vision", cat: "cv", crit: null, title: "Abrir Vistas imprimir e identificar hojas y vistas manuales (Pasos 14–16)",
+        start: "Workspace Cabinet Vision", loc: "Pestaña Vistas imprimir (arriba derecha) y menú izquierdo",
+        action: "Identificar listas de partes por encabezado (Mueble 1 — [Nombre]) y distinguir en menú izquierdo vistas superiores (automáticas) vs inferiores (explosivos manuales).",
+        config: "Doble referencia: orden + nombre.",
+        io: "Hojas + vistas → Correspondencia ubicada.", check: "Vistas superiores e inferiores visibles.",
+        err: "Confundir vistas automáticas con manuales. Recuperación: usar bloque inferior del menú izquierdo.",
+        cap: "Captura pendiente — Vistas imprimir con encabezado y menú izquierdo.", src: "§7" },
+      { id: "ING-08", stage: "ET-05", app: "Cabinet Vision", cat: "cv", crit: "C06", title: "Integrar explosivos en listas de partes y verificar (Pasos 17–18)",
+        start: "Vistas imprimir", loc: "Espacio reservado en hoja Bulldog Luis 3",
+        action: "Insertar cada explosivo manual en su lista de partes verificando por geometría y componentes; comprobar 6 puntos (3 hojas/mueble, sin faltantes, sin cruces, sin duplicados).",
+        config: "Verificación geométrica obligatoria.",
+        io: "Listas vacías + explosivos → Ingeniería integrada.", check: "Checklist 6 puntos aprobado.",
+        err: "Explosivo cruzado o duplicado (INC-02). Recuperación: reemplazar antes de imprimir.",
+        cap: "Captura pendiente — lista de partes con explosivo integrado (comando específico PEND-C).", src: "§7" },
+      { id: "ING-09", stage: "ET-06", app: "Cabinet Vision", cat: "cv", crit: "C08", title: "Imprimir y guardar Ingeniería Base BASE V1.pdf (Pasos 19–20)",
+        start: "Vistas imprimir verificadas", loc: "Imprimir (franja azul superior) → Microsoft Print to PDF → Luis del Ángel / Ibero / Ingeniería /",
+        action: "Imprimir a Microsoft Print to PDF y guardar como Ingeniería CB - Ibero - BASE V1.pdf.",
+        config: "Archivo maestro inicial; nunca sobrescribir.",
+        io: "Vistas imprimir → BASE V1.pdf.", check: "PDF completo guardado sin sobrescribir.",
+        err: "Sobrescribir BASE V1 (INC-03). Recuperación: usar nombre diferenciado.",
+        cap: "Captura pendiente — Imprimir en franja azul y guardado BASE V1.", src: "§8" },
+      { id: "ING-10", stage: "ET-07", app: "Leader Studio", cat: "ls", crit: null, title: "Abrir Leader Studio e importar BASE V1.pdf (Pasos 21–22)",
+        start: "Leader Studio Bulldog Design", loc: "Pantalla principal → Importar PDF",
+        action: "Iniciar Leader Studio, seleccionar Importar PDF, cargar BASE V1.pdf y dejar que procese explosivos y leaders.",
+        config: "Entrada: BASE V1.pdf.",
+        io: "BASE V1.pdf → Hojas con leaders listos para ajuste.", check: "Hojas por organizar visibles.",
+        err: "Importar archivo ya separado. Recuperación: importar BASE V1.",
+        cap: "Captura pendiente — pantalla principal Leader Studio e Importar PDF.", src: "§9" },
+      { id: "ING-11", stage: "ET-07", app: "Leader Studio", cat: "ls", crit: "C07", title: "Ajustar manualmente apuntadores (leaders) por pieza (Paso 23)",
+        start: "Vistas procesadas en Leader Studio", loc: "Hojas con explosivos y números de pieza",
+        action: "Revisar cada número de pieza y ajustar manualmente la dirección del apuntador sobre su componente exacto.",
+        config: "Solo editar las hojas que muestra la aplicación para ajuste.",
+        io: "Leaders automáticos → Leaders direccionados con precisión.", check: "Cada número señala inequívocamente su pieza.",
+        err: "Apuntador ambiguo o cruzado (INC-04). Recuperación: reacomodar punta del leader.",
+        cap: "Captura pendiente — vista explosiva con leaders ajustados.", src: "§9" },
+      { id: "ING-12", stage: "ET-07", app: "Leader Studio", cat: "ls", crit: "C08", title: "Exportar FINAL MAESTRO.pdf (Paso 24)",
+        start: "Leader Studio ajustado", loc: "Exportar PDF → carpeta Ingeniería/",
+        action: "Exportar como Ingeniería CB - Ibero - FINAL MAESTRO.pdf conservando BASE V1.pdf.",
+        config: "Conservar ambas versiones maestras.",
+        io: "Documento ajustado → FINAL MAESTRO.pdf.", check: "Existen BASE V1 y FINAL MAESTRO (verificar hojas PEND-D).",
+        err: "Sobrescribir BASE V1 (INC-03). Recuperación: mantener nombres separados.",
+        cap: "Captura pendiente — exportación FINAL MAESTRO.pdf.", src: "§9" },
+      { id: "ING-13", stage: "ET-08", app: "Nitro PDF", cat: "nitro", crit: "C09", title: "Abrir FINAL MAESTRO y delimitar cuartos en panel de páginas (Pasos 25–27)",
+        start: "Nitro PDF", loc: "Barra lateral izquierda → Panel de páginas/miniaturas",
+        action: "Ampliar panel izquierdo, revisar orden de hojas e identificar visualmente primer y último mueble de cada cuarto.",
+        config: "No asumir orden solo por numeración.",
+        io: "FINAL MAESTRO.pdf → Rangos de páginas por cuarto.", check: "Límites visuales confirmados.",
+        err: "Cortar en página errónea (INC-05). Recuperación: verificar encabezados en miniaturas.",
+        cap: "Captura pendiente — Nitro PDF con panel de miniaturas ampliado.", src: "§10" },
+      { id: "ING-14", stage: "ET-08", app: "Nitro PDF", cat: "nitro", crit: "C09", title: "Separar PDFs por cuarto: Método A (Extraer) o B (Guardar como) (Paso 28)",
+        start: "Nitro PDF con límites identificados", loc: "Herramientas de página de Nitro PDF",
+        action: "Método A: extraer páginas del cuarto y guardar. Método B: Guardar como copia con nombre del cuarto, eliminar páginas ajenas y guardar (siempre partiendo del maestro).",
+        config: "Ej.: Ingeniería CB - Ibero - Copy Station.pdf / Espacio de Descanso.pdf.",
+        io: "FINAL MAESTRO.pdf → 1 PDF por cuarto.", check: "Cada PDF contiene solo los muebles de su cuarto.",
+        err: "Guardar cambios destructivos sobre FINAL MAESTRO. Recuperación: usar Guardar como primero.",
+        cap: "Captura pendiente — extracción/eliminación de páginas en Nitro PDF.", src: "§10" },
+      { id: "ING-15", stage: "ET-08", app: "Carpeta / Red", cat: "nitro", crit: "C08", title: "Confirmar conservación de BASE V1, FINAL MAESTRO y PDFs por cuarto (Paso 29)",
+        start: "Carpeta de Ingeniería del proyecto", loc: "Luis del Ángel / Ibero / Ingeniería /",
+        action: "Verificar existencia e integridad de los 3 niveles de archivo.",
+        config: "Los maestros permiten recuperar o regenerar omisiones.",
+        io: "Archivos exportados → Repositorio completo.", check: "3 niveles presentes y legibles.",
+        err: "Eliminar maestros. Recuperación: restaurar respaldo.",
+        cap: "Captura pendiente — carpeta con BASE V1, FINAL MAESTRO y PDFs por cuarto.", src: "§10" },
+      { id: "ING-16", stage: "ET-09", app: "Odoo", cat: "odoo", crit: "C10", title: "Localizar producto en Odoo y cargar ingeniería en Documentos (Pasos 30–31)",
+        start: "Odoo web", loc: "Manufactura → Productos → Filtro proyecto (Ibero) → Documentos",
+        action: "Filtrar proyecto, abrir mueble (ej. de Espacio de Descanso), ir a Documentos, cargar PDF de ingeniería y comprobar asociación.",
+        config: "Definir granularidad cuarto vs mueble (PEND-E).",
+        io: "PDFs verificados → Ingeniería adjunta en Odoo.", check: "Archivo correcto en producto correcto.",
+        err: "Asociar a otro producto. Recuperación: corregir adjunto.",
+        cap: "Captura pendiente — Odoo Manufactura ‣ Productos ‣ Documentos.", src: "§11" },
+      { id: "ING-17", stage: "ET-09", app: "Odoo / Red", cat: "odoo", crit: null, title: "Verificar vínculo a estructura documental y confirmar publicación (Pasos 32–33)",
+        start: "Producto en Odoo", loc: "Vínculo hacia carpeta de producción / estructura del proyecto",
+        action: "Comprobar que el vínculo abre la carpeta de producción y permite navegar a 3D, CV originales, info base, ingeniería, renders, requisiciones y submittals; confirmar 5 criterios de publicación.",
+        config: "Acceso multiusuario (PEND-G).",
+        io: "Producto con adjunto → Publicación verificada.", check: "5 criterios de publicación cumplidos.",
+        err: "Vínculo a carpeta local personal (INC-06). Recuperación: usar ruta compartida.",
+        cap: "Captura pendiente — apertura del vínculo documental.", src: "§11" },
+      { id: "ING-18", stage: "ET-10", app: "Simulación", cat: "odoo", crit: null, title: "Simulación de comprobación: caso ejemplo de 15 muebles en Copy Station (§12)",
+        start: "Flujo completo documentado", loc: "Tabla de simulación de 17 pasos",
+        action: "Comprobar consistencia 1:1 (15 juegos de 3 hojas, 15 explosivos, 15 listas integradas, leaders, separación en Nitro, maestro conservado).",
+        config: "15 es cifra ilustrativa de prueba, no cantidad confirmada del proyecto.",
+        io: "Flujo → Validación lógica sin omisiones.", check: "Correspondencia 1:1.",
+        err: "Tomar 15 como dato real. Recuperación: usar cantidad real del proyecto.",
+        cap: "N/A (tabla de simulación).", src: "§12" },
+      { id: "ING-19", stage: "ET-10", app: "Cierre", cat: "odoo", crit: null, title: "Checklist integral de cierre de 11 condiciones (§15)",
+        start: "Fin de publicación", loc: "Criterio de cierre",
+        action: "Verificar las 11 condiciones simultáneas antes de dar por terminada la ingeniería.",
+        config: "11/11 cumplidas.",
+        io: "Evidencias ING-01..17 → Ingeniería liberada.", check: "11/11 en OK.",
+        err: "Liberar con pendientes críticos. Recuperación: resolver antes de liberar.",
+        cap: "N/A (checklist).", src: "§15" }
+    ];
+
+    const CONTROLS = [
+      ["C01", "ING-01", "Guardado previo en Cabinet Vision", "Proyecto guardado antes de reportear", "Guardar antes de ejecutar reportes"],
+      ["C02", "ING-01", "Compatibilidad geométrica", "Mobiliario recto/convencional sin curvas", "Derivar a flujo especial"],
+      ["C03", "ING-03", "Secuencia de plantillas", "Orden estricto Bulldog Luis 1 → 2 → 3", "Re-ejecutar en orden"],
+      ["C04", "ING-03", "Finalización del procesamiento", "Esperar fin antes de cambiar plantilla", "Esperar sin repetir comandos"],
+      ["C05", "ING-06", "Orden de explosivos manuales", "Vistas guardadas de Mueble 1 al último", "Cotejar contra plantas y geometría"],
+      ["C06", "ING-08", "Correspondencia de vistas", "Explosivo coincide con lista de partes", "Reemplazar antes de imprimir"],
+      ["C07", "ING-11", "Identificación en Leader Studio", "Cada número apunta a su pieza exacta", "Reacomodar apuntador manual"],
+      ["C08", "ING-09", "Conservación de versiones", "Coexisten BASE V1, FINAL MAESTRO y cuartos", "No sobrescribir; usar Guardar como"],
+      ["C09", "ING-14", "Integridad por cuarto en Nitro", "Sin páginas faltantes ni mezcladas", "Re-extraer desde FINAL MAESTRO"],
+      ["C10", "ING-16", "Publicación correcta en Odoo", "Asociado al producto y proyecto exactos", "Corregir adjunto en tarjeta"]
+    ];
+
+    const INCIDENTS = [
+      ["INC-01", "ING-02", "Omitir filtro de cuarto en plantas/elevaciones", "Mezcla de áreas en un plano", "Filtrar explícitamente por cuarto"],
+      ["INC-02", "ING-06", "Vistas manuales sin número o en orden alterado", "Explosivo equivocado en lista de partes", "Verificar por geometría y componentes"],
+      ["INC-03", "ING-09", "Sobrescribir BASE V1 o FINAL MAESTRO", "Pérdida de páginas completas", "Usar nombres diferenciados y Guardar como"],
+      ["INC-04", "ING-11", "Apuntador (leader) mal dirigido", "Error de identificación en ensamble", "Ajustar punta sobre pieza exacta"],
+      ["INC-05", "ING-13", "Asumir límites de cuarto solo por numeración", "Cuartos incompletos o mezclados", "Inspeccionar miniaturas en Nitro PDF"],
+      ["INC-06", "ING-17", "Enlace a carpeta local personal en Odoo", "Otros usuarios sin acceso", "Usar ruta compartida multiusuario"]
+    ];
+
+    const TRANSFERS = [
+      ["TR-01", "Cabinet Vision (Reportes)", "Carpeta de proyecto", "Plantas y elevaciones (PDF por cuarto)", "Planta Luis / Elevación Luis", "Legibilidad y cuarto correcto", "PEND-A"],
+      ["TR-02", "Cabinet Vision (Vistas imprimir)", "Carpeta Ingeniería/", "Hojas ensamble + explosivos (PDF)", "Ingeniería CB - Ibero - BASE V1.pdf", "C06, C08", "PEND-B, PEND-C, PEND-F"],
+      ["TR-03", "BASE V1.pdf", "Leader Studio Bulldog Design", "PDF con leaders ajustados", "Ingeniería CB - Ibero - FINAL MAESTRO.pdf", "C07, C08", "PEND-D"],
+      ["TR-04", "FINAL MAESTRO.pdf", "Nitro PDF → Carpeta Ingeniería/", "PDFs independientes por cuarto", "Ingeniería CB - Ibero - [Cuarto].pdf", "C09 (miniaturas)", "PEND-F"],
+      ["TR-05", "PDFs + Estructura", "Odoo (Manufactura ‣ Productos)", "Documentos + vínculo de red", "Producto por proyecto/cuarto", "C10 + apertura vínculo", "PEND-E, PEND-G"]
+    ];
+
+    const PENDS = [
+      ["PEND-A", "Plantas y elevaciones / Nitro", "Confirmar si plantas y elevaciones se integran al PDF final de ingeniería, en qué orden y con qué acción de Nitro."],
+      ["PEND-B", "Hojas de ensamble", "Comprobar que cada mueble produce las 3 hojas previstas y permanecen ordenadas para separarse por cuarto."],
+      ["PEND-C", "Vistas imprimir (CV)", "Registrar el comando específico para colocar la vista manual dentro del espacio de Bulldog Luis 3."],
+      ["PEND-D", "Leader Studio", "Comprobar si el PDF exportado conserva todas las hojas originales o requiere re-integración con el maestro."],
+      ["PEND-E", "Odoo (Productos)", "Definir si a cada producto se adjunta el PDF completo del cuarto o un archivo individual por mueble."],
+      ["PEND-F", "Convención de nombres", "Aprobar formalmente los nombres propuestos (BASE V1, FINAL MAESTRO, [Cuarto]) antes de hacerlos obligatorios."],
+      ["PEND-G", "Enlaces documentales", "Verificar que la ruta en Odoo abre desde todos los equipos/cuentas autorizadas sin depender de carpeta local personal."]
+    ];
+
+    const norm = s => (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    let currentFilter = "all";
+
+    function switchTab(name) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+      document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + name));
+    }
+    function setActiveFilter(f) {
+      currentFilter = f;
+      document.querySelectorAll(".filter-pill").forEach(p => p.classList.toggle("active", p.dataset.filter === f));
+    }
+    function jumpToFicha(id) {
+      switchTab("fichas");
+      document.getElementById("search-box").value = "";
+      setActiveFilter("all");
+      renderFichas();
+      const el = document.getElementById("ficha-" + id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("highlight");
+        setTimeout(() => el.classList.remove("highlight"), 2200);
+      }
+    }
+
+    function renderStages() {
+      document.getElementById("stages-grid").innerHTML = STAGES.map(st => `
+        <div class="stage-box">
+          <div class="stage-head">
+            <span class="badge badge-id">${st.id}</span>
+            <span class="badge ${st.type.includes("Variante") ? "badge-cond" : "badge-obl"}">${st.type}</span>
+          </div>
+          <strong>${st.name}</strong>
+          <div style="font-size:0.84rem;color:var(--muted);margin-top:0.2rem;">${st.out}</div>
+          <div class="node-links">${st.nodes.map(n => `<button class="node-btn" data-jump="${n}">${n}</button>`).join("")}</div>
+        </div>
+      `).join("");
+    }
+
+    function renderFichas() {
+      const q = norm(document.getElementById("search-box").value.trim());
+      const filtered = FICHAS.filter(f => {
+        if (currentFilter === "critical" && !f.crit) return false;
+        if (["cv", "ls", "nitro", "odoo"].includes(currentFilter) && f.cat !== currentFilter) return false;
+        if (!q) return true;
+        return norm([f.id, f.stage, f.app, f.title, f.start, f.loc, f.action, f.config, f.io, f.check, f.err, f.crit || ""].join(" ")).includes(q);
+      });
+      const list = document.getElementById("fichas-list");
+      if (!filtered.length) { list.innerHTML = `<div class="empty-msg">No hay coincidencias para la búsqueda o filtro actual.</div>`; return; }
+      list.innerHTML = filtered.map(f => `
+        <article class="ficha ${f.crit ? "is-critical" : ""}" id="ficha-${f.id}">
+          <div class="ficha-head">
+            <div><span class="badge badge-id">${f.id}</span> <span class="badge badge-id">${f.stage}</span> <strong style="margin-left:0.35rem;">${f.title}</strong></div>
+            <div class="ficha-badges">
+              ${f.crit ? `<span class="badge badge-crit">Crítico ${f.crit}</span>` : ""}
+              <span class="badge badge-ok">${f.app}</span>
+            </div>
+          </div>
+          <div class="ficha-grid">
+            <div><div class="field-label">Punto de partida</div>${f.start}</div>
+            <div><div class="field-label">Ubicación</div>${f.loc}</div>
+            <div><div class="field-label">Acción</div>${f.action}</div>
+            <div><div class="field-label">Configuración / Regla</div>${f.config}</div>
+            <div><div class="field-label">Entrada → Salida</div>${f.io}</div>
+            <div><div class="field-label">Verificación</div>${f.check}</div>
+            <div><div class="field-label">Error y recuperación</div>${f.err}</div>
+          </div>
+          <div class="capture-box"><strong>Evidencia visual:</strong> ${f.cap}</div>
+          <div class="ficha-foot"><span>Fuente: ${f.src}</span><span>Estado: Reportado en narración · Pendiente simulación operativa</span></div>
+        </article>
+      `).join("");
+    }
+
+    function renderTables() {
+      document.getElementById("controls-tbody").innerHTML = CONTROLS.map(c => `<tr><td><span class="badge badge-crit">${c[0]}</span></td><td><button class="node-btn" data-jump="${c[1]}">${c[1]}</button></td><td>${c[2]}</td><td>${c[3]}</td><td>${c[4]}</td></tr>`).join("");
+      document.getElementById("incidents-tbody").innerHTML = INCIDENTS.map(i => `<tr><td><span class="badge badge-cond">${i[0]}</span></td><td><button class="node-btn" data-jump="${i[1]}">${i[1]}</button></td><td>${i[2]}</td><td>${i[3]}</td><td>${i[4]}</td></tr>`).join("");
+      document.getElementById("transfer-tbody").innerHTML = TRANSFERS.map(t => `<tr><td><span class="badge badge-id">${t[0]}</span></td><td>${t[1]}</td><td>${t[2]}</td><td>${t[3]}</td><td>${t[4]}</td><td>${t[5]}</td><td>${t[6]}</td></tr>`).join("");
+      document.getElementById("pend-tbody").innerHTML = PENDS.map(p => `<tr><td><span class="badge badge-cond">${p[0]}</span></td><td>${p[1]}</td><td>${p[2]}</td></tr>`).join("");
+    }
+
+    document.addEventListener("click", e => {
+      const tab = e.target.closest(".tab-btn"); if (tab) { switchTab(tab.dataset.tab); return; }
+      const pill = e.target.closest(".filter-pill"); if (pill) { setActiveFilter(pill.dataset.filter); renderFichas(); return; }
+      const jump = e.target.closest("[data-jump]"); if (jump) { jumpToFicha(jump.dataset.jump); return; }
+    });
+    document.getElementById("search-box").addEventListener("input", renderFichas);
+    document.addEventListener("keydown", e => {
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT") { e.preventDefault(); switchTab("fichas"); document.getElementById("search-box").focus(); }
+      else if (e.key === "Escape" && document.activeElement.id === "search-box") { document.getElementById("search-box").value = ""; renderFichas(); }
+    });
+
+    renderStages(); renderFichas(); renderTables();
+  </script>
+</body>
+</html>

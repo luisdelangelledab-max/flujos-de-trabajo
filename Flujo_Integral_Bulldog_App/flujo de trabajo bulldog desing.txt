@@ -1,0 +1,1734 @@
+# FLUJO MAESTRO — ALTA, DISEÑO, INGENIERÍA Y LIBERACIÓN DE PROYECTOS EN CABINET VISION
+
+## Bulldog Design
+
+---
+
+# 1. OBJETIVO
+
+Definir el proceso completo para preparar, crear, configurar, modelar, desarrollar, revisar y liberar un proyecto de mobiliario dentro de **Cabinet Vision**, desde la información inicial proveniente de Diseño y Compras hasta la generación de los entregables utilizados en fabricación.
+
+El flujo busca que Cabinet Vision funcione como una fuente técnica estructurada y confiable para:
+
+- piezas;
+- materiales;
+- espesores;
+- listas de materiales;
+- métodos de construcción;
+- parametrización;
+- geometría;
+- conexiones;
+- mecanizados;
+- planos;
+- programas de corte;
+- programas CNC;
+- etiquetas;
+- reportes;
+- integración con Odoo;
+- seguimiento a producción.
+
+El propósito principal es reducir:
+
+- modificaciones tardías;
+- desfases dimensionales;
+- errores de materiales;
+- errores de espesores;
+- duplicidad de registros;
+- inconsistencias entre Odoo y Cabinet Vision;
+- errores de captura;
+- reprocesos de Ingeniería;
+- regeneración de planos y programas;
+- incidencias durante mecanizado;
+- problemas de ensamble;
+- problemas de instalación;
+- sobrecarga del equipo de Ingeniería;
+- dependencia de correcciones manuales;
+- riesgo acumulado durante fabricación.
+
+La lógica central del proceso es:
+
+> **La precisión del resultado final depende directamente de la calidad, completitud y estabilidad de la información utilizada desde el inicio.**
+
+---
+
+# 2. PRINCIPIO GENERAL
+
+Cabinet Vision no debe entenderse únicamente como un software para modelar mobiliario.
+
+El modelo desarrollado dentro del sistema se convierte en la base para generar:
+
+**modelo → piezas → materiales → BOM → planos → corte → mecanizado → etiquetas → fabricación.**
+
+Por esta razón, una decisión incorrecta tomada al inicio puede propagarse hacia todos los procesos posteriores.
+
+El objetivo del flujo no es corregir mejor al final.
+
+El objetivo es:
+
+> **eliminar desde el origen la mayor cantidad posible de condiciones que posteriormente generan errores.**
+
+---
+
+# 3. DOS TIPOS GENERALES DE PROYECTOS
+
+No todos los proyectos requieren exactamente el mismo nivel de preparación.
+
+## 3.1. Proyectos homologados o reutilizables
+
+Son proyectos que pueden partir de configuraciones previamente desarrolladas y comprobadas.
+
+Ejemplos:
+
+- closets estandarizados;
+- cocinas homologadas;
+- gabinetes;
+- alacenas;
+- muebles de baño;
+- mobiliario de oficina repetitivo;
+- familias previamente parametrizadas.
+
+Pueden reutilizar:
+
+- piezas;
+- materiales;
+- listas de materiales;
+- listas de puertas;
+- listas de cajones;
+- bisagras;
+- cubrecantos;
+- métodos de construcción;
+- parametrizaciones.
+
+Los pasos de creación pueden omitirse cuando la configuración existente sea realmente compatible.
+
+La pregunta correcta no es:
+
+> "¿Ya hicimos algo parecido?"
+
+Debe ser:
+
+> **"¿La configuración existente puede utilizarse sin modificar materiales, espesores, piezas, construcción o lógica paramétrica?"**
+
+---
+
+## 3.2. Proyectos nuevos, especiales o complejos
+
+Son aquellos que contienen características propias del proyecto.
+
+Ejemplos:
+
+- mobiliario ejecutivo;
+- muebles orgánicos;
+- curvas;
+- cerchas;
+- formas especiales;
+- interiores no convencionales;
+- forros particulares;
+- materiales nuevos;
+- combinaciones nuevas de materiales;
+- componentes exclusivos;
+- soluciones que no tienen una base homologada previa.
+
+Estos proyectos requieren ejecutar el flujo completo.
+
+---
+
+# 4. MACROFLUJO GENERAL
+
+El flujo completo debe entenderse así:
+
+**Diseño volumétrico para venta**  
+↓  
+**Aprobación conceptual**  
+↓  
+**Compras define materiales reales del proyecto**  
+↓  
+**Compras valida/crea materiales en Odoo**  
+↓  
+**Documento definitivo de materiales**  
+↓  
+**Diseño incorpora las decisiones de Compras**  
+↓  
+**Diseño desarrolla modelo a detalle**  
+↓  
+**Diseño verifica modelo contra levantamiento real**  
+↓  
+**GATE: DISEÑO LISTO PARA INGENIERÍA**  
+↓  
+**Preparación/configuración de Cabinet Vision**
+- piezas;
+- materiales;
+- cubrecantos;
+- listas de materiales;
+- puertas;
+- cajones;
+- bisagras/herrajes;
+- método de construcción.
+
+↓  
+**Creación formal del proyecto en Cabinet Vision**  
+↓  
+**Asignación de todas las configuraciones al proyecto**  
+↓  
+**Modelado y parametrización dentro de Cabinet Vision**  
+↓  
+**Ingeniería de producto**  
+↓  
+**Revisión técnica**  
+↓  
+**MODELO DE INGENIERÍA LISTO PARA FABRICACIÓN**  
+↓  
+**Comparación Ingeniería ↔ Diseño a detalle**  
+↓  
+**GO FABRICACIÓN**  
+↓  
+**Planos + BOM + corte + CNC + etiquetas + reportes**  
+↓  
+**Importación/transferencia hacia Odoo cuando corresponda**  
+↓  
+**Fabricación**  
+↓  
+**Seguimiento técnico**
+
+---
+
+# 5. ETAPA COMERCIAL — DISEÑO VOLUMÉTRICO
+
+Para la venta puede existir un primer nivel de diseño enfocado en comunicar la propuesta al cliente.
+
+Este diseño puede ser predominantemente volumétrico.
+
+Su propósito es:
+
+- representar la idea;
+- comunicar proporciones;
+- mostrar distribución;
+- visualizar el concepto;
+- facilitar aprobación comercial;
+- apoyar la venta.
+
+En esta etapa no necesariamente tienen que estar solucionados todos los detalles constructivos.
+
+Sin embargo:
+
+> **un diseño volumétrico aprobado comercialmente no equivale a un diseño listo para Ingeniería.**
+
+---
+
+# 6. COMPRAS — DEFINICIÓN DE LOS MATERIALES REALES
+
+Una vez que el proyecto avanza hacia desarrollo técnico, Compras debe definir los materiales que realmente serán utilizados.
+
+La selección depende de variables como:
+
+- presupuesto;
+- disponibilidad;
+- proveedor;
+- precio;
+- lead time;
+- acabado;
+- formato;
+- presentación;
+- unidad de compra;
+- condiciones de suministro.
+
+Compras es quien tiene la autoridad final sobre qué material comercial es viable para el proyecto.
+
+---
+
+# 7. DOCUMENTO BASE DE MATERIALES
+
+Debe existir un documento de entrada con los materiales definitivos del proyecto.
+
+Este documento debe provenir de Compras y funcionar como fuente base para Diseño e Ingeniería.
+
+Debe incluir, según corresponda:
+
+- nombre exacto del material en Odoo;
+- referencia interna;
+- descripción;
+- categoría;
+- espesor;
+- formato;
+- acabado;
+- proveedor;
+- SKU/modelo;
+- precio;
+- unidad de compra;
+- presentación;
+- disponibilidad;
+- lead time;
+- información adicional de abastecimiento.
+
+Este documento no es únicamente informativo.
+
+Es una **dependencia formal del flujo**.
+
+---
+
+# 8. DOCUMENTO DE MATERIALES COMO BLOQUEO
+
+La ausencia del documento definitivo de materiales representa un:
+
+# NO-GO
+
+para la liberación del proyecto hacia Ingeniería.
+
+No debe considerarse:
+
+- opcional;
+- administrativo;
+- una recomendación;
+- algo que pueda completarse posteriormente sin consecuencias.
+
+El principio es:
+
+> **SIN INFORMACIÓN DE MATERIALES DEFINITIVA → NO SE LIBERA EL PROYECTO A INGENIERÍA.**
+
+Esto responde a incidencias reales provocadas por modificaciones posteriores.
+
+---
+
+# 9. AUTORIDAD PARA CREAR MATERIALES EN ODOO
+
+Diseño o Ingeniería no deben dar de alta unilateralmente materiales comerciales en Odoo.
+
+El alta debe depender de Compras porque crear un producto implica definir:
+
+- cómo se compra;
+- cómo se reabastece;
+- unidad;
+- presentación;
+- costo;
+- proveedores;
+- condiciones comerciales;
+- disponibilidad;
+- datos logísticos.
+
+Además, Diseño e Ingeniería no tienen autoridad final sobre el material que entra dentro del presupuesto del proyecto.
+
+Por ello:
+
+> **Compras define, crea o valida el material maestro en Odoo.**
+
+Ingeniería puede participar en la definición técnica de nomenclaturas o requisitos, pero no sustituye la responsabilidad comercial de Compras.
+
+---
+
+# 10. CONVENCIÓN DE NOMBRES DE MATERIALES
+
+Ya existe una convención de nombres para los materiales registrados en Odoo.
+
+Fue desarrollada buscando conservar nombres:
+
+- cortos;
+- reconocibles;
+- compatibles;
+- estandarizados.
+
+Ejemplos:
+
+**MDF BCO FR 1C 18**
+
+**LAM NOGAL 1C 18**
+
+Esta estructura fue trabajada conjuntamente desde Ingeniería, principalmente con participación de **Mireya y Luis**, y debe mantenerse como base.
+
+---
+
+# 11. RAZÓN PARA MANTENER NOMBRES CORTOS
+
+Cabinet Vision presenta restricciones prácticas respecto a nombres demasiado extensos.
+
+Además, el flujo actual requiere mantener el mismo nombre entre:
+
+**Odoo ↔ Cabinet Vision ↔ reportes ↔ importación.**
+
+Por ello los nombres deben ser:
+
+**cortos + consistentes + estructurados + reproducibles.**
+
+No deben improvisarse nombres alternativos dentro de Cabinet Vision.
+
+---
+
+# 12. REFERENCIA INTERNA
+
+El segundo identificador fundamental es la **referencia interna de Odoo**.
+
+La referencia puede incorporar:
+
+- familia;
+- tipo;
+- característica;
+- folio;
+- identificador secuencial.
+
+Nombre y referencia cumplen funciones complementarias.
+
+## Nombre
+
+Facilita:
+
+- reconocimiento;
+- lectura;
+- compatibilidad con Cabinet Vision.
+
+## Referencia interna
+
+Facilita:
+
+- identificación;
+- trazabilidad;
+- control;
+- interoperabilidad.
+
+Ambos deben considerarse:
+
+# DATOS MAESTROS DEL MATERIAL
+
+---
+
+# 13. COMPORTAMIENTO DE ODOO DURANTE IMPORTACIÓN
+
+Dentro del flujo actual se debe considerar que:
+
+### Mismo nombre + diferente referencia
+
+Odoo puede permitir el registro/importación como otro producto.
+
+Esto significa que el nombre por sí solo no garantiza unicidad.
+
+### Referencia interna en conflicto
+
+Cuando la referencia interna coincide incorrectamente con otro registro, Odoo puede impedir la importación hasta que el conflicto sea resuelto.
+
+Por ello:
+
+> **nombre y referencia deben verificarse antes de utilizarlos dentro de Cabinet Vision.**
+
+---
+
+# 14. INTEGRACIÓN AUTOMATIZADA CABINET VISION ↔ ODOO
+
+Se ha automatizado el traspaso de información para disminuir el trabajo manual.
+
+El objetivo es permitir:
+
+**Odoo → información maestra → Cabinet Vision → BOM/reporte → importación masiva Odoo.**
+
+Esto disminuye:
+
+- recaptura;
+- errores tipográficos;
+- códigos incorrectos;
+- omisiones;
+- selección de materiales equivocados;
+- errores humanos de transcripción.
+
+La automatización requiere datos de origen correctos.
+
+> **Automatizar información incorrecta únicamente permite propagar el error más eficientemente.**
+
+---
+
+# 15. DISEÑO INCORPORA LAS DECISIONES DE COMPRAS
+
+Una vez definidos los materiales, Diseño debe actualizar el proyecto con las decisiones reales.
+
+No debe seguir trabajando con:
+
+- materiales provisionales;
+- acabados hipotéticos;
+- espesores aproximados;
+- sustituciones no actualizadas.
+
+Las decisiones de Compras deben incorporarse antes de consolidar el modelo a detalle.
+
+---
+
+# 16. MODELO A DETALLE DE DISEÑO
+
+Después del diseño volumétrico debe desarrollarse un:
+
+# MODELO A DETALLE
+
+Este modelo representa el producto que realmente se pretende fabricar.
+
+Diseño debe resolver, según corresponda:
+
+- geometría definitiva;
+- medidas;
+- proporciones;
+- distribución;
+- espacios;
+- espesores representativos;
+- reducciones;
+- tolerancias relevantes;
+- holguras;
+- zócalos;
+- retranqueos;
+- configuraciones del zócalo;
+- interiores;
+- curvas;
+- cambios de plano;
+- forros;
+- remates;
+- piezas especiales;
+- relaciones entre elementos;
+- interacción con el espacio;
+- propuesta constructiva;
+- propuesta de ensamble.
+
+---
+
+# 17. EL DISEÑO NO DEBE SER ÚNICAMENTE VOLUMÉTRICO
+
+Diseño no debe entregar a Ingeniería un objeto que únicamente represente la forma exterior.
+
+El modelo previo a Ingeniería debe evitar omitir:
+
+- soluciones;
+- configuraciones;
+- piezas importantes;
+- tolerancias representativas;
+- holguras;
+- remates;
+- detalles necesarios para hacer viable el producto.
+
+Debe existir una solución concreta.
+
+---
+
+# 18. DIFERENCIA ENTRE DISEÑO E INGENIERÍA
+
+La división principal puede expresarse así:
+
+## Diseño responde:
+
+> **¿Qué producto debemos fabricar y cómo debe resolverse conceptualmente?**
+
+## Ingeniería responde:
+
+> **¿Cómo fabricaremos, conectaremos, parametrizaremos, mecanizaremos y documentaremos ese producto?**
+
+Ingeniería no debe utilizarse como una extensión de Diseño para terminar decisiones todavía abiertas.
+
+---
+
+# 19. EJEMPLO — CURVA
+
+Si Diseño requiere una curva, Diseño debe establecer:
+
+- dónde está;
+- qué geometría debe tener;
+- cómo interactúa con el resto;
+- qué intención constructiva debe conservarse;
+- qué tipo de solución general se propone.
+
+Ingeniería posteriormente debe garantizar que:
+
+- existan las piezas curvas;
+- existan las cerchas necesarias;
+- los materiales sean correctos;
+- exista el laminado correspondiente;
+- la BOM incluya las piezas;
+- las conexiones funcionen;
+- el mecanizado sea posible;
+- el conjunto sea fabricable.
+
+---
+
+# 20. PROPUESTA DE ENSAMBLE DESDE DISEÑO
+
+Diseño debe plantear una propuesta lógica de ensamble.
+
+No necesariamente debe definir aún:
+
+- Minifix específico;
+- tornillo exacto;
+- barrenado definitivo;
+- perno concreto;
+- mecanizado CNC.
+
+Estas decisiones pertenecen mayormente a Ingeniería.
+
+Sin embargo, Diseño sí debe plantear:
+
+- qué elementos son conjuntos;
+- qué piezas se relacionan;
+- qué componentes deben ser independientes;
+- qué partes son desmontables;
+- cómo se pretende organizar el montaje;
+- restricciones importantes de instalación.
+
+---
+
+# 21. VALIDACIÓN EN EL ENTORNO REAL
+
+Diseño también es responsable de validar el mobiliario dentro del levantamiento real.
+
+Debe realizarse la:
+
+# SUSTITUCIÓN / INSERCIÓN DEL MODELO A DETALLE EN EL LEVANTAMIENTO
+
+para verificar:
+
+- dimensiones reales;
+- muros;
+- columnas;
+- desniveles;
+- restricciones;
+- encuentros;
+- interferencias;
+- instalaciones;
+- accesos;
+- holguras;
+- tolerancias;
+- condiciones de montaje.
+
+---
+
+# 22. FILTRO ANTIERROR 1
+
+El primer filtro preventivo queda definido como:
+
+# MODELO A DETALLE DE DISEÑO ↔ LEVANTAMIENTO REAL
+
+Pregunta:
+
+> **¿El producto diseñado funciona realmente dentro del espacio donde se instalará?**
+
+Si no:
+
+# NO-GO
+
+Debe corregirse Diseño antes de llegar a Ingeniería.
+
+---
+
+# 23. GATE — DISEÑO LISTO PARA INGENIERÍA
+
+Un proyecto puede declararse:
+
+# DISEÑO LISTO PARA INGENIERÍA
+
+cuando estén resueltos:
+
+- geometría;
+- dimensiones;
+- materiales;
+- espesores representativos;
+- configuraciones;
+- holguras;
+- tolerancias de Diseño;
+- zócalos;
+- piezas especiales;
+- curvas;
+- acabados;
+- propuesta constructiva;
+- propuesta de ensamble;
+- compatibilidad con levantamiento.
+
+Además, debe existir:
+
+- documento definitivo de materiales;
+- información Odoo;
+- nombre;
+- referencia;
+- decisiones de Compras incorporadas.
+
+---
+
+# 24. RESPONSABILIDAD POR PROCESO, NO NECESARIAMENTE POR PERSONA
+
+El gate anterior no significa que únicamente una persona específica pueda completar las actividades.
+
+Dentro del área general de Diseño pueden distribuirse:
+
+- modelados;
+- levantamientos;
+- revisiones;
+- detalles;
+- sustituciones;
+- propuestas constructivas.
+
+Lo importante es que:
+
+> **las actividades estén terminadas antes de la liberación y que el líder correspondiente asegure su cumplimiento.**
+
+---
+
+# 25. EL BLOQUEO NO SIGNIFICA QUE INGENIERÍA QUEDE SIN TRABAJO
+
+El NO-GO corresponde al proyecto específico.
+
+No significa que el equipo de Ingeniería tenga que detener toda actividad.
+
+Puede continuar trabajando en:
+
+- otros proyectos;
+- programas;
+- parametrizaciones;
+- librerías;
+- revisiones;
+- seguimiento productivo;
+- documentación;
+- mejoras;
+- desarrollo de estándares.
+
+El bloqueo significa únicamente:
+
+> **ese proyecto no puede considerarse formalmente liberado hacia Ingeniería.**
+
+---
+
+# 26. SOBRECARGA POR TRANSFERIR DISEÑO INCOMPLETO
+
+Cuando Ingeniería recibe un proyecto todavía sin resolver, termina absorbiendo simultáneamente:
+
+- decisiones de Diseño;
+- geometrías;
+- detalles;
+- compatibilidad con obra;
+- conexiones;
+- parametrización;
+- piezas;
+- mecanizados;
+- programas;
+- revisiones;
+- seguimiento productivo.
+
+Esto genera:
+
+- sobrecarga;
+- retrasos;
+- mayor probabilidad de error;
+- concentración excesiva de responsabilidades;
+- retrabajo.
+
+Por ello, el nuevo flujo distribuye las decisiones en la etapa donde resulta más eficiente resolverlas.
+
+---
+
+# 27. PREPARACIÓN DE CABINET VISION
+
+Una vez que existe una definición suficientemente estable deben prepararse las configuraciones necesarias de Cabinet Vision.
+
+Cabinet Vision trabaja segmentando diferentes componentes para facilitar su reutilización.
+
+Esto permite crear configuraciones homologadas para:
+
+- diferentes tipos de mobiliario;
+- diferentes niveles de precio;
+- diferentes materiales;
+- diferentes sistemas constructivos.
+
+---
+
+# 28. ETAPA CV-1 — CREACIÓN DE PIEZAS NUEVAS
+
+Cuando el proyecto requiere componentes que no existen, deben crearse.
+
+Ejemplos:
+
+- cerchas;
+- piezas curvas;
+- refuerzos;
+- divisiones especiales;
+- elementos estructurales;
+- partes específicas del proyecto.
+
+Si la pieza existente es realmente compatible, puede reutilizarse.
+
+---
+
+# 29. ETAPA CV-2 — CREACIÓN DE MATERIALES
+
+Cada material necesario debe existir correctamente dentro de Cabinet Vision.
+
+Debe utilizar:
+
+- nombre exacto definido en Odoo;
+- referencia interna correspondiente;
+- espesor real;
+- formato;
+- precio;
+- demás atributos necesarios.
+
+Cuando sea necesario, debe existir:
+
+- muestra física;
+- ficha técnica;
+- verificación del espesor.
+
+---
+
+# 30. IMPORTANCIA DEL ESPESOR
+
+El espesor interviene directamente en la parametrización.
+
+Ejemplo conceptual:
+
+**espacio disponible − tablero − laminado − forro − holgura = dimensión de pieza.**
+
+Si cambia el espesor puede cambiar:
+
+- geometría;
+- dimensiones;
+- encuentros;
+- piezas;
+- mecanizados.
+
+Esto es particularmente crítico en:
+
+- curvas;
+- cerchas;
+- forros;
+- particiones;
+- muebles orgánicos.
+
+---
+
+# 31. ETAPA CV-3 — CREACIÓN DE CUBRECANTOS
+
+Por cada material deben crearse o asociarse los cubrecantos correspondientes cuando sean necesarios.
+
+Por ejemplo:
+
+## Cubrecanto general
+
+Utilizado en los cantos habituales del mobiliario.
+
+## Cubrecanto para corte a 45°
+
+Cuando las puertas u otros elementos tienen cortes a 45°, puede requerirse un cubrecanto de mayor ancho por requerimiento del área de Maquinados.
+
+Por ello puede ser necesario disponer de:
+
+**material + cubrecanto general + cubrecanto especial para 45°.**
+
+Si ya existen y son compatibles, deben reutilizarse.
+
+---
+
+# 32. ETAPA CV-4 — LISTAS DE MATERIALES
+
+Cabinet Vision segmenta las configuraciones por componentes.
+
+No necesariamente existe una sola Lista de Materiales universal.
+
+Puede ser necesario crear:
+
+- Lista de Materiales de gabinetes;
+- Lista de Materiales de alacenas;
+- Lista de Materiales de puertas de gabinetes;
+- Lista de Materiales de puertas de alacenas;
+- Lista de Materiales de cajones;
+- listas para otros componentes.
+
+Esto permite manejar diferencias entre:
+
+- muebles inferiores;
+- muebles superiores;
+- puertas;
+- cajones;
+- familias específicas.
+
+---
+
+# 33. PUERTAS
+
+Cuando las puertas utilizan materiales diferentes o requieren otra configuración, debe existir su propia Lista de Materiales.
+
+Puede ser necesario diferenciar:
+
+- puertas de gabinetes;
+- puertas de alacenas;
+- otras familias de puertas.
+
+Si existe una lista homologada con exactamente la misma configuración puede reutilizarse.
+
+---
+
+# 34. CAJONES
+
+De la misma manera, cuando los cajones requieren una configuración específica deben contar con la Lista de Materiales correspondiente.
+
+Debe evitarse asumir que automáticamente utilizarán los mismos materiales del cuerpo principal.
+
+---
+
+# 35. BISAGRAS Y HERRAJES
+
+Debe definirse la lista/configuración de bisagras y demás componentes relacionados.
+
+Cabinet Vision separa estos elementos precisamente para poder reutilizar configuraciones.
+
+Los componentes nuevos deben ser dados de alta antes de incorporarlos al proyecto.
+
+---
+
+# 36. ETAPA CV-5 — MÉTODO DE CONSTRUCCIÓN
+
+Cuando sea necesario debe crearse o modificarse el Método de Construcción.
+
+Éste define cómo interactúan los componentes.
+
+Puede incluir:
+
+- relaciones;
+- offsets;
+- encuentros;
+- reglas constructivas;
+- posiciones;
+- uniones;
+- comportamiento paramétrico.
+
+Si existe un método homologado compatible, puede reutilizarse.
+
+---
+
+# 37. ETAPA CV-6 — CREACIÓN FORMAL DEL PROYECTO
+
+Después de preparar las configuraciones necesarias se crea formalmente el proyecto dentro de Cabinet Vision.
+
+Este paso es crítico.
+
+No consiste únicamente en crear un archivo.
+
+Durante la creación aparecen ventanas de configuración donde deben integrarse todos los elementos previamente desarrollados.
+
+---
+
+# 38. CONFIGURACIÓN INICIAL DEL PROYECTO
+
+En estas ventanas deben definirse e integrarse:
+
+- cliente;
+- datos generales;
+- información del proyecto;
+- Lista de Materiales de gabinetes;
+- Lista de Materiales de alacenas;
+- Lista de Materiales de puertas;
+- configuraciones de cajones;
+- bisagras;
+- herrajes;
+- cubrecantos;
+- Método de Construcción;
+- demás configuraciones necesarias.
+
+Este proceso requiere atención y tiempo de llenado.
+
+---
+
+# 39. ESTA VENTANA FUNCIONA COMO CHECKPOINT
+
+La configuración inicial también permite identificar:
+
+**¿Qué ya existe?**
+
+**¿Qué ya fue creado?**
+
+**¿Qué todavía falta?**
+
+Si Cabinet Vision solicita una configuración necesaria que todavía no existe, debe regresarse y crearla antes de continuar.
+
+Por ello esta etapa funciona como:
+
+# CHECKPOINT DE COMPLETITUD
+
+---
+
+# 40. BLOQUEO DE CONFIGURACIÓN
+
+El proyecto no debe considerarse correctamente dado de alta si existen campos o configuraciones críticas pendientes.
+
+Si falta:
+
+- material;
+- lista;
+- cubrecanto;
+- bisagra;
+- método;
+- configuración necesaria;
+
+el proyecto debe mantenerse en preparación.
+
+Esto evita comenzar el modelado sobre una estructura incompleta.
+
+---
+
+# 41. OBJETIVO DE LA SEGMENTACIÓN EN CABINET VISION
+
+La segmentación del sistema permite reutilizar configuraciones posteriormente.
+
+El objetivo es construir una biblioteca homologada para familias como:
+
+- línea económica;
+- línea media;
+- línea alta;
+- diferentes tipos de cocina;
+- closets;
+- oficinas;
+- mobiliario especial recurrente.
+
+Cada nuevo proyecto debería aumentar la madurez de la biblioteca.
+
+---
+
+# 42. ETAPA CV-7 — MODELADO A DETALLE DENTRO DE CABINET VISION
+
+Una vez creado y configurado correctamente el proyecto se desarrolla el mobiliario.
+
+El modelado debe respetar:
+
+- Diseño a detalle;
+- levantamiento;
+- materiales;
+- espesores;
+- configuraciones;
+- intención constructiva.
+
+El modelo de Cabinet Vision debe representar la realidad técnica del producto.
+
+---
+
+# 43. COMPLEJIDAD SEGÚN EL TIPO DE MUEBLE
+
+Un mobiliario convencional puede desarrollarse rápidamente si utiliza bases conocidas.
+
+La complejidad aumenta cuando existen:
+
+- geometrías orgánicas;
+- techos desplazados;
+- curvas;
+- interiores especiales;
+- forros;
+- piezas exclusivas;
+- sistemas no homologados.
+
+La dificultad depende principalmente del grado de desviación respecto a una solución ya parametrizada.
+
+---
+
+# 44. ETAPA CV-8 — PARAMETRIZACIÓN
+
+La parametrización debe permitir modificar el mueble dentro de los rangos para los cuales fue diseñado sin romper:
+
+- piezas;
+- espesores;
+- relaciones;
+- geometría;
+- encuentros;
+- conexiones;
+- lógica constructiva.
+
+La parametrización desarrollada puede convertirse posteriormente en un activo reutilizable.
+
+---
+
+# 45. LIMITACIONES DE LA PARAMETRIZACIÓN
+
+No todas las geometrías pueden parametrizarse completamente de forma eficiente.
+
+En muebles orgánicos pueden existir piezas donde:
+
+- las relaciones son demasiado particulares;
+- existen paños complejos;
+- hay forros;
+- hay cerchas;
+- existen medidas derivadas del diseño.
+
+Por ello los materiales deben estar definidos antes.
+
+Cambiar posteriormente un espesor puede afectar piezas que no respondan automáticamente de forma correcta.
+
+---
+
+# 46. INGENIERÍA DE PRODUCTO
+
+Una vez liberado el proyecto comienza el desarrollo de Ingeniería.
+
+La Ingeniería debe convertir el producto definido en Diseño en un sistema fabricable.
+
+Debe resolver:
+
+- conexiones definitivas;
+- herrajes;
+- uniones;
+- perforaciones;
+- mecanizados;
+- despiece;
+- BOM;
+- parametrización técnica;
+- compatibilidad;
+- secuencia constructiva;
+- información para corte;
+- información CNC;
+- planos;
+- etiquetas.
+
+---
+
+# 47. QUÉ PUEDE PERMANECER PENDIENTE PARA INGENIERÍA
+
+Principalmente:
+
+## Conexiones específicas
+
+- Minifix;
+- pernos;
+- taquetes;
+- tornillos;
+- bisagras específicas;
+- barrenos;
+- herrajes;
+- fijaciones.
+
+## Parametrización técnica
+
+La conversión del diseño en una estructura robusta y editable dentro del sistema.
+
+## Fabricación
+
+- mecanizados;
+- programas;
+- documentación;
+- despieces;
+- secuencias técnicas.
+
+No debe permanecer pendiente la definición fundamental del producto.
+
+---
+
+# 48. REVISIÓN DE INGENIERÍA
+
+Después de aplicar:
+
+- conexiones;
+- parametrización;
+- mecanizados;
+- detalles;
+
+debe realizarse una revisión técnica.
+
+Debe confirmarse:
+
+- compatibilidad entre piezas;
+- coherencia de materiales;
+- BOM;
+- conexiones;
+- mecanizados;
+- dimensiones;
+- configuraciones.
+
+---
+
+# 49. FILTRO ANTIERROR 2
+
+Antes de fabricar debe compararse:
+
+# MODELO DE INGENIERÍA LISTO PARA FABRICACIÓN
+
+contra:
+
+# MODELO A DETALLE DE DISEÑO
+
+El objetivo es comprobar que la transformación técnica no haya cambiado involuntariamente lo solicitado.
+
+---
+
+# 50. ELEMENTOS A COMPARAR
+
+Debe verificarse:
+
+- geometría;
+- dimensiones;
+- distribución;
+- materiales;
+- acabados;
+- espacios;
+- holguras;
+- curvas;
+- piezas visibles;
+- configuraciones;
+- relación con levantamiento;
+- intención de Diseño.
+
+Pregunta principal:
+
+> **¿Lo que estamos a punto de fabricar sigue siendo lo que Diseño definió?**
+
+---
+
+# 51. SISTEMA DE DOBLE FILTRO
+
+El proceso incorpora dos filtros principales.
+
+## FILTRO 1
+
+**Diseño a detalle ↔ levantamiento real**
+
+Busca asegurar que el producto funciona en obra.
+
+## FILTRO 2
+
+**Ingeniería ↔ Diseño a detalle**
+
+Busca asegurar que la solución fabricable respeta el producto diseñado.
+
+La cadena queda:
+
+**LEVANTAMIENTO REAL**  
+↕  
+**DISEÑO A DETALLE**  
+↕  
+**INGENIERÍA**
+
+Los tres niveles deben ser congruentes.
+
+---
+
+# 52. GATE — LISTO PARA FABRICACIÓN
+
+El proyecto puede declararse:
+
+# LISTO PARA FABRICACIÓN
+
+cuando:
+
+- Ingeniería está completa;
+- la revisión está concluida;
+- el segundo filtro fue aprobado;
+- no existen discrepancias críticas;
+- los entregables pueden generarse desde el modelo maestro.
+
+---
+
+# 53. GENERACIÓN DE ENTREGABLES
+
+Todos los entregables deben partir del mismo modelo validado.
+
+Entre ellos:
+
+- planos de ensamble;
+- diagramas de corte;
+- listas de partes;
+- Listas de Materiales;
+- reportes de costos;
+- programas de corte;
+- programas de mecanizado;
+- CNC;
+- etiquetas;
+- información para producción.
+
+---
+
+# 54. MODELO COMO FUENTE TÉCNICA PRINCIPAL
+
+La intención es mantener consistencia:
+
+**modelo ↔ BOM ↔ plano ↔ programa ↔ pieza física.**
+
+No deben existir versiones independientes que se corrijan por separado.
+
+---
+
+# 55. REGLA DE CAMBIOS
+
+Si después de Ingeniería ocurre una modificación, debe regresar al origen correspondiente.
+
+No debe modificarse únicamente:
+
+- plano;
+- CNC;
+- programa;
+- etiqueta;
+- BOM;
+- reporte;
+- cota.
+
+El flujo correcto es:
+
+**cambio solicitado**  
+↓  
+**identificar nivel de origen**  
+↓  
+**modificar Diseño/Modelo maestro**  
+↓  
+**actualizar Cabinet Vision**  
+↓  
+**revisar impacto**  
+↓  
+**volver a validar**  
+↓  
+**regenerar entregables**
+
+---
+
+# 56. POR QUÉ NO SE PERMITEN CORRECCIONES AISLADAS
+
+Una modificación puede propagarse.
+
+Ejemplo:
+
+**cambio de laminado**  
+→ **cambio Odoo**  
+→ **cambio referencia**  
+→ **cambio espesor**  
+→ **cambio geometría**  
+→ **cambio piezas**  
+→ **cambio mecanizados**  
+→ **cambio programas**  
+→ **cambio ensamble.**
+
+Por ello no debe corregirse únicamente la consecuencia visible.
+
+---
+
+# 57. IMPACTO DEL RETRABAJO
+
+Un cambio posterior puede implicar:
+
+**modificación + revisión + regeneración + validación + actualización documental.**
+
+Según su gravedad puede consumir:
+
+- horas;
+- un día;
+- varios días;
+- tres o cuatro días;
+- incluso una semana en proyectos complejos.
+
+Además puede retrasar:
+
+- Compras;
+- documentación;
+- corte;
+- mecanizado;
+- ensamble;
+- instalación.
+
+---
+
+# 58. TRANSFERENCIA AUTOMATIZADA HACIA ODOO
+
+Cuando el proyecto está correctamente estructurado, la BOM puede exportarse en un formato compatible con Odoo.
+
+El flujo busca permitir:
+
+**Cabinet Vision → reporte estructurado → importación masiva Odoo.**
+
+Esto disminuye considerablemente la captura manual.
+
+---
+
+# 59. CONDICIÓN PARA LA IMPORTACIÓN MASIVA
+
+Todos los materiales requeridos deben tener:
+
+- nombre correcto;
+- referencia correcta;
+- registro válido;
+- información completa.
+
+La ausencia de información de un solo componente puede impedir completar correctamente la importación.
+
+Por eso:
+
+> **un material incompleto puede convertirse en un bloqueo de todo el proceso de importación.**
+
+---
+
+# 60. RESPONSABILIDADES PRINCIPALES
+
+## Compras / Costos
+
+Responsable de:
+
+- material comercial;
+- presupuesto;
+- proveedor;
+- disponibilidad;
+- precio;
+- alta en Odoo;
+- nombre;
+- referencia interna;
+- unidad de compra;
+- presentación;
+- información comercial.
+
+---
+
+## Diseño
+
+Responsable de:
+
+- diseño volumétrico;
+- diseño a detalle;
+- geometría;
+- dimensiones;
+- holguras;
+- tolerancias representativas;
+- zócalos;
+- configuraciones;
+- piezas especiales;
+- propuesta constructiva;
+- propuesta de ensamble;
+- compatibilidad con levantamiento;
+- incorporación de cambios de Compras.
+
+---
+
+## Ingeniería
+
+Responsable de:
+
+- configuración técnica de Cabinet Vision;
+- parametrización;
+- conexiones;
+- despiece;
+- BOM;
+- mecanizados;
+- programas;
+- documentación;
+- planos;
+- etiquetas;
+- validación técnica;
+- seguimiento a fabricación.
+
+---
+
+# 61. CADENA CORRECTA DE INFORMACIÓN
+
+La cadena completa queda establecida como:
+
+**Diseño volumétrico para venta**  
+↓  
+**Aprobación conceptual**  
+↓  
+**Compras define materiales reales**  
+↓  
+**Compras verifica presupuesto + proveedor + disponibilidad**  
+↓  
+**Compras crea/valida materiales en Odoo**  
+↓  
+**Compras entrega nombre + referencia + información técnica/comercial**  
+↓  
+**Diseño incorpora decisiones de Compras**  
+↓  
+**Diseño desarrolla modelo a detalle**  
+↓  
+**Diseño define geometría + espacios + holguras + tolerancias + zócalos + detalles + propuesta constructiva + propuesta de ensamble**  
+↓  
+**Diseño inserta/verifica el modelo contra levantamiento real**  
+↓  
+# FILTRO 1
+**DISEÑO ↔ LEVANTAMIENTO**  
+↓  
+# GATE
+**DISEÑO LISTO PARA INGENIERÍA**  
+↓  
+**Preparación de componentes Cabinet Vision**  
+↓  
+**Piezas + materiales + cubrecantos + BOM + puertas + cajones + bisagras + método de construcción**  
+↓  
+**Creación formal del proyecto Cabinet Vision**  
+↓  
+**Integración de todas las configuraciones**  
+↓  
+**Modelado/parametrización técnica**  
+↓  
+**Ingeniería de producto**  
+↓  
+**Conexiones + despiece + BOM + mecanizados + documentación + programas**  
+↓  
+**Modelo listo para fabricación**  
+↓  
+# FILTRO 2
+**INGENIERÍA ↔ DISEÑO A DETALLE**  
+↓  
+# GO
+**LISTO PARA FABRICACIÓN**  
+↓  
+**Planos + diagramas + corte + CNC + etiquetas + reportes**  
+↓  
+**Producción y seguimiento**
+
+---
+
+# 62. BLOQUEOS PRINCIPALES DEL FLUJO
+
+## BLOQUEO 1 — Materiales
+
+Si faltan materiales definitivos:
+
+# NO-GO
+
+## BLOQUEO 2 — Datos Odoo
+
+Si faltan nombres o referencias críticas:
+
+# NO-GO
+
+## BLOQUEO 3 — Diseño a detalle
+
+Si únicamente existe volumetría:
+
+# NO-GO
+
+## BLOQUEO 4 — Validación con levantamiento
+
+Si no se ha comprobado el producto en el entorno:
+
+# NO-GO
+
+## BLOQUEO 5 — Configuración Cabinet Vision
+
+Si faltan listas, cubrecantos, herrajes o métodos necesarios:
+
+# NO-GO
+
+## BLOQUEO 6 — Revisión antes de fabricación
+
+Si Ingeniería y Diseño no son congruentes:
+
+# NO-GO
+
+---
+
+# 63. EQUIVALENCIA CON LOS CONTROLES PRODUCTIVOS
+
+El principio debe ser consistente a través de toda la empresa.
+
+Así como durante fabricación:
+
+> **sin plano y programa correctos no debe iniciarse corte,**
+
+antes de Ingeniería:
+
+> **sin Diseño completo y materiales definitivos no debe liberarse el proyecto.**
+
+La rigurosidad no debe aparecer únicamente cuando el material ya está en máquina.
+
+Debe comenzar desde la primera entrada de información.
+
+---
+
+# 64. PRINCIPIO DE DOCUMENTACIÓN BLOQUEANTE
+
+Una documentación es bloqueante cuando su ausencia hace que avanzar genere un riesgo no aceptable.
+
+Ejemplos:
+
+### Entrada a Ingeniería
+
+- documento de materiales;
+- Diseño a detalle;
+- validación de levantamiento.
+
+### Entrada a fabricación
+
+- modelo técnico validado;
+- planos;
+- programas;
+- documentación correspondiente.
+
+Esto convierte el flujo en un sistema de gates objetivos.
+
+---
+
+# 65. FILOSOFÍA DE CAMBIO DEL PROCESO
+
+El proceso anterior podía permitir:
+
+**avanzar → detectar problemas → corregir → volver a avanzar.**
+
+El flujo objetivo debe ser:
+
+**validar → liberar → ejecutar.**
+
+Esto no elimina completamente las incidencias, pero reduce las incidencias previsibles.
+
+---
+
+# 66. PRINCIPIO DE PRECISIÓN DE EXTREMO A EXTREMO
+
+Si posteriormente se pretende revisar:
+
+**programa ↔ plano ↔ pieza física**
+
+también debe revisarse desde el inicio:
+
+**material ↔ Diseño ↔ levantamiento ↔ modelo ↔ Ingeniería.**
+
+No es coherente exigir exactitud únicamente al final.
+
+> **El control de calidad comienza con la primera información del proyecto.**
+
+---
+
+# 67. OBJETIVO DE HOMOLOGACIÓN
+
+Cada proyecto correctamente desarrollado debe ayudar a crear una biblioteca más robusta.
+
+Con el tiempo deberían existir soluciones preconfiguradas para:
+
+- muebles estándar;
+- tipos de puertas;
+- cajones;
+- bisagras;
+- materiales;
+- cubrecantos;
+- métodos;
+- diferentes niveles de producto.
+
+Esto permite que futuros proyectos requieran menos creación desde cero.
+
+---
+
+# 68. OBJETIVO DE REUTILIZACIÓN
+
+Cabinet Vision funciona separando los componentes precisamente para permitir reutilización.
+
+Por ello, cuando se crea correctamente:
+
+- un material;
+- una pieza;
+- un cubrecanto;
+- una BOM;
+- una configuración de puertas;
+- un método;
+- una parametrización;
+
+ese trabajo debe convertirse en una base reutilizable y no únicamente en una solución aislada para un proyecto.
+
+---
+
+# 69. REGLA MAESTRA DE MATERIALES
+
+> **NINGÚN MATERIAL NUEVO DEBE UTILIZARSE COMO MATERIAL DEFINITIVO EN CABINET VISION SI NO EXISTE SU IDENTIDAD MAESTRA VALIDADA EN ODOO.**
+
+Como mínimo:
+
+**nombre + referencia interna.**
+
+---
+
+# 70. REGLA MAESTRA DE DISEÑO
+
+> **NINGÚN PROYECTO DEBE LIBERARSE A INGENIERÍA UTILIZANDO ÚNICAMENTE UN MODELO VOLUMÉTRICO.**
+
+Debe existir un:
+
+# MODELO A DETALLE
+
+con información suficiente para definir claramente el producto.
+
+---
+
+# 71. REGLA MAESTRA DE INGENIERÍA
+
+> **INGENIERÍA DEBE RECIBIR UN PRODUCTO DEFINIDO Y CONVERTIRLO EN UN PRODUCTO FABRICABLE.**
+
+No debe absorber sistemáticamente decisiones de Diseño que debieron cerrarse previamente.
+
+---
+
+# 72. REGLA MAESTRA DE CAMBIOS
+
+> **TODO CAMBIO POSTERIOR DEBE REGRESAR AL MODELO MAESTRO, REVISARSE Y PROPAGARSE MEDIANTE LA REGENERACIÓN DE LOS ENTREGABLES AFECTADOS.**
+
+No deben existir correcciones paralelas que rompan la coherencia.
+
+---
+
+# 73. REGLA MAESTRA DEL FLUJO
+
+La estructura general puede resumirse en:
+
+# INFORMACIÓN CORRECTA
+↓
+# DISEÑO CORRECTO
+↓
+# CONFIGURACIÓN CORRECTA
+↓
+# INGENIERÍA CORRECTA
+↓
+# INFORMACIÓN DE FABRICACIÓN CORRECTA
+↓
+# PRODUCTO CORRECTO
+
+---
+
+# 74. CONCLUSIÓN
+
+La finalidad de este flujo no es crear burocracia ni agregar pasos sin fundamento.
+
+La finalidad es controlar correctamente una cadena de información altamente dependiente:
+
+**Compras → Odoo → Diseño → levantamiento → Cabinet Vision → Ingeniería → documentación → programas → fabricación → ensamble → instalación.**
+
+Los problemas detectados posteriormente muchas veces no nacen en Producción.
+
+Nacen varias etapas antes.
+
+Un material incorrecto puede convertirse en un problema dimensional.
+
+Un diseño incompleto puede convertirse en un problema de Ingeniería.
+
+Una configuración incorrecta puede convertirse en un programa incorrecto.
+
+Una corrección aislada puede convertir dos documentos originalmente congruentes en dos versiones diferentes del mismo producto.
+
+Por ello, el sistema debe trabajar mediante:
+
+**datos maestros + responsables claros + configuraciones reutilizables + gates + bloqueos + revisiones cruzadas + trazabilidad.**
+
+Los dos filtros principales agregados al flujo:
+
+1. **Diseño a detalle ↔ levantamiento real**
+2. **Ingeniería ↔ Diseño a detalle**
+
+permiten comprobar el producto antes de que los errores alcancen fabricación.
+
+A su vez, la creación formal del proyecto dentro de Cabinet Vision funciona como un checkpoint adicional, porque obliga a integrar:
+
+- materiales;
+- Listas de Materiales;
+- puertas;
+- cajones;
+- bisagras;
+- cubrecantos;
+- métodos constructivos;
+- demás configuraciones.
+
+De esta manera, el proyecto avanza únicamente cuando existen las condiciones necesarias para hacerlo correctamente.
+
+El objetivo final es pasar de un flujo basado en:
+
+> **avanzar y resolver problemas conforme aparecen**
+
+a un flujo basado en:
+
+> **definir, validar, liberar y ejecutar.**
+
+La consecuencia esperada es una disminución progresiva de:
+
+- errores;
+- retrabajos;
+- incidencias;
+- modificaciones tardías;
+- tiempos improductivos;
+- sobrecarga de Ingeniería;
+- discrepancias entre áreas.
+
+Y una mejora directa en:
+
+- trazabilidad;
+- reutilización;
+- homologación;
+- velocidad de futuros proyectos;
+- calidad de la información;
+- calidad del producto fabricado.

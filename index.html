@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hub de Flujos de Trabajo Visuales Operativos · Ingeniería y Manufactura</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --surface-hover: #26354d;
+      --border: #334155;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #818cf8;
+      --emerald: #34d399;
+      --amber: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding: 2rem 1.25rem 4rem;
+    }
+    .container {
+      max-width: 1220px;
+      margin: 0 auto;
+    }
+    header {
+      background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+    }
+    .badge-top {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: var(--muted);
+      max-width: 850px;
+      font-size: 0.98rem;
+    }
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: #e2e8f0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 1.25rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+      background: var(--surface-hover);
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.18rem 0.6rem;
+      border-radius: 6px;
+      margin-bottom: 0.65rem;
+      width: fit-content;
+    }
+    .tag-html { background: rgba(52, 211, 153, 0.15); color: var(--emerald); border: 1px solid rgba(52, 211, 153, 0.35); }
+    .tag-sop { background: rgba(56, 189, 248, 0.15); color: var(--accent); border: 1px solid rgba(56, 189, 248, 0.35); }
+    .tag-app { background: rgba(129, 140, 248, 0.18); color: var(--accent-2); border: 1px solid rgba(129, 140, 248, 0.4); }
+    .tag-doc { background: rgba(251, 191, 36, 0.15); color: var(--amber); border: 1px solid rgba(251, 191, 36, 0.35); }
+    .card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 0.45rem;
+      color: #fff;
+    }
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 1.15rem;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: auto;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      text-decoration: none;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.52rem 0.9rem;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0f172a;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border-color: var(--border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    /* Modal visor Markdown */
+    #md-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      padding: 1.5rem;
+      overflow-y: auto;
+    }
+    .modal-box {
+      max-width: 1020px;
+      margin: 0 auto;
+      background: #1e293b;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 1.5rem;
+      background: #0f172a;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .modal-body {
+      padding: 2rem;
+      color: #e2e8f0;
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+    .modal-body h1, .modal-body h2, .modal-body h3 {
+      color: #fff;
+      margin: 1.4rem 0 0.6rem;
+    }
+    .modal-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.86rem;
+    }
+    .modal-body th, .modal-body td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.7rem;
+      text-align: left;
+    }
+    .modal-body th {
+      background: #0f172a;
+      color: var(--accent);
+    }
+    .modal-body code {
+      background: #0f172a;
+      color: #7dd3fc;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .modal-body pre {
+      background: #0f172a;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    .modal-body blockquote {
+      border-left: 4px solid var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .mermaid {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge-top">Centro de Documentación Operativa · Acceso Multiplataforma</span>
+      <h1>Flujos de Trabajo Visuales Operativos</h1>
+      <p>Repositorio centralizado de manuales visuales interactivos (HTML), procedimientos operativos estándar (SOPs), aplicaciones de flujo integral y especificaciones metodológicas para Cabinet Vision, Suite de Costos, Leader Studio, Nitro PDF y Odoo.</p>
+    </header>
+
+    <h2 class="section-title">1. Manuales Visuales Interactivos (HTML)</h2>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <span class="card-tag tag-html">FLUJO 1 · COSTOS Y PARTES</span>
+          <h3>Manual Visual de Costos Ibero (Rev. 0.1)</h3>
+          <p>Flujo Cabinet Vision (Bid Center, Report Center, S2M Center) → Suite de Costos → Odoo. Incluye Variante A (Mueble individual) y Variante B (Concepto compuesto), 30 fichas, 9 controles y 4 incidencias.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="./costos-ibero.html" target="_blank">Abrir Manual Visual</a>
+          <a class="btn btn-secondary" href="./Manual%20visual%20de%20costos%20Ibero.html" target="_blank">Ruta Original</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-html">FLUJO 2 · WF-ING-MAQ-01 (V2)</span>
+          <h3>Manual Visual de Maquinado Ibero (Cabinet Vision → Odoo)</h3>
+          <p>Procedimiento visual de 12 etapas (ET-01 a ET-12) y 18 fichas (MQ-01 a MQ-18): planeación de lotes, C2M Center, Premill Edge Banding, exportación en rutas cortas, validación en 2.ª PC y liberación a planta.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="./maquinado-ibero.html" target="_blank">Abrir Manual Visual (V2)</a>
+          <a class="btn btn-secondary" href="./Manual_Visual_Maquinado_Ibero.html" target="_blank">Ruta Original</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-html">FLUJO 2 · WF-ING-MAQ-01 (V1)</span>
+          <h3>Manual Visual de Maquinado Ibero (Edición Extendida V1)</h3>
+          <p>Versión extendida original del manual interactivo de maquinado para el caso práctico Ibero · Puerta Intercom Grande.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="./maquinado-ibero-v1.html" target="_blank">Abrir Manual Visual (V1)</a>
+          <a class="btn btn-secondary" href="./Manual%20visual%20de%20maquinado%20Ibero.html" target="_blank">Ruta Original</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-html">FLUJO 3 · WF-ING-DOC-01</span>
+          <h3>Manual Visual de Ingeniería Ibero (CV → Leader Studio → Nitro → Odoo)</h3>
+          <p>Generación de ingeniería en 33 pasos, 10 etapas (ET-01 a ET-10) y 19 fichas (ING-01 a ING-19): hojas Bulldog Luis 1→2→3, vistas explosivas, BASE V1, FINAL MAESTRO, separación por cuarto y publicación en Odoo.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="./ingenieria-ibero.html" target="_blank">Abrir Manual Visual</a>
+          <a class="btn btn-secondary" href="./Manual_Visual_Ingenieria_Ibero.html" target="_blank">Ruta Original</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">2. Aplicación Interactiva · Flujo Integral Bulldog Design</h2>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <span class="card-tag tag-app">WEB APP INTERACTIVA</span>
+          <h3>Aplicación de Flujo Integral Bulldog Design</h3>
+          <p>Aplicación visual interactiva con arquitectura de procesos, compuertas de control (Gatekeepers), diseño vs. ingeniería y automatización del pipeline.</p>
+        </div>
+        <div class="actions">
+          <a class="btn btn-primary" href="./Flujo_Integral_Bulldog_App/app/index.html" target="_blank">Abrir Aplicación Web</a>
+          <a class="btn btn-secondary" href="./Bulldog_Flujo_Integral_R00.docx" download>Descargar DOCX Maestro</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">3. Procedimientos Operativos Estándar (SOPs con Diagramas Mermaid)</h2>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <span class="card-tag tag-sop">SOP · WF-ING-MAQ-01 (V2)</span>
+          <h3>SOP: Maquinado Cabinet Vision hacia Odoo y Producción</h3>
+          <p>Documento técnico completo con diagrama de flujo Mermaid, 18 fichas operativas, 12 controles críticos, matriz de incidencias y contratos de transferencia.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openMarkdown('./Procedimiento_Operativo_Maquinado_CabinetVision_Odoo.md', 'SOP Maquinado Cabinet Vision → Odoo (WF-ING-MAQ-01)')">Leer en Navegador</button>
+          <a class="btn btn-secondary" href="./Procedimiento_Operativo_Maquinado_CabinetVision_Odoo.md" target="_blank">Archivo .MD</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-sop">SOP · WF-ING-MAQ-01 (V1)</span>
+          <h3>SOP: Procedimiento Operativo de Archivos de Maquinado Ibero</h3>
+          <p>Versión extendida original del procedimiento de generación y liberación de archivos de maquinado.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openMarkdown('./Procedimiento%20operativo%20de%20archivos%20de%20maquinado%20Ibero.md', 'Procedimiento Operativo de Archivos de Maquinado Ibero')">Leer en Navegador</button>
+          <a class="btn btn-secondary" href="./Procedimiento%20operativo%20de%20archivos%20de%20maquinado%20Ibero.md" target="_blank">Archivo .MD</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-sop">SOP · WF-ING-DOC-01</span>
+          <h3>SOP: Ingeniería Cabinet Vision → Leader Studio → Nitro PDF → Odoo</h3>
+          <p>Procedimiento técnico completo de los 33 pasos de generación de planos de ingeniería, simulación de 15 muebles y checklist de 11 condiciones.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openMarkdown('./Procedimiento_Operativo_Ingenieria_CabinetVision_LeaderStudio_Nitro_Odoo.md', 'SOP Ingeniería CV → Leader Studio → Nitro PDF → Odoo (WF-ING-DOC-01)')">Leer en Navegador</button>
+          <a class="btn btn-secondary" href="./Procedimiento_Operativo_Ingenieria_CabinetVision_LeaderStudio_Nitro_Odoo.md" target="_blank">Archivo .MD</a>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="section-title">4. Base Metodológica y Especificación Maestra del Sistema</h2>
+    <div class="grid">
+      <div class="card">
+        <div>
+          <span class="card-tag tag-doc">CEREBRO IA · MÉTODO CANÓNICO</span>
+          <h3>Documentar Workflows Visuales Operativos</h3>
+          <p>Nota metodológica consolidada de Cerebro IA con las 6 fases del método y el resumen ejecutivo de los 3 casos de referencia de Ibero.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openMarkdown('./DOCUMENTAR_WORKFLOWS_VISUALES.md', 'Cerebro IA · Documentar Workflows Visuales Operativos')">Leer en Navegador</button>
+          <a class="btn btn-secondary" href="./DOCUMENTAR_WORKFLOWS_VISUALES.md" target="_blank">Archivo .MD</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-doc">ARQUITECTURA</span>
+          <h3>Base Enciclopédica del Sistema de Workflows Visuales</h3>
+          <p>Modelo de información, taxonomía de pantallas, representación visual, seis vistas operativas y pruebas de aceptación.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openMarkdown('./base-enciclopedica-del-proyecto.md', 'Base Enciclopédica del Proyecto')">Leer en Navegador</button>
+          <a class="btn btn-secondary" href="./base-enciclopedica-del-proyecto.md" target="_blank">Archivo .MD</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-doc">ESPECIFICACIÓN MAESTRA</span>
+          <h3>Sistema de Workflows Visuales Operativos</h3>
+          <p>Especificación integral del sistema gráfico, levantamiento, fichas de pantalla y plantillas de documentación.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openMarkdown('./Sistema%20de%20Workflows%20Visuales%20Operativos.md', 'Sistema de Workflows Visuales Operativos')">Leer en Navegador</button>
+          <a class="btn btn-secondary" href="./Sistema%20de%20Workflows%20Visuales%20Operativos.md" target="_blank">Archivo .MD</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <div>
+          <span class="card-tag tag-doc">DEEP RESEARCH</span>
+          <h3>Reporte Deep Research · Workflows Visuales</h3>
+          <p>Investigación profunda y prompt arquitectónico del sistema de documentación visual operativa.</p>
+        </div>
+        <div class="actions">
+          <button class="btn btn-primary" onclick="openMarkdown('./deep-research-report.md', 'Deep Research Report')">Leer Reporte</button>
+          <button class="btn btn-secondary" onclick="openMarkdown('./prompt_deep_research_workflows_visuales.md', 'Prompt Deep Research')">Ver Prompt</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para lectura de SOPs y Markdown con diagramas Mermaid -->
+  <div id="md-modal" onclick="if(event.target.id==='md-modal') closeModal()">
+    <div class="modal-box">
+      <div class="modal-header">
+        <strong id="modal-title">Documento</strong>
+        <button class="btn btn-secondary" onclick="closeModal()">Cerrar ✕</button>
+      </div>
+      <div class="modal-body" id="modal-content">Cargando...</div>
+    </div>
+  </div>
+
+  <script>
+    mermaid.initialize({ startOnLoad: false, theme: 'default' });
+
+    async function openMarkdown(url, title) {
+      const modal = document.getElementById('md-modal');
+      const content = document.getElementById('modal-content');
+      document.getElementById('modal-title').textContent = title;
+      content.innerHTML = '<p>Cargando documento...</p>';
+      modal.style.display = 'block';
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+        content.innerHTML = marked.parse(text);
+        const mermaidBlocks = content.querySelectorAll('pre code.language-mermaid');
+        mermaidBlocks.forEach((block) => {
+          const div = document.createElement('div');
+          div.className = 'mermaid';
+          div.textContent = block.textContent;
+          block.parentElement.replaceWith(div);
+        });
+        await mermaid.run({ nodes: content.querySelectorAll('.mermaid') });
+      } catch (err) {
+        content.innerHTML = '<p>Error al cargar el documento: ' + err.message + '</p>';
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('md-modal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+# Documentar workflows visuales operativos
+
+Método reutilizable para convertir un proceso ya ejecutado en un manual consultable y verificable por el equipo. Aplícalo al documentar procedimientos, instrucciones por pantalla o traspasos entre aplicaciones. La entrega puede ser un HTML navegable u otro formato que conserve el mapa, las fichas y sus vínculos.
+
+## Método de trabajo
+
+1. **Reconstruye el proceso real.** Reúne el relato, las pantallas, los archivos de entrada y salida y la revisión disponible. Contrasta el corpus del proyecto y Cerebro IA. Atribuye cada paso al relato, la interfaz, el archivo o la fuente oficial que lo respalda. Registra la versión y la configuración si condicionan la ruta. Si falta una captura, indica «Captura pendiente» y qué control debe quedar visible.
+2. **Define inicio, alcance y salida.** Identifica la necesidad del operador, la aplicación y pantalla de entrada, el resultado de cada etapa y el criterio para elegir variante. Representa las ramas y el punto donde vuelven a coincidir. Mantén la identidad del concepto, la selección, la revisión y los archivos a lo largo de las aplicaciones.
+3. **Organiza la lectura de lo general a lo específico.** Presenta un mapa general, los flujos por aplicación y variante, una guía por pantalla, un registro de controles e incidencias y, cuando aplique, un mapa de transferencia. Usa enlaces del mapa a fichas con IDs estables. La secuencia, las decisiones, los entregables, las excepciones y los pendientes deben poder leerse por sus etiquetas y símbolos.
+4. **Redacta una ficha por actividad.** Incluye ID, nombre, objetivo, aplicación, pantalla de origen, ruta, acción, entrada, salida, comprobación, error frecuente, recuperación conocida, evidencia visual, fuente y estado. Usa etiquetas reales de interfaz. Indica qué acción fue reportada, qué interfaz se verificó, qué control se propone y qué queda pendiente.
+5. **Ubica los controles donde el operador los aplica.** Vincula cada incidencia con el paso que la produce y con su recuperación. Expresa el criterio de aceptación, la evidencia y qué hacer si falla. Para cada transferencia documenta emisor, destino funcional, objeto y revisión, unidad, comprobación de recepción y operaciones por validar.
+6. **Comprueba el manual y revisa el proceso.** Prueba ambas rutas, el orden de los controles, enlaces, búsqueda, teclado, capturas y lectura en pantallas estrechas si el formato es web. El ensayo operativo usa la instalación y los archivos reales. Registra qué verificó cada prueba y qué queda pendiente. Conserva IDs de pasos y fuentes al publicar una revisión.
+
+## Caso de referencia · Ibero, revisión 0.1
+
+El manual de Ibero documenta dos variantes de Cabinet Vision que entregan dos RTF y un PDF a Suite de Costos.
+
+- **Mueble individual.** Abre Reportes dentro del ítem para costos y partes. Desde el proyecto general, filtra ese mismo ítem en S2M Center antes de optimizar.
+- **Concepto compuesto.** Parte del proyecto general. Coteja el conjunto con el catálogo y comprueba la selección por separado en Bid Center, Report Center y S2M Center. Selecciona todo el cuarto cuando corresponda exactamente al concepto. El alcance se verifica antes de exportar y antes de optimizar.
+- **Paquete común.** Bid Center → Modo interno → Simple Reports → costos RTF. Report Center → Panel Stack → partes RTF. S2M Center → Filtrar partes → Optimizar → Reporte de costos y tiempos → Microsoft Print to PDF. Los tres archivos comparten concepto y revisión.
+- **Suite de Costos.** Carga los tres archivos, identifica el análisis, procesa, revisa dashboard, materiales, partes, tiempos, parámetros e indicadores. Exporta el XLSX y verifica apertura, correspondencia, fórmulas y referencias. En el ejercicio, reabrir desde Biblioteca de Proyectos recuperó secciones que parecían ausentes.
+- **Transferencia.** El mapa hacia Odoo identifica componentes de la lista de materiales y tiempos de operaciones como destinos funcionales, con la transferencia efectiva pendiente de validación.
+
+La verificación técnica en Chrome cubrió 30 fichas, enlaces internos, las dos rutas, búsqueda sin acentos, activación por teclado, las dos capturas reales de la copia Suite v2.0 BF/VF y reflujo en 320, 390, 768 y 1280 px. El registro contiene nueve controles y cuatro incidencias. La validación operativa de Ibero queda abierta para la interfaz y versión de Cabinet Vision, la composición y ejecución del conjunto, los cuatro archivos originales, el recálculo del Excel y la instancia de Odoo. El margen, las fórmulas, la máquina y las carpetas se cotejan en el entorno aplicable.
+
+## Caso de referencia 2 · Ibero, flujo de maquinado y liberación a Odoo y Producción (`WF-ING-MAQ-01`, rev. 0.1)
+
+El procedimiento de maquinado de Ibero (`Puerta Intercom Grande`) estructura en 12 etapas y 18 fichas (`MQ-01` a `MQ-18`) la generación, organización y liberación de entregables de fabricación desde `Cabinet Vision` hacia la carpeta compartida, `Odoo` y `Maquinados`:
+
+- **Planeación, perfil y filtrado (`ET-01` a `ET-03`).** Parte obligatoriamente del archivo de configuración de lotes de corte autorizado por el líder de Ingeniería y Maquinados (prohibido definir lotes arbitrariamente). Ingresa con el perfil `Machine Edit`, abre el proyecto `Ibero` en `Diseño`, entra a `C2M Center` (`Screen to Machine Center`), filtra `Puerta Intercom Grande` y comprueba como punto de control bloqueante (`C02`) que el primer número del resultado coincida con la cantidad del lote autorizado.
+- **Selección de máquinas y `Premill Edge Banding` (`ET-04` y `ET-05`).** Configura `Dimensionadora Zaragoza` (Nanxing), `Enchapadora nueva Nanxing` y maquinado secundario P2P condicional (`Sin máquina P2P` para esta puerta, con perforaciones manuales). En `File ‣ Preferences ‣ Geometry`, conserva el valor máximo `3` en `Premill Edge Banding`, activándolo únicamente para la `Enchapadora nueva Nanxing` (con precorte) y desactivándolo para otras enchapadoras sin precorte (`C04`, revisado en cada lote), antes de ejecutar `Run → OK`.
+- **Exportación en rutas cortas, reportes PDF y consolidación (`ET-06` a `ET-08`).** Para evitar fallos de lectura en `Cabinet Vision` por rutas largas, crea primero en `Luis del Ángel / Ibero / Producción` las carpetas temporales `SEC` (`Ctrl + Shift + N`), `NANXING` y `LABEL` (duplicadas y renombradas con `F2`, copiando rutas con `F4`), asigna `LABEL` a `Image/Label Output Path` y `SEC` a `Dimensionadora Zaragoza` en `Output Data`, verifica en disco los archivos tras `Starting Output Runtime` / `Create SCM Automatic Fields`, exporta `Material Summary` (resumen exclusivo de materiales cortables, sin confundirlo con una BOM integral) y `Saw Cut List Landscape` (`Export Report → Adobe PDF`), y finalmente renombra y corta (`Ctrl + X`) `SEC_...`, `NANXING_...` y `LABEL_...` hacia la carpeta `Puerta Intercom Grande` (`C07`).
+- **Integración en Odoo, validación en 2.ª PC y liberación (`ET-09` a `ET-12`).** En `Odoo` (`Manufactura ‣ Productos`, filtro `Ibero`), valida la tarjeta de `Puerta Intercom Grande`, carga los entregables en la tercera pestaña `Documentos` y pega en `Notas internas` la ruta de red copiada con `Ctrl + Shift + C` eliminando las comillas iniciales y finales (sin confundirla con la `Referencia interna`, `C09`). Comprueba la apertura de la ruta desde una segunda computadora (`C10`), ejecuta la comunicación directa obligatoria de 8 puntos con `Maquinados` (`C11`) y aplica el Flujo complementario B (nota visible con proyecto, concepto y ruta en la PC de la seccionadora comprobada con el operador, `C12`) cuando planta no disponga de acceso a `Odoo`.
+
+## Caso de referencia 3 · Ibero, flujo de generación de ingeniería (`WF-ING-DOC-01`, rev. 0.1)
+
+El procedimiento de generación de ingeniería de Ibero (`WF-ING-DOC-01`) documenta en **33 pasos**, **10 etapas** (`ET-01` a `ET-10`) y **19 fichas operativas** (`ING-01` a `ING-19`) el traspaso desde `Cabinet Vision` hacia `Leader Studio Bulldog Design`, `Nitro PDF` y `Odoo`:
+
+- **Alcance geométrico y preparación (`ET-01` a `ET-04`).** Distingue mobiliario recto compatible frente a mobiliario curvo/complejo no compatible; ejecuta la secuencia obligatoria de capas y macros `Bulldog Luis 1 → 2 → 3` y explosivos manuales en orden en `Cabinet Vision`.
+- **Planos maestros y edición PDF (`ET-05` a `ET-08`).** Genera `BASE V1.pdf` desde `Cabinet Vision` / `Leader Studio Bulldog Design` y consolida `FINAL MAESTRO.pdf` aplicando los métodos A y B en `Nitro PDF`, respaldado por simulación de comprobación de 15 muebles (`Copy Station`).
+- **Controles, incidencias y publicación en Odoo (`ET-09` a `ET-10`).** Integra **10 controles críticos** (`C01`–`C10`), **6 incidencias** (`INC-01`–`INC-06`), **5 transferencias** (`TR-01`–`TR-05`), checklist de cierre de 11 condiciones y **7 aspectos pendientes** (`PEND-A`–`PEND-G`) antes de publicar el plano maestro en `Odoo`.
+
+## Consulta desde Antigravity
+
+Usa el servidor global `cerebro_graphify` con `query_graph` y la consulta «documentar workflows visuales operativos». Abre la nota que devuelva el nodo y aplica el método a la evidencia del proyecto activo. Para recuperar la demostración, pide «manual visual de costos Ibero Cabinet Vision Suite de Costos Odoo» o «manual visual de maquinado Ibero Cabinet Vision C2M Center Premill Edge Banding Odoo».
+
+## Fuentes
+
+- [Manual visual de costos Ibero, rev. 0.1](https://drive.google.com/file/d/1o-zOjG7_kB45irGDBPyUz0ppVXx2ePLQ/view). Caso y evidencia documental. El HTML interactivo se abre en navegador desde el archivo.
+- `Drive:/CODEX Creación de Workflows/Manual visual de maquinado Ibero.html` y `Drive:/CODEX Creación de Workflows/Procedimiento operativo de archivos de maquinado Ibero.md` (`WF-ING-MAQ-01`, rev. `0.1`). Caso práctico `Ibero · Puerta Intercom Grande` con 18 fichas, 12 controles, 6 incidencias, 8 pendientes y 5 contratos de transferencia.
+- `Drive:/CODEX creacion de workflows 2/Procedimiento_Operativo_Ingenieria_CabinetVision_LeaderStudio_Nitro_Odoo.md` y `Drive:/CODEX creacion de workflows 2/Manual_Visual_Ingenieria_Ibero.html` (`WF-ING-DOC-01`, rev. `0.1`). Flujo de generación de ingeniería con 33 pasos, 10 etapas, 19 fichas, 10 controles y 6 incidencias.
+- [Base enciclopédica del sistema de workflows visuales operativos](https://drive.google.com/file/d/1bZqHMVtZL36imb9Dgv1TJbYAONqU-v9e/view), §§2–5 y 7. Modelo de información, pantallas, representación visual, seis vistas y pruebas de aceptación.
+- [Especificación maestra del sistema de workflows visuales y manual de procesos operativos](https://drive.google.com/file/d/155olGyOmU-fqyHtzWs3rZyNlRH65BE2e/view), §§2, 4, 6 y 7. Levantamiento, sistema gráfico, fichas de pantalla y plantillas.

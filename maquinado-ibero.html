@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manual Visual Operativo · WF-ING-MAQ-01 · Cabinet Vision → Odoo → Maquinados</title>
+  <style>
+    :root {
+      --bg: #f4f6f9;
+      --surface: #ffffff;
+      --surface-alt: #f8fafc;
+      --border: #dce3ec;
+      --text: #17212b;
+      --muted: #526171;
+      --primary: #1d4ed8;
+      --primary-soft: #eff6ff;
+      --critical: #b91c1c;
+      --critical-soft: #fef2f2;
+      --cond: #b45309;
+      --cond-soft: #fffbeb;
+      --ok: #047857;
+      --ok-soft: #ecfdf5;
+      --radius: 10px;
+      --shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 3px solid var(--primary);
+    }
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1rem 1.25rem 3rem;
+    }
+    .header-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #93c5fd;
+      font-weight: 700;
+    }
+    h1 {
+      margin: 0.25rem 0 0.4rem;
+      font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+      line-height: 1.25;
+    }
+    .subtitle {
+      margin: 0;
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+    .kpi {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 8px;
+      padding: 0.55rem 0.75rem;
+    }
+    .kpi strong { display: block; font-size: 1.15rem; color: #fff; }
+    .kpi span { font-size: 0.76rem; color: #cbd5e1; }
+
+    nav.tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin: 1rem 0 1.25rem;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: var(--bg);
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      padding: 0.5rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .tab-btn[aria-selected="true"] {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+    .tab-btn:focus-visible, .filter-pill:focus-visible, .node-btn:focus-visible, a:focus-visible {
+      outline: 3px solid #2563eb;
+      outline-offset: 2px;
+    }
+
+    section.panel { display: none; }
+    section.panel.active { display: block; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1rem;
+    }
+    h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.2rem;
+      color: #0f172a;
+    }
+    h3 {
+      margin: 0 0 0.5rem;
+      font-size: 1.02rem;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.16rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      vertical-align: middle;
+    }
+    .badge-id { background: #e2e8f0; color: #0f172a; font-family: ui-monospace, Consolas, monospace; }
+    .badge-crit { background: var(--critical-soft); color: var(--critical); border: 1px solid #fecaca; }
+    .badge-obl { background: var(--primary-soft); color: var(--primary); border: 1px solid #bfdbfe; }
+    .badge-cond { background: var(--cond-soft); color: var(--cond); border: 1px solid #fde68a; }
+    .badge-ok { background: var(--ok-soft); color: var(--ok); border: 1px solid #a7f3d0; }
+
+    .map-wrap {
+      overflow-x: auto;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+    }
+    .map-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.75rem;
+    }
+    .stage-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.7rem 0.85rem;
+    }
+    .stage-box .stage-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.35rem;
+    }
+    .node-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.45rem;
+    }
+    .node-btn {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border: 1px solid #bfdbfe;
+      border-radius: 6px;
+      padding: 0.22rem 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .node-btn:hover { background: #dbeafe; }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .search-input {
+      flex: 1 1 260px;
+      padding: 0.55rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.92rem;
+      background: var(--surface);
+    }
+    .filter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .filter-pill {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      padding: 0.35rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .filter-pill.active {
+      background: #0f172a;
+      color: #fff;
+      border-color: #0f172a;
+    }
+
+    .ficha {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 1rem 1.15rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+    }
+    .ficha.is-critical { border-left-color: var(--critical); }
+    .ficha.highlight { box-shadow: 0 0 0 3px #93c5fd; }
+    .ficha-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.65rem;
+    }
+    .ficha-badges { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+    .ficha-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 0.65rem 1rem;
+      font-size: 0.9rem;
+    }
+    .field-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+    .capture-box {
+      margin-top: 0.7rem;
+      background: #f8fafc;
+      border: 1px dashed #94a3b8;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.84rem;
+      color: #334155;
+    }
+    .ficha-foot {
+      margin-top: 0.6rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.55rem 0.65rem;
+      text-align: left;
+      vertical-align: top;
+    }
+    th { background: var(--surface-alt); font-weight: 700; }
+    .table-scroll { overflow-x: auto; }
+    code {
+      background: #f1f5f9;
+      padding: 0.1rem 0.32rem;
+      border-radius: 4px;
+      font-size: 0.84em;
+      font-family: ui-monospace, Consolas, monospace;
+    }
+    .empty-msg {
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="eyebrow">Manual Visual Operativo · Código WF-ING-MAQ-01 · Rev. 1.0</div>
+      <h1>Generación, Organización y Liberación de Archivos de Maquinado: Cabinet Vision → Odoo → Producción</h1>
+      <p class="subtitle">Caso práctico de referencia: Proyecto <strong>Ibero</strong> · Concepto <strong>Puerta Intercom Grande</strong> · Método Cerebro IA (lectura progresiva de lo general a lo específico)</p>
+      <div class="kpi-strip">
+        <div class="kpi"><strong>12 Etapas</strong><span>ET-01 a ET-12</span></div>
+        <div class="kpi"><strong>18 Fichas</strong><span>MQ-01 a MQ-18</span></div>
+        <div class="kpi"><strong>12 Controles</strong><span>C01 a C12</span></div>
+        <div class="kpi"><strong>6 Incidencias</strong><span>INC-01 a INC-06</span></div>
+        <div class="kpi"><strong>5 Transferencias</strong><span>TR-01 a TR-05</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <nav class="tabs" role="tablist" aria-label="Vistas del manual">
+      <button class="tab-btn" role="tab" aria-selected="true" data-tab="mapa">1. Mapa General</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="fichas">2. Fichas Paso a Paso (18)</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="controles">3. Controles e Incidencias</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="transferencia">4. Mapa de Transferencia</button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-tab="pendientes">5. Fidelidad y Pendientes</button>
+    </nav>
+
+    <!-- TAB 1: MAPA -->
+    <section id="panel-mapa" class="panel active" role="tabpanel">
+      <div class="card">
+        <h2>Flujo Visual End-to-End (clic en cualquier nodo para abrir su ficha)</h2>
+        <div class="map-wrap">
+          <svg viewBox="0 0 1120 380" width="100%" style="min-width:860px;height:auto;" role="img" aria-label="Diagrama de flujo del procedimiento WF-ING-MAQ-01">
+            <defs>
+              <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+                <path d="M0,0 L8,4 L0,8 Z" fill="#475569"/>
+              </marker>
+            </defs>
+            <!-- Row 1: Cabinet Vision -->
+            <g class="svg-node" data-jump="MQ-01" style="cursor:pointer">
+              <rect x="15" y="25" width="155" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="92" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-01 · MQ-01 [C01]</text>
+              <text x="92" y="64" text-anchor="middle" font-size="11" fill="#1e293b">Archivo de lotes</text>
+              <text x="92" y="78" text-anchor="middle" font-size="10" fill="#475569">Autorizado Ing+Maq</text>
+            </g>
+            <line x1="170" y1="56" x2="195" y2="56" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-02" style="cursor:pointer">
+              <rect x="198" y="25" width="155" height="62" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.8"/>
+              <text x="275" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">ET-02 · MQ-02</text>
+              <text x="275" y="64" text-anchor="middle" font-size="11" fill="#1e293b">Perfil Machine Edit</text>
+              <text x="275" y="78" text-anchor="middle" font-size="10" fill="#475569">Proyecto Ibero · Diseño</text>
+            </g>
+            <line x1="353" y1="56" x2="378" y2="56" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-03" style="cursor:pointer">
+              <rect x="381" y="25" width="165" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="463" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-03 · MQ-03 [C02]</text>
+              <text x="463" y="64" text-anchor="middle" font-size="11" fill="#1e293b">C2M Center · Filtrar</text>
+              <text x="463" y="78" text-anchor="middle" font-size="10" fill="#475569">1.er núm = lote (bloqueante)</text>
+            </g>
+            <line x1="546" y1="56" x2="571" y2="56" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-04" style="cursor:pointer">
+              <rect x="574" y="25" width="175" height="62" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+              <text x="661" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">ET-04 · MQ-04 [C03]</text>
+              <text x="661" y="64" text-anchor="middle" font-size="11" fill="#1e293b">Máquinas + P2P?</text>
+              <text x="661" y="78" text-anchor="middle" font-size="10" fill="#475569">Zaragoza / Nanxing / Sin P2P</text>
+            </g>
+            <line x1="749" y1="56" x2="774" y2="56" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-05" style="cursor:pointer">
+              <rect x="777" y="25" width="175" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="864" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-04 · MQ-05 [C04]</text>
+              <text x="864" y="64" text-anchor="middle" font-size="11" fill="#1e293b">Premill Edge Banding</text>
+              <text x="864" y="78" text-anchor="middle" font-size="10" fill="#475569">ON(3) si Nanxing · OFF si otra</text>
+            </g>
+            <line x1="952" y1="56" x2="977" y2="56" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-06" style="cursor:pointer">
+              <rect x="980" y="25" width="125" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="1042" y="47" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-05 · MQ-06 [C05]</text>
+              <text x="1042" y="64" text-anchor="middle" font-size="11" fill="#1e293b">Optimizar</text>
+              <text x="1042" y="78" text-anchor="middle" font-size="10" fill="#475569">Run → OK</text>
+            </g>
+
+            <!-- Connector down -->
+            <path d="M1042,87 L1042,125 L92,125 L92,150" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <!-- Row 2: Exportación, Reportes, Consolidación -->
+            <g class="svg-node" data-jump="MQ-07" style="cursor:pointer">
+              <rect x="15" y="153" width="165" height="62" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.8"/>
+              <text x="97" y="175" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">ET-06 · MQ-07</text>
+              <text x="97" y="192" text-anchor="middle" font-size="11" fill="#1e293b">Carpetas cortas</text>
+              <text x="97" y="206" text-anchor="middle" font-size="10" fill="#475569">SEC, NANXING, LABEL</text>
+            </g>
+            <line x1="180" y1="184" x2="205" y2="184" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-08" style="cursor:pointer">
+              <rect x="208" y="153" width="175" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="295" y="175" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-06 · MQ-08 [C06]</text>
+              <text x="295" y="192" text-anchor="middle" font-size="11" fill="#1e293b">Output Data</text>
+              <text x="295" y="206" text-anchor="middle" font-size="10" fill="#475569">LABEL + SEC (+ P2P si aplica)</text>
+            </g>
+            <line x1="383" y1="184" x2="408" y2="184" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-09" style="cursor:pointer">
+              <rect x="411" y="153" width="170" height="62" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.8"/>
+              <text x="496" y="175" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">ET-06 · MQ-09</text>
+              <text x="496" y="192" text-anchor="middle" font-size="11" fill="#1e293b">Exportar + Validar</text>
+              <text x="496" y="206" text-anchor="middle" font-size="10" fill="#475569">Revisar archivos en disco</text>
+            </g>
+            <line x1="581" y1="184" x2="606" y2="184" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-10" style="cursor:pointer">
+              <rect x="609" y="153" width="215" height="62" rx="8" fill="#eff6ff" stroke="#1d4ed8" stroke-width="1.8"/>
+              <text x="716" y="175" text-anchor="middle" font-size="11" font-weight="700" fill="#1d4ed8">ET-07 · MQ-10 y MQ-11</text>
+              <text x="716" y="192" text-anchor="middle" font-size="11" fill="#1e293b">2 Reportes PDF</text>
+              <text x="716" y="206" text-anchor="middle" font-size="10" fill="#475569">Material Summary + Saw Cut</text>
+            </g>
+            <line x1="824" y1="184" x2="849" y2="184" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-12" style="cursor:pointer">
+              <rect x="852" y="153" width="253" height="62" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="978" y="175" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-08 · MQ-12 [C07]</text>
+              <text x="978" y="192" text-anchor="middle" font-size="11" fill="#1e293b">Consolidar en Puerta Intercom</text>
+              <text x="978" y="206" text-anchor="middle" font-size="10" fill="#475569">Renombrar + Ctrl+X + Check 7 pts</text>
+            </g>
+
+            <!-- Connector down -->
+            <path d="M978,215 L978,255 L97,255 L97,280" fill="none" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <!-- Row 3: Odoo, 2da PC, Maquinados, Flujo B -->
+            <g class="svg-node" data-jump="MQ-13" style="cursor:pointer">
+              <rect x="15" y="283" width="180" height="68" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="105" y="305" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-09 · MQ-13 [C08]</text>
+              <text x="105" y="322" text-anchor="middle" font-size="11" fill="#1e293b">Odoo · Producto</text>
+              <text x="105" y="336" text-anchor="middle" font-size="10" fill="#475569">Manufactura → Filtro Ibero</text>
+            </g>
+            <line x1="195" y1="317" x2="220" y2="317" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-14" style="cursor:pointer">
+              <rect x="223" y="283" width="210" height="68" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="328" y="305" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-09 · MQ-14 [C09]</text>
+              <text x="328" y="322" text-anchor="middle" font-size="11" fill="#1e293b">Documentos + Notas internas</text>
+              <text x="328" y="336" text-anchor="middle" font-size="10" fill="#475569">Cargar + Ctrl+Shift+C sin comillas</text>
+            </g>
+            <line x1="433" y1="317" x2="458" y2="317" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-15" style="cursor:pointer">
+              <rect x="461" y="283" width="185" height="68" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="553" y="305" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-10 · MQ-15 [C10]</text>
+              <text x="553" y="322" text-anchor="middle" font-size="11" fill="#1e293b">Prueba en 2.ª PC</text>
+              <text x="553" y="336" text-anchor="middle" font-size="10" fill="#475569">Otra red + permisos carpeta</text>
+            </g>
+            <line x1="646" y1="317" x2="671" y2="317" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-16" style="cursor:pointer">
+              <rect x="674" y="283" width="205" height="68" rx="8" fill="#fef2f2" stroke="#b91c1c" stroke-width="2"/>
+              <text x="776" y="305" text-anchor="middle" font-size="11" font-weight="700" fill="#b91c1c">ET-11 · MQ-16 [C11]</text>
+              <text x="776" y="322" text-anchor="middle" font-size="11" fill="#1e293b">Comunicación Maquinados</text>
+              <text x="776" y="336" text-anchor="middle" font-size="10" fill="#475569">Presencial / Llamada / Meet (8 pts)</text>
+            </g>
+            <line x1="879" y1="317" x2="904" y2="317" stroke="#475569" stroke-width="1.8" marker-end="url(#arr)"/>
+
+            <g class="svg-node" data-jump="MQ-17" style="cursor:pointer">
+              <rect x="907" y="283" width="198" height="68" rx="8" fill="#fffbeb" stroke="#b45309" stroke-width="2"/>
+              <text x="1006" y="305" text-anchor="middle" font-size="11" font-weight="700" fill="#b45309">ET-12 · MQ-17 [C12]</text>
+              <text x="1006" y="322" text-anchor="middle" font-size="11" fill="#1e293b">Flujo B (si sin Odoo)</text>
+              <text x="1006" y="336" text-anchor="middle" font-size="10" fill="#475569">Nota visible en PC Seccionadora</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Las 12 Etapas Operativas (ET-01 a ET-12)</h2>
+        <div class="map-grid" id="stages-grid"></div>
+      </div>
+    </section>
+
+    <!-- TAB 2: FICHAS -->
+    <section id="panel-fichas" class="panel" role="tabpanel">
+      <div class="toolbar">
+        <input id="search-box" class="search-input" type="search" placeholder="Buscar por ID, pantalla, botón, error, atajo... (atajo: /)" aria-label="Buscar en fichas" />
+        <div class="filter-row" id="filter-row">
+          <button class="filter-pill active" data-filter="all">Todas (18)</button>
+          <button class="filter-pill" data-filter="critical">Puntos Críticos</button>
+          <button class="filter-pill" data-filter="cond">Condicionales</button>
+          <button class="filter-pill" data-filter="cv">Cabinet Vision</button>
+          <button class="filter-pill" data-filter="fs">Carpeta / Red</button>
+          <button class="filter-pill" data-filter="odoo">Odoo</button>
+          <button class="filter-pill" data-filter="maq">Maquinados</button>
+        </div>
+      </div>
+      <div id="fichas-list"></div>
+    </section>
+
+    <!-- TAB 3: CONTROLES E INCIDENCIAS -->
+    <section id="panel-controles" class="panel" role="tabpanel">
+      <div class="card">
+        <h2>Controles Críticos de Proceso (C01–C12)</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Control</th><th>Ficha</th><th>Verificación obligatoria</th><th>Criterio de aceptación</th><th>Si falla</th></tr>
+            </thead>
+            <tbody id="controls-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Incidencias y Errores Frecuentes (INC-01–INC-06)</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Ficha</th><th>Incidencia</th><th>Impacto</th><th>Recuperación conocida</th></tr>
+            </thead>
+            <tbody id="incidents-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: TRANSFERENCIA -->
+    <section id="panel-transferencia" class="panel" role="tabpanel">
+      <div class="card">
+        <h2>Mapa de Transferencia entre Aplicaciones y Equipos (TR-01–TR-05)</h2>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Emisor</th><th>Destino funcional</th><th>Objeto y formato</th><th>Convención / Unidad</th><th>Comprobación de recepción</th><th>Pendiente de validar</th></tr>
+            </thead>
+            <tbody id="transfer-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 5: FIDELIDAD Y PENDIENTES -->
+    <section id="panel-pendientes" class="panel" role="tabpanel">
+      <div class="card">
+        <h2>Diferenciación Explícita: Observado vs Recomendaciones vs Pendientes</h2>
+        <h3>1. Procedimiento observado en el ejercicio (Ibero · Puerta Intercom Grande)</h3>
+        <ul>
+          <li>Uso del perfil <code>Machine Edit</code> en <code>Cabinet Vision</code> y acceso al workspace <code>Diseño</code> → pestaña derecha <code>C2M Center</code>.</li>
+          <li>Configuración de <code>Dimensionadora Zaragoza</code> (Nanxing), <code>Enchapadora nueva Nanxing</code> y <code>Sin máquina P2P</code> (perforaciones manuales).</li>
+          <li><code>File ‣ Preferences ‣ Geometry ‣ Premill Edge Banding</code> activado con valor máximo <code>3</code>.</li>
+          <li>Creación temporal de <code>SEC</code>, <code>NANXING</code> y <code>LABEL</code> en <code>Luis del Ángel / Ibero / Producción</code> para evitar errores por rutas largas.</li>
+          <li>Mensajes observados durante exportación: <code>Starting Output Runtime</code> y <code>Create SCM Automatic Fields</code>.</li>
+          <li>Exportación de <code>Material Summary</code> y <code>Saw Cut List Landscape</code> (<code>Export Report → Adobe PDF</code>).</li>
+          <li>Consolidación en <code>Puerta Intercom Grande</code>, carga en <code>Odoo</code> (3.ª pestaña <code>Documentos</code> + ruta sin comillas en <code>Notas internas</code>), prueba en 2.ª PC en otra red Wi-Fi, comunicación directa y nota en PC de seccionadora.</li>
+        </ul>
+        <h3>2. Recomendaciones operativas</h3>
+        <ul>
+          <li>Mantener habilitado el historial del portapapeles al copiar las 3 rutas de salida.</li>
+          <li>Conservar la carpeta <code>NANXING</code> dentro de la estructura estándar aunque el lote no use P2P.</li>
+          <li>Usar <code>Odoo</code> como canal habitual a largo plazo manteniendo la carpeta compartida como repositorio operativo.</li>
+        </ul>
+        <h3>3. Verificaciones pendientes en planta y software</h3>
+        <ul>
+          <li>Capturas de pantalla reales de todas las pantallas operativas (actualmente marcadas como <em>Captura pendiente</em>).</li>
+          <li>Formato exacto admitido por la instancia de <code>Odoo</code> para cargar carpetas o conjuntos de archivos de máquina/etiquetado.</li>
+          <li>Confirmación en sitio de atajos de teclado (<code>Ctrl + Shift + N</code>, <code>F2</code>, <code>F4</code>, <code>Ctrl + X</code>, <code>Ctrl + Shift + C</code>) en los equipos de Ingeniería.</li>
+          <li>Validación formal de permisos de red entre la 2.ª PC y la PC de la seccionadora.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const STAGES = [
+      { id: "ET-01", name: "Planeación", out: "Lote de corte definido y autorizado", type: "Obligatoria", nodes: ["MQ-01"] },
+      { id: "ET-02", name: "Preparación", out: "Perfil Machine Edit y proyecto Ibero en Diseño", type: "Obligatoria", nodes: ["MQ-02"] },
+      { id: "ET-03", name: "Filtrado", out: "Concepto filtrado y 1.er número validado", type: "Obligatoria", nodes: ["MQ-03"] },
+      { id: "ET-04", name: "Configuración", out: "Máquinas y Premill Edge Banding revisados", type: "Condicional (P2P)", nodes: ["MQ-04", "MQ-05"] },
+      { id: "ET-05", name: "Optimización", out: "Diagramas de corte generados (Run → OK)", type: "Obligatoria", nodes: ["MQ-06"] },
+      { id: "ET-06", name: "Exportación", out: "Códigos NC y etiquetas en rutas cortas", type: "Condicional (P2P)", nodes: ["MQ-07", "MQ-08", "MQ-09"] },
+      { id: "ET-07", name: "Reportes", out: "PDFs Material Summary y Saw Cut List", type: "Obligatoria", nodes: ["MQ-10", "MQ-11"] },
+      { id: "ET-08", name: "Organización", out: "Carpeta consolidada por concepto", type: "Obligatoria", nodes: ["MQ-12"] },
+      { id: "ET-09", name: "Integración", out: "Documentos y ruta vinculados en Odoo", type: "Obligatoria", nodes: ["MQ-13", "MQ-14"] },
+      { id: "ET-10", name: "Validación", out: "Acceso y permisos probados en 2.ª PC", type: "Obligatoria", nodes: ["MQ-15"] },
+      { id: "ET-11", name: "Comunicación", out: "Liberación directa de 8 pts a Maquinados", type: "Obligatoria", nodes: ["MQ-16"] },
+      { id: "ET-12", name: "Acceso alt. y cierre", out: "Nota en PC seccionadora (si aplica) y cierre", type: "Condicional / Oblig.", nodes: ["MQ-17", "MQ-18"] }
+    ];
+
+    const FICHAS = [
+      {
+        id: "MQ-01", stage: "ET-01", app: "Planeación", cat: "cv", critical: "C01", cond: false,
+        title: "Recepción y validación del archivo de lotes de corte",
+        start: "Documento de planeación de Ingeniería + Maquinados",
+        loc: "Archivo de configuración de lotes de corte / maquinado",
+        action: "Verificar los 8 datos del lote: proyecto, concepto, cantidad, agrupación, dimensionadora, enchapadora, máquina P2P (si aplica) e indicaciones especiales.",
+        config: "Ejemplo Ibero: Puerta Intercom Grande · Dimensionadora Zaragoza (Nanxing) · Enchapadora nueva Nanxing · Sin máquina P2P (perforación manual).",
+        condText: "Obligatoria antes de abrir Cabinet Vision. Prohibido definir lotes arbitrariamente.",
+        io: "Entrada: acuerdo Ingeniería–Maquinados → Salida: parámetros autorizados del lote.",
+        check: "Confirmar que los 8 datos están completos y sin discrepancias.",
+        err: "Programar lotes arbitrarios causa retrabajo. Recuperación: detener y validar con líder de Ingeniería.",
+        capture: "Captura pendiente — archivo de lotes autorizado con proyecto, concepto, cantidad y máquinas.",
+        source: "§2", state: "Reportado en narración · Pendiente validar formato estándar"
+      },
+      {
+        id: "MQ-02", stage: "ET-02", app: "Cabinet Vision", cat: "cv", critical: null, cond: false,
+        title: "Selección de perfil Machine Edit y apertura del proyecto",
+        start: "Escritorio / Lanzador de Cabinet Vision",
+        loc: "Selector de perfil → Apertura de proyecto → Workspace Diseño",
+        action: "1) Elegir perfil Machine Edit. 2) Abrir Cabinet Vision. 3) Abrir proyecto proporcionado (Ibero). 4) Confirmar proyecto. 5) Entrar a Diseño.",
+        config: "Perfil: Machine Edit (permite generar/modificar reportes si se requiere). Proyecto: Ibero.",
+        condText: "Obligatoria en todo procesamiento.",
+        io: "Entrada: archivo de proyecto → Salida: proyecto abierto en workspace Diseño.",
+        check: "Confirmar nombre del proyecto y perfil Machine Edit activos.",
+        err: "Abrir revisión incorrecta o perfil sin herramientas de reporte. Recuperación: cerrar sin guardar y reabrir.",
+        capture: "Captura pendiente — selector Machine Edit, proyecto Ibero y vista Diseño.",
+        source: "§3", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-03", stage: "ET-03", app: "Cabinet Vision (C2M)", cat: "cv", critical: "C02", cond: false,
+        title: "Acceso a C2M Center y filtrado del concepto",
+        start: "Workspace Diseño en Cabinet Vision",
+        loc: "Pestaña C2M Center (extremo derecho de Diseño) → Filtrado → OK",
+        action: "Abrir C2M Center, filtrar el concepto Puerta Intercom Grande, pulsar OK y revisar el primer número del resultado (cantidad de muebles).",
+        config: "Concepto: Puerta Intercom Grande. Cantidad proviene de la vista de diseño.",
+        condText: "Obligatoria. Control bloqueante: solo continuar si el 1.er número coincide con el lote autorizado.",
+        io: "Entrada: proyecto completo → Salida: lote filtrado y cantidad validada.",
+        check: "Cotejar 1.er número mostrado contra cantidad del archivo de lotes (MQ-01).",
+        err: "Cantidad distinta al lote autorizado (INC-01). Recuperación: detener, revisar configuración en Diseño o consultar a Ingeniería.",
+        capture: "Captura pendiente — pestaña C2M Center, filtro seleccionado y 1.er número del resultado.",
+        source: "§4", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-04", stage: "ET-04", app: "Cabinet Vision (C2M)", cat: "cv", critical: "C03", cond: true,
+        title: "Selección de máquinas en menú lateral izquierdo",
+        start: "Screen to Machine Center (C2M Center)",
+        loc: "Parte inferior del menú lateral izquierdo de Screen to Machine Center",
+        action: "Configurar las 3 categorías: 1) Dimensionadora, 2) Enchapadora, 3) Máquina P2P (solo si el lote lo requiere).",
+        config: "Corte: Dimensionadora Zaragoza (Nanxing) · Enchapado: Enchapadora nueva Nanxing · Maquinado posterior: Sin máquina P2P.",
+        condText: "P2P es condicional según archivo de lotes (otras puertas/muebles sí usan P2P Nanxing).",
+        io: "Entrada: archivo de lotes → Salida: máquinas configuradas en C2M Center.",
+        check: "Confirmar que las 3 categorías coinciden con el archivo de lotes.",
+        err: "Asignar P2P a mueble de perforación manual o elegir dimensionadora equivocada. Recuperación: corregir antes de Run.",
+        capture: "Captura pendiente — menú lateral izquierdo inferior mostrando las 3 categorías.",
+        source: "§5", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-05", stage: "ET-04", app: "Cabinet Vision (C2M)", cat: "cv", critical: "C04", cond: true,
+        title: "Configuración de Premill Edge Banding (precorte)",
+        start: "Screen to Machine Center",
+        loc: "File (arriba izquierda) → Preferences (engrane) → pestaña Geometry → Premill Edge Banding",
+        action: "Revisar estado de la casilla Premill Edge Banding y confirmar valor máximo = 3 (no modificar).",
+        config: "ON + máx 3 para Enchapadora nueva Nanxing (con precorte). OFF para cualquier otra enchapadora sin precorte.",
+        condText: "Obligatoria revisar en cada lote; nunca asumir que conservó la configuración previa.",
+        io: "Entrada: enchapadora seleccionada → Salida: compensación de precorte correctamente configurada.",
+        check: "Confirmar casilla ON/OFF según enchapadora y valor máximo en 3.",
+        err: "Heredar configuración del lote anterior altera medidas con cubrecanto (INC-02). Recuperación: corregir y re-optimizar.",
+        capture: "Captura pendiente — File ‣ Preferences ‣ Geometry con Premill Edge Banding y valor 3.",
+        source: "§6", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-06", stage: "ET-05", app: "Cabinet Vision (C2M)", cat: "cv", critical: "C05", cond: false,
+        title: "Verificación pre-optimización y ejecución (Run → OK)",
+        start: "Screen to Machine Center",
+        loc: "Botón Run → confirmación OK",
+        action: "Reconfirmar lote, dimensionadora, enchapadora, P2P y Premill Edge Banding; pulsar Run, esperar y confirmar OK.",
+        config: "Parámetros validados en MQ-03, MQ-04 y MQ-05.",
+        condText: "Obligatoria antes de exportar códigos NC o reportes PDF.",
+        io: "Entrada: configuración validada → Salida: diagramas de corte visibles en pantalla.",
+        check: "Optimización finalizada sin errores y diagramas visibles.",
+        err: "Optimizar con parámetro erróneo. Recuperación: corregir parámetro y volver a ejecutar Run.",
+        capture: "Captura pendiente — botón Run, diálogo OK y diagramas de corte generados.",
+        source: "§7", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-07", stage: "ET-06", app: "Explorador Windows", cat: "fs", critical: null, cond: false,
+        title: "Creación de carpetas temporales de ruta corta en Producción",
+        start: "Explorador de archivos de Windows",
+        loc: "Luis del Ángel / Ibero / Producción",
+        action: "Crear carpeta del concepto (Puerta Intercom Grande). En Producción crear SEC (Ctrl+Shift+N), duplicar 2 veces, renombrar con F2 a NANXING y LABEL, y copiar rutas (F4 + historial portapapeles).",
+        config: "Carpetas temporales en Producción para evitar fallos de lectura de Cabinet Vision por rutas largas.",
+        condText: "Obligatoria crear las 3 carpetas estándar aunque no haya máquina P2P.",
+        io: "Entrada: carpeta Producción → Salida: SEC, NANXING, LABEL creadas y rutas copiadas.",
+        check: "Confirmar existencia de las 3 carpetas y rutas en portapapeles.",
+        err: "Exportar a rutas largas provoca fallo en Cabinet Vision (INC-03). Recuperación: exportar en Producción y mover al final.",
+        capture: "Captura pendiente — carpeta Producción con Puerta Intercom Grande, SEC, NANXING y LABEL.",
+        source: "§9", state: "Reportado en narración · Atajos sujetos a verificación en equipo"
+      },
+      {
+        id: "MQ-08", stage: "ET-06", app: "Cabinet Vision (C2M)", cat: "cv", critical: "C06", cond: true,
+        title: "Asignación de rutas en Output Data (NC Codes and Labels)",
+        start: "Screen to Machine Center optimizado",
+        loc: "Botón NC Codes and Labels → ventana Output Data",
+        action: "Pegar rutas: Image Output Path → LABEL; Label Output Path → LABEL; Dimensionadora Zaragoza → SEC; Salida P2P → sin configurar en este caso.",
+        config: "Rutas cortas en Producción. P2P solo si el lote incluye máquina secundaria.",
+        condText: "P2P condicional según MQ-04.",
+        io: "Entrada: rutas copiadas → Salida: campos de Output Data asignados.",
+        check: "Verificar que ninguna ruta apunte a otro proyecto o carpeta incorrecta.",
+        err: "Sobrescribir otro lote o cruzar carpetas SEC/LABEL. Recuperación: corregir ruta antes de ejecutar.",
+        capture: "Captura pendiente — ventana Output Data con Image/Label Path en LABEL y Zaragoza en SEC.",
+        source: "§8, §10", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-09", stage: "ET-06", app: "Cabinet Vision / Disco", cat: "cv", critical: null, cond: false,
+        title: "Ejecución de exportación y verificación física en disco",
+        start: "Ventana Output Data configurada",
+        loc: "Ejecución Output Data → Consolas → Explorador (SEC y LABEL)",
+        action: "Ejecutar generación, observar mensajes (Starting Output Runtime / Create SCM Automatic Fields), cerrar ventanas de ejecución, confirmar OK y revisar archivos reales en SEC y LABEL.",
+        config: "Validación real = archivos físicos en disco.",
+        condText: "Obligatoria. Los mensajes en pantalla no bastan por sí solos.",
+        io: "Entrada: optimización + rutas → Salida: programas NC en SEC y etiquetas en LABEL.",
+        check: "Abrir SEC y LABEL y verificar archivos reales generados.",
+        err: "Confiar solo en el OK cuando la carpeta quedó vacía (INC-04). Recuperación: revisar ruta/permisos y re-exportar.",
+        capture: "Captura pendiente — mensajes Output Runtime/SCM y contenido real de SEC y LABEL.",
+        source: "§11", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-10", stage: "ET-07", app: "Cabinet Vision (Reports)", cat: "cv", critical: null, cond: false,
+        title: "Exportación PDF de Material Summary",
+        start: "Screen to Machine Center",
+        loc: "Menú lateral izquierdo → Reports (debajo de tableros apilados) → Material Summary",
+        action: "Seleccionar Material Summary, exportar en PDF y guardar en Puerta Intercom Grande.",
+        config: "Nombre propuesto: Lista de materiales_Puerta Intercom Grande.pdf.",
+        condText: "Obligatoria. Es resumen exclusivo de materiales cortables (NO es BOM integral con herrajes/adhesivos).",
+        io: "Entrada: optimización → Salida: Lista de materiales_Puerta Intercom Grande.pdf.",
+        check: "Confirmar PDF guardado en la carpeta del concepto.",
+        err: "Confundir este PDF con lista integral de compras/ensamble (INC-05). Recuperación: aclarar alcance cortable.",
+        capture: "Captura pendiente — Reports ‣ Material Summary y diálogo PDF.",
+        source: "§12 (1)", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-11", stage: "ET-07", app: "Cabinet Vision (Reports)", cat: "cv", critical: null, cond: false,
+        title: "Exportación PDF de Saw Cut List Landscape",
+        start: "Screen to Machine Center → Reports",
+        loc: "Reports → Saw Cut List Landscape → Export Report (barra superior) → Adobe PDF",
+        action: "Seleccionar Saw Cut List Landscape, pulsar Export Report, elegir Adobe PDF y guardar en Puerta Intercom Grande.",
+        config: "Nombre propuesto: Diagramas de corte_Puerta Intercom Grande.pdf.",
+        condText: "Obligatoria. Permite contrastar diagramas contra programas de seccionadora.",
+        io: "Entrada: diagramas optimizados → Salida: Diagramas de corte_Puerta Intercom Grande.pdf.",
+        check: "Confirmar que existen ambos PDFs en Puerta Intercom Grande.",
+        err: "Exportar en formato incorrecto o carpeta equivocada. Recuperación: re-exportar con Adobe PDF.",
+        capture: "Captura pendiente — Saw Cut List Landscape, Export Report y Adobe PDF.",
+        source: "§12 (2)", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-12", stage: "ET-08", app: "Explorador Windows", cat: "fs", critical: "C07", cond: false,
+        title: "Consolidación de carpetas y verificación final de entregables",
+        start: "Carpeta Luis del Ángel / Ibero / Producción",
+        loc: "Producción → Puerta Intercom Grande",
+        action: "Renombrar SEC, NANXING y LABEL agregando _Puerta Intercom Grande; seleccionar las 3, cortar con Ctrl+X y pegar dentro de Puerta Intercom Grande.",
+        config: "Conservar nombres reales de archivos de Cabinet Vision. Prohibido eliminar o sobrescribir otros lotes.",
+        condText: "Obligatoria antes de subir a Odoo.",
+        io: "Entrada: carpetas temporales + 2 PDFs → Salida: carpeta consolidada del concepto.",
+        check: "Checklist 7 pts: 2 PDFs, SEC con programas, LABEL con etiquetas, NANXING vacía si no hubo P2P, correspondencia y nombres claros.",
+        err: "Dejar carpetas sueltas en Producción causa colisión con el siguiente lote. Recuperación: consolidar de inmediato.",
+        capture: "Captura pendiente — interior de Puerta Intercom Grande con 2 PDFs y 3 subcarpetas renombradas.",
+        source: "§13", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-13", stage: "ET-09", app: "Odoo (Manufactura)", cat: "odoo", critical: "C08", cond: false,
+        title: "Identificación y validación del producto en Odoo",
+        start: "Odoo web",
+        loc: "Manufactura → Productos → Filtro de proyecto (Ibero) → Puerta Intercom Grande",
+        action: "Ingresar con usuario, filtrar proyecto Ibero, abrir tarjeta Puerta Intercom Grande y validar correspondencia.",
+        config: "Validar 4 criterios: nombre, proyecto, imagen de referencia (si existe) y coincidencia con Cabinet Vision.",
+        condText: "Obligatoria antes de cargar archivos.",
+        io: "Entrada: carpeta consolidada → Salida: tarjeta de producto correcta abierta.",
+        check: "4 criterios verificados.",
+        err: "Cargar archivos en producto equivocado. Recuperación: verificar los 4 criterios antes de adjuntar.",
+        capture: "Captura pendiente — Manufactura ‣ Productos con filtro Ibero y tarjeta abierta.",
+        source: "§14 (1)", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-14", stage: "ET-09", app: "Odoo (Manufactura)", cat: "odoo", critical: "C09", cond: false,
+        title: "Carga en Documentos y ruta de red en Notas internas",
+        start: "Tarjeta de Puerta Intercom Grande en Odoo + Explorador",
+        loc: "3.ª pestaña Documentos → Cargar; y apartado Notas internas",
+        action: "Cargar PDFs, etiquetas, programas de seccionadora (y P2P si hay) en Documentos. Copiar ruta de carpeta con Ctrl+Shift+C, pegar en Notas internas, quitar comillas iniciales/finales y Guardar.",
+        config: "No confundir Referencia interna (ID del producto en Odoo) con ruta de red en Notas internas.",
+        condText: "Obligatoria. Verificar en instancia Odoo qué formato admite para carpetas/conjuntos de archivos.",
+        io: "Entrada: entregables locales/red → Salida: producto guardado en Odoo con respaldo y ruta limpia.",
+        check: "Archivos visibles en Documentos, ruta sin comillas en Notas internas y producto guardado.",
+        err: "Dejar comillas en la ruta impide abrirla (INC-06). Recuperación: editar Notas internas, quitar comillas y guardar.",
+        capture: "Captura pendiente — pestaña Documentos cargada y Notas internas con ruta sin comillas.",
+        source: "§14 (2)", state: "Reportado en narración · Pendiente validar formato carpetas en Odoo"
+      },
+      {
+        id: "MQ-15", stage: "ET-10", app: "Odoo + Explorador (2.ª PC)", cat: "odoo", critical: "C10", cond: false,
+        title: "Prueba de acceso y permisos desde una segunda computadora",
+        start: "Segunda computadora (en el ejercicio, en otra red Wi-Fi)",
+        loc: "Odoo → Manufactura → Productos → Notas internas → Explorador de archivos",
+        action: "Abrir producto en Odoo desde 2.ª PC, copiar ruta de Notas internas, pegar en explorador y verificar apertura de diagramas, materiales, etiquetas y programas.",
+        config: "Validación independiente del equipo de origen y de permisos de acceso.",
+        condText: "Obligatoria antes de dar por válida la ruta.",
+        io: "Entrada: ruta guardada en Odoo → Salida: acceso remoto/compartido comprobado.",
+        check: "La carpeta abre y los archivos son legibles desde la 2.ª PC.",
+        err: "Ruta local o falta de permisos impide acceso en planta. Recuperación: corregir ruta compartida/permisos.",
+        capture: "Captura pendiente — carpeta abierta en la 2.ª PC desde la ruta de Odoo.",
+        source: "§15", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-16", stage: "ET-11", app: "Maquinados (Comunicación)", cat: "maq", critical: "C11", cond: false,
+        title: "Comunicación directa obligatoria y liberación a Maquinados",
+        start: "Entregables validados en carpeta, Odoo y 2.ª PC",
+        loc: "Reunión presencial, llamada telefónica o Google Meet",
+        action: "Confirmar 8 puntos: concepto, cantidad del lote, archivos generados, máquinas a usar, dónde están guardados, cómo consultar en Odoo, acuerdos previos y operaciones manuales vs máquina.",
+        config: "Nunca dar por cerrada la liberación solo por haber exportado archivos.",
+        condText: "Obligatoria en todos los lotes.",
+        io: "Entrada: entregables listos → Salida: Ingeniería y Maquinados alineados.",
+        check: "Confirmación explícita de Maquinados sobre los 8 puntos.",
+        err: "Omitir comunicación genera dudas sobre perforaciones manuales o archivos vigentes. Recuperación: realizar llamada/reunión.",
+        capture: "N/A (comunicación directa / minuta).",
+        source: "§16", state: "Reportado en narración"
+      },
+      {
+        id: "MQ-17", stage: "ET-12", app: "PC Seccionadora (Flujo B)", cat: "maq", critical: "C12", cond: true,
+        title: "Flujo complementario B: nota visible y guía en PC de seccionadora",
+        start: "Laptop o PC asignada a la seccionadora",
+        loc: "Equipo físico de la seccionadora asignada al lote",
+        action: "Comprobar acceso a carpeta compartida, dejar nota visible con proyecto + concepto + ruta completa, explicar al operador y confirmar en sitio que abre diagramas y programas.",
+        config: "Mecanismo de respaldo temporal; no sustituye a Odoo como canal habitual a largo plazo.",
+        condText: "Condicional: solo cuando la PC de seccionadora no tenga acceso a Odoo o no haya usuario de producción.",
+        io: "Entrada: ruta compartida → Salida: operador con acceso comprobado en máquina.",
+        check: "Operador abre carpeta, diagramas y programas en presencia de Ingeniería.",
+        err: "Dejar nota sin probar permisos en la PC de planta. Recuperación: validar apertura junto al operador.",
+        capture: "Captura pendiente — nota visible y carpeta abierta en PC de seccionadora.",
+        source: "§17", state: "Reportado en narración · Captura pendiente"
+      },
+      {
+        id: "MQ-18", stage: "ET-12", app: "Cierre Operativo", cat: "maq", critical: null, cond: false,
+        title: "Verificación integral y cierre de liberación",
+        start: "Fin de comunicación directa (y Flujo B si aplicó)",
+        loc: "Checklist de liberación del lote",
+        action: "Confirmar cumplimiento de todas las etapas obligatorias, controles críticos C01–C12 aplicables y trazabilidad completa.",
+        config: "Carpeta compartida + Odoo + Maquinados alineados.",
+        condText: "Obligatoria para cerrar el flujo.",
+        io: "Entrada: evidencias MQ-01 a MQ-17 → Salida: lote oficialmente liberado.",
+        check: "Todos los controles aplicables en OK.",
+        err: "Cerrar con controles pendientes. Recuperación: resolver control abierto antes de autorizar corte.",
+        capture: "N/A (cierre de checklist).",
+        source: "§18–§19", state: "Estructurado según método Cerebro IA"
+      }
+    ];
+
+    const CONTROLS = [
+      ["C01", "MQ-01", "Archivo de lotes autorizado por Ing. y Maquinados", "8 datos completos sin ambigüedad", "Detener y solicitar definición oficial"],
+      ["C02", "MQ-03", "Cantidad filtrada en C2M Center (bloqueante)", "1.er número = cantidad del lote", "No continuar; conciliar Diseño vs lote"],
+      ["C03", "MQ-04", "3 categorías de máquinas en menú lateral", "Coincide con archivo de lotes", "Corregir antes de Run"],
+      ["C04", "MQ-05", "Premill Edge Banding revisado en cada lote", "ON (máx 3) solo si Enchapadora nueva Nanxing; OFF en otras", "Ajustar en Geometry y re-optimizar"],
+      ["C05", "MQ-06", "Optimización ejecutada", "Run → OK y diagramas visibles", "Revisar parámetros y re-ejecutar"],
+      ["C06", "MQ-08", "Rutas en Output Data", "LABEL y SEC correctos; P2P solo si aplica", "Corregir ruta antes de exportar"],
+      ["C07", "MQ-12", "Consolidación en carpeta del concepto", "2 PDFs + 3 subcarpetas renombradas con archivos reales", "Re-exportar o reubicar antes de Odoo"],
+      ["C08", "MQ-13", "Correspondencia de producto en Odoo", "Nombre, proyecto, imagen y concepto coinciden", "Localizar tarjeta correcta"],
+      ["C09", "MQ-14", "Documentos cargados y ruta limpia en Notas internas", "Archivos en Documentos; ruta sin comillas; guardado", "Limpiar comillas y guardar"],
+      ["C10", "MQ-15", "Prueba de acceso desde 2.ª PC", "Carpeta abre y archivos legibles", "Corregir ruta UNC / permisos"],
+      ["C11", "MQ-16", "Comunicación directa de 8 puntos", "Maquinados confirma alcance y ubicación", "Realizar llamada/reunión antes de cortar"],
+      ["C12", "MQ-17", "Acceso en PC de seccionadora (condicional)", "Operador abre carpeta, diagramas y programas", "Configurar acceso/nota en sitio"]
+    ];
+
+    const INCIDENTS = [
+      ["INC-01", "MQ-03", "Cantidad filtrada no coincide con lote", "Piezas faltantes o excedentes", "Detener en C02 y conciliar Diseño vs lote"],
+      ["INC-02", "MQ-05", "Premill Edge Banding heredado de lote previo", "Desfase dimensional en cubrecanto", "Revisar en cada lote; corregir y re-optimizar"],
+      ["INC-03", "MQ-07", "Ruta de salida demasiado larga", "Fallo de lectura/proceso en Cabinet Vision", "Exportar a Producción/SEC|NANXING|LABEL y mover al final"],
+      ["INC-04", "MQ-09", "Confiar solo en mensajes Output Runtime/SCM", "Carpeta vacía o incompleta", "Validar archivos físicos en disco"],
+      ["INC-05", "MQ-10", "Confundir Material Summary con BOM integral", "Omisión de herrajes/adhesivos/eléctricos", "Aclarar que solo incluye materiales cortables"],
+      ["INC-06", "MQ-14", "Comillas en ruta o confusión con Referencia interna", "Ruta inutilizable al copiar en otro equipo", "Quitar comillas iniciales/finales en Notas internas"]
+    ];
+
+    const TRANSFERS = [
+      ["TR-01", "Ing. + Maquinados", "Cabinet Vision (C2M)", "Archivo de lotes de corte", "Unidades, concepto, 3 máquinas", "C01, C02, C03", "Formato estándar del archivo de lotes"],
+      ["TR-02", "Cabinet Vision (Output Data)", "Producción/SEC|NANXING|LABEL", "Códigos NC y etiquetas", "Nombres nativos CV", "Inspección en disco (MQ-09)", "Extensiones exactas por máquina"],
+      ["TR-03", "Cabinet Vision (Reports)", "Carpeta Puerta Intercom Grande", "Material Summary + Saw Cut List (PDF)", "Lista de materiales_... / Diagramas de corte_...", "C07 (existencia y legibilidad)", "—"],
+      ["TR-04", "Carpeta consolidada", "Odoo (Manufactura ‣ Productos)", "Documentos + ruta en Notas internas", "Ruta UNC sin comillas", "C08, C09, C10", "Formato admitido por Odoo para carpetas/conjuntos"],
+      ["TR-05", "Ingeniería (Odoo + Red)", "Maquinados / PC Seccionadora", "Liberación 8 pts + (si aplica) nota visible", "Proyecto + concepto + ruta", "C11, C12", "Estandarización de acceso Odoo en planta"]
+    ];
+
+    function norm(s) {
+      return (s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function switchTab(tabName) {
+      document.querySelectorAll(".tab-btn").forEach(b => b.setAttribute("aria-selected", String(b.dataset.tab === tabName)));
+      document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + tabName));
+    }
+
+    function jumpToFicha(id) {
+      switchTab("fichas");
+      document.getElementById("search-box").value = "";
+      setActiveFilter("all");
+      renderFichas();
+      const el = document.getElementById("ficha-" + id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("highlight");
+        setTimeout(() => el.classList.remove("highlight"), 2200);
+      }
+    }
+
+    let currentFilter = "all";
+    function setActiveFilter(f) {
+      currentFilter = f;
+      document.querySelectorAll(".filter-pill").forEach(p => p.classList.toggle("active", p.dataset.filter === f));
+    }
+
+    function renderStages() {
+      const grid = document.getElementById("stages-grid");
+      grid.innerHTML = STAGES.map(st => `
+        <div class="stage-box">
+          <div class="stage-head">
+            <span class="badge badge-id">${st.id}</span>
+            <span class="badge ${st.type.includes("Condicional") ? "badge-cond" : "badge-obl"}">${st.type}</span>
+          </div>
+          <strong>${st.name}</strong>
+          <div style="font-size:0.84rem;color:var(--muted);margin-top:0.2rem;">${st.out}</div>
+          <div class="node-links">
+            ${st.nodes.map(n => `<button class="node-btn" data-jump="${n}">${n}</button>`).join("")}
+          </div>
+        </div>
+      `).join("");
+    }
+
+    function renderFichas() {
+      const q = norm(document.getElementById("search-box").value.trim());
+      const list = document.getElementById("fichas-list");
+      const filtered = FICHAS.filter(f => {
+        if (currentFilter === "critical" && !f.critical) return false;
+        if (currentFilter === "cond" && !f.cond) return false;
+        if (["cv", "fs", "odoo", "maq"].includes(currentFilter) && f.cat !== currentFilter) return false;
+        if (!q) return true;
+        const blob = norm([f.id, f.stage, f.app, f.title, f.start, f.loc, f.action, f.config, f.condText, f.io, f.check, f.err, f.critical || ""].join(" "));
+        return blob.includes(q);
+      });
+
+      if (!filtered.length) {
+        list.innerHTML = `<div class="empty-msg">No se encontraron fichas para la búsqueda o filtro actual.</div>`;
+        return;
+      }
+
+      list.innerHTML = filtered.map(f => `
+        <article class="ficha ${f.critical ? "is-critical" : ""}" id="ficha-${f.id}">
+          <div class="ficha-head">
+            <div>
+              <span class="badge badge-id">${f.id}</span>
+              <span class="badge badge-id">${f.stage}</span>
+              <strong style="margin-left:0.35rem;font-size:1.02rem;">${f.title}</strong>
+            </div>
+            <div class="ficha-badges">
+              <span class="badge ${f.cond ? "badge-cond" : "badge-obl"}">${f.cond ? "Condicional" : "Obligatoria"}</span>
+              ${f.critical ? `<span class="badge badge-crit">Crítico ${f.critical}</span>` : ""}
+              <span class="badge badge-ok">${f.app}</span>
+            </div>
+          </div>
+          <div class="ficha-grid">
+            <div><div class="field-label">1. Punto de partida</div>${f.start}</div>
+            <div><div class="field-label">2. Ubicación exacta</div>${f.loc}</div>
+            <div><div class="field-label">3. Acción del operador</div>${f.action}</div>
+            <div><div class="field-label">4. Configuración y por qué</div>${f.config}</div>
+            <div><div class="field-label">5. Condición</div>${f.condText}</div>
+            <div><div class="field-label">6. Entrada / Resultado</div>${f.io}</div>
+            <div><div class="field-label">7. Verificación</div>${f.check}</div>
+            <div><div class="field-label">8. Error potencial y recuperación</div>${f.err}</div>
+          </div>
+          <div class="capture-box"><strong>Evidencia visual:</strong> ${f.capture}</div>
+          <div class="ficha-foot">
+            <span>Fuente: Instrucción operativa ${f.source}</span>
+            <span>Estado: ${f.state}</span>
+          </div>
+        </article>
+      `).join("");
+    }
+
+    function renderTables() {
+      document.getElementById("controls-tbody").innerHTML = CONTROLS.map(c => `
+        <tr>
+          <td><span class="badge badge-crit">${c[0]}</span></td>
+          <td><button class="node-btn" data-jump="${c[1]}">${c[1]}</button></td>
+          <td>${c[2]}</td><td>${c[3]}</td><td>${c[4]}</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("incidents-tbody").innerHTML = INCIDENTS.map(i => `
+        <tr>
+          <td><span class="badge badge-cond">${i[0]}</span></td>
+          <td><button class="node-btn" data-jump="${i[1]}">${i[1]}</button></td>
+          <td>${i[2]}</td><td>${i[3]}</td><td>${i[4]}</td>
+        </tr>
+      `).join("");
+
+      document.getElementById("transfer-tbody").innerHTML = TRANSFERS.map(t => `
+        <tr>
+          <td><span class="badge badge-id">${t[0]}</span></td>
+          <td>${t[1]}</td><td>${t[2]}</td><td>${t[3]}</td><td>${t[4]}</td><td>${t[5]}</td><td>${t[6]}</td>
+        </tr>
+      `).join("");
+    }
+
+    document.addEventListener("click", e => {
+      const tab = e.target.closest(".tab-btn");
+      if (tab) { switchTab(tab.dataset.tab); return; }
+      const pill = e.target.closest(".filter-pill");
+      if (pill) { setActiveFilter(pill.dataset.filter); renderFichas(); return; }
+      const jump = e.target.closest("[data-jump]");
+      if (jump) { jumpToFicha(jump.dataset.jump); return; }
+    });
+
+    document.getElementById("search-box").addEventListener("input", renderFichas);
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
+        e.preventDefault();
+        switchTab("fichas");
+        document.getElementById("search-box").focus();
+      } else if (e.key === "Escape" && document.activeElement.id === "search-box") {
+        document.getElementById("search-box").value = "";
+        renderFichas();
+      } else if ((e.key === "Enter" || e.key === " ") && e.target.closest(".svg-node")) {
+        e.preventDefault();
+        jumpToFicha(e.target.closest(".svg-node").dataset.jump);
+      }
+    });
+
+    renderStages();
+    renderFichas();
+    renderTables();
+  </script>
+</body>
+</html>
