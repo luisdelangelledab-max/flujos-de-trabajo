@@ -1,497 +1,691 @@
-<!DOCTYPE html>
-<html lang="es" class="dark">
+<!doctype html>
+<html lang="es-MX" data-theme="light">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bulldog Design — Flujo Maestro Interactivo Cabinet Vision</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manual visual operativo · Flujo Maestro Bulldog Design (Odoo ↔ Cabinet Vision ↔ Fabricación)</title>
   <link rel="icon" type="image/x-icon" href="assets/app_icon.ico">
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              dark: '#090d16',
-              card: '#0f172a',
-              purple: '#a855f7',
-              cyan: '#06b6d4',
-              amber: '#f59e0b',
-              red: '#ef4444',
-              emerald: '#10b981'
-            }
-          }
-        }
-      }
-    }
-  </script>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="bg-[#090d16] text-slate-100 min-h-screen relative selection:bg-indigo-500 selection:text-white">
+<body>
+<a href="#contenido" class="skip">Saltar al contenido principal</a>
 
-  <!-- Efecto de Luz Ambiental -->
-  <div class="ambient-glow">
-    <div class="ambient-orb orb-1"></div>
-    <div class="ambient-orb orb-2"></div>
-    <div class="ambient-orb orb-3"></div>
-  </div>
-
-  <div class="relative z-10 flex flex-col min-h-screen">
-
-    <!-- NAVBAR PRINCIPAL -->
-    <header class="glass-panel sticky top-0 z-50 border-b border-white/10 px-4 lg:px-8 py-3.5">
-      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-        
-        <!-- Logo y Título -->
-        <div class="flex items-center gap-3.5">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-cyan-500 p-0.5 shadow-lg shadow-indigo-500/25 flex items-center justify-center">
-            <div class="w-full h-full bg-slate-950 rounded-[10px] flex items-center justify-center">
-              <span class="font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400 text-sm">BD</span>
-            </div>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <h1 class="text-base md:text-lg font-extrabold text-white tracking-tight">Bulldog Design</h1>
-              <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
-                v2.0 CV-ODOO
-              </span>
-            </div>
-            <p class="text-[11px] text-slate-400 hidden sm:block">Flujo Maestro — Alta, Diseño, Ingeniería y Liberación en Cabinet Vision</p>
-          </div>
-        </div>
-
-        <!-- Pestañas de Navegación -->
-        <nav class="flex items-center gap-1.5 p-1 bg-slate-900/80 rounded-xl border border-white/5 overflow-x-auto">
-          <button data-nav-view="pipeline" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-indigo-600/30 text-indigo-300 border border-indigo-500/50">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
-            Explorador de Flujo
-          </button>
-          <button data-nav-view="presentation" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/40">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-            Modo Presentación
-          </button>
-          <button data-nav-view="comparison" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/40">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-            Diseño vs Ingeniería
-          </button>
-          <button data-nav-view="simulator" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/40">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-            Simulador de Gates
-          </button>
-          <button data-nav-view="blockers" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white hover:bg-slate-800/40">
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-            Bloqueos & Retrabajos
-          </button>
-        </nav>
-
-        <!-- Botón rápido Presentación a Pantalla Completa -->
-        <button onclick="openFullscreenPresentation()" class="hidden md:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold shadow-md shadow-indigo-600/30 transition-all">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
-          Presentar al Equipo
-        </button>
-
+<div class="shell">
+  <!-- SIDEBAR LATERAL DE LECTURA PROGRESIVA (A - G) -->
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">BD</span>
+      <div>
+        <strong>Bulldog Design</strong>
+        <span>Manual visual operativo</span>
       </div>
-    </header>
+    </div>
 
-    <!-- BANNER HERO Y MÉTRICAS CLAVE -->
-    <section class="max-w-7xl mx-auto px-4 lg:px-8 pt-8 pb-4 w-full">
-      <div class="glass-panel rounded-3xl p-6 lg:p-8 border border-white/10 relative overflow-hidden">
-        <!-- Imagen de Fondo Hero con Máscara Degradada -->
-        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
-          <img src="assets/hero_banner.jpg" alt="Bulldog Workflow Hero" class="w-full h-full object-cover">
-          <div class="absolute inset-0 bg-gradient-to-r from-[#090d16] via-[#090d16]/90 to-transparent"></div>
+    <div class="sidebar-section-label">Vistas operativas</div>
+    <nav aria-label="Vistas del manual">
+      <button type="button" class="nav-link" data-nav-view="mapa" aria-current="page">
+        <span class="letter" aria-hidden="true">A</span>Mapa general
+      </button>
+      <button type="button" class="nav-link" data-nav-view="fases">
+        <span class="letter" aria-hidden="true">B</span>Fases y Cabinet Vision
+      </button>
+      <button type="button" class="nav-link" data-nav-view="fichas">
+        <span class="letter" aria-hidden="true">C</span>Guía por fichas (18)
+      </button>
+      <button type="button" class="nav-link" data-nav-view="comparativa">
+        <span class="letter" aria-hidden="true">D</span>Diseño vs. Ingeniería
+      </button>
+      <button type="button" class="nav-link" data-nav-view="simulador">
+        <span class="letter" aria-hidden="true">E</span>Simulador de Gates
+      </button>
+      <button type="button" class="nav-link" data-nav-view="bloqueos">
+        <span class="letter" aria-hidden="true">F</span>Bloqueos y Retrabajos
+      </button>
+      <button type="button" class="nav-link" data-nav-view="odoo">
+        <span class="letter" aria-hidden="true">G</span>Transferencia y Slides
+      </button>
+    </nav>
+
+    <div class="sidebar-controls">
+      <button type="button" class="theme-toggle-btn" id="theme-toggle" title="Alternar entre Modo Editorial Claro (estilo Manual Ibero) y Modo Oscuro Industrial">
+        <span id="theme-label">☀️ Tema Editorial (Ibero)</span>
+        <span class="mono" style="font-size:0.74rem;opacity:0.8">Cambiar</span>
+      </button>
+      <a href="../../index.html" class="theme-toggle-btn" style="text-decoration:none;justify-content:center;gap:0.4rem;">
+        ← Volver al Hub de Flujos
+      </a>
+    </div>
+
+    <footer>
+      <strong>Rev. 2.0 · Producción</strong><br>
+      Definir → Validar → Liberar → Ejecutar<br>
+      <span style="display:block;margin-top:0.25rem;">Convención Odoo (Mireya &amp; Luis)</span>
+    </footer>
+  </aside>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main id="contenido" class="content" tabindex="-1">
+
+    <!-- ======================================================================
+         VISTA A: MAPA GENERAL DEL FLUJO MAESTRO (ESTILO COSTOS IBERO)
+         ====================================================================== -->
+    <section class="view" id="view-mapa" aria-labelledby="titulo-mapa">
+      <header class="hero">
+        <div>
+          <span class="eyebrow">Bulldog Design · Odoo ↔ Cabinet Vision ↔ CNC ↔ Fabricación</span>
+          <h1 id="titulo-mapa">Flujo maestro de alta, diseño, ingeniería y liberación</h1>
+          <p>Desde el diseño volumétrico comercial y el alta maestra en Odoo hasta la parametrización en Cabinet Vision (CV-1 a CV-8), el doble filtro anti-error y la liberación GO a fabricación.</p>
         </div>
+        <div class="review">
+          <strong>Regla rectora · Contención en origen</strong>
+          <p>«La precisión del resultado final depende directamente de la calidad, completitud y estabilidad de la información utilizada desde el inicio.»</p>
+        </div>
+      </header>
 
-        <div class="relative z-10 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
-          <div class="max-w-2xl">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 mb-3">
-              <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-              Metodología Oficial de Producción
-            </div>
-            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
-              Flujo de Trabajo Integrado <br class="hidden sm:inline">
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-cyan-300 to-emerald-400">
-                Odoo ↔ Cabinet Vision ↔ Fabricación
-              </span>
-            </h2>
-            <p class="mt-3 text-sm text-slate-300 leading-relaxed font-light">
-              "La precisión del resultado final depende directamente de la calidad, completitud y estabilidad de la información utilizada desde el inicio."
-            </p>
+      <!-- KPI Strip Interactivo -->
+      <div class="kpi-strip" aria-label="Indicadores del flujo operativo">
+        <button type="button" class="kpi-card" onclick="navigateToView('fichas', 'all')">
+          <div>
+            <span>Actividades documentadas</span>
+            <strong id="stat-total-tasks">18</strong>
+          </div>
+          <span class="kpi-badge badge">6 Fases</span>
+        </button>
+        <button type="button" class="kpi-card" onclick="navigateToView('bloqueos')">
+          <div>
+            <span>Bloqueos obligatorios</span>
+            <strong id="stat-total-blockers" style="color:var(--crimson)">6</strong>
+          </div>
+          <span class="kpi-badge badge blocker">NO-GO</span>
+        </button>
+        <button type="button" class="kpi-card" onclick="navigateToView('fichas', 'critical')">
+          <div>
+            <span>Controles críticos</span>
+            <strong id="stat-total-critical" style="color:var(--amber)">11</strong>
+          </div>
+          <span class="kpi-badge badge warning">Riesgo alto</span>
+        </button>
+        <button type="button" class="kpi-card" onclick="navigateToView('simulador')">
+          <div>
+            <span>Compuertas de calidad</span>
+            <strong style="color:var(--teal)">2 Gates</strong>
+          </div>
+          <span class="kpi-badge badge control">Doble Filtro</span>
+        </button>
+      </div>
+
+      <div class="overview">
+        <!-- Diagrama Principal de Nodos Conectados -->
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Mapa visual del proceso (6 Fases · 2 Gates · 6 Bloqueos)</h3>
+            <span class="muted small">Haz clic en cualquier nodo para abrir su ficha, fase o simulador.</span>
           </div>
 
-          <!-- Métricas Rápidas -->
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 lg:gap-4 shrink-0">
-            <div class="glass-panel p-3.5 rounded-xl border border-white/5 text-center">
-              <span class="text-2xl font-black text-indigo-400" id="stat-total-tasks">18</span>
-              <span class="block text-[11px] text-slate-400 uppercase tracking-wider font-semibold mt-0.5">Tareas Clave</span>
+          <div class="flow">
+            <a class="node event" href="#task-1-1" onclick="openFichaFromMap('task-1-1', event)">
+              Inicio · Fase 1: Diseño volumétrico comercial y cierre de venta
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node decision" href="#task-1-2" onclick="openFichaFromMap('task-1-2', event)">
+              ¿El proyecto reutiliza configuración homologada o es mobiliario especial? (Sec. 3.1–3.2)
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <div class="branches">
+              <a class="node control" href="#task-1-2" onclick="openFichaFromMap('task-1-2', event)">
+                Ruta A · Proyecto homologado
+                <small>Closets, gabinetes o baños ya parametrizados sin cambio de espesor ni lógica</small>
+              </a>
+              <a class="node design-node" href="#task-2-1" onclick="openFichaFromMap('task-2-1', event)">
+                Ruta B · Proyecto especial / nuevo
+                <small>Mobiliario ejecutivo, curvas, cerchas o nuevos materiales: ejecuta flujo completo</small>
+              </a>
             </div>
-            <div class="glass-panel p-3.5 rounded-xl border border-red-500/30 text-center bg-red-950/20">
-              <span class="text-2xl font-black text-red-400" id="stat-total-blockers">6</span>
-              <span class="block text-[11px] text-red-300 uppercase tracking-wider font-semibold mt-0.5">Bloqueos NO-GO</span>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node" href="#task-2-1" onclick="openFichaFromMap('task-2-1', event)">
+              Fase 2 · Compras valida materiales reales y crea identidad maestra en Odoo (Nombre corto + Referencia)
+              <small>Convención oficial Mireya &amp; Luis (ej. MDF BCO FR 1C 18 · LAM NOGAL 1C 18)</small>
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <div class="branches">
+              <a class="node blocker" href="#task-2-2" onclick="openFichaFromMap('task-2-2', event)">
+                BLOQUEO 1 (NO-GO)
+                <small>Detener si faltan materiales definitivos o hay insumos provisionales</small>
+              </a>
+              <a class="node blocker" href="#task-2-4" onclick="openFichaFromMap('task-2-4', event)">
+                BLOQUEO 2 (NO-GO)
+                <small>Detener si falta alta, nombre corto o referencia interna única en Odoo</small>
+              </a>
             </div>
-            <div class="glass-panel p-3.5 rounded-xl border border-yellow-500/30 text-center bg-yellow-950/20">
-              <span class="text-2xl font-black text-yellow-400" id="stat-total-critical">11</span>
-              <span class="block text-[11px] text-yellow-300 uppercase tracking-wider font-semibold mt-0.5">Puntos Críticos</span>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node design-node" href="#task-3-1" onclick="openFichaFromMap('task-3-1', event)">
+              Fase 3 · Diseño desarrolla Modelo 3D a Detalle (espesores, holguras, zócalos, propuesta de ensamble)
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node control" href="#task-3-3" onclick="openFichaFromMap('task-3-3', event)">
+              FILTRO ANTI-ERROR 1 · Insertar y validar el modelo 3D contra el Levantamiento Real de Obra
+              <small>Verificar desplomes de muros, columnas, salidas eléctricas, desniveles y accesos</small>
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node blocker" href="#task-3-4" onclick="openFichaFromMap('task-3-4', event)">
+              GATE MAESTRO 1 · Diseño Listo para Ingeniería (Bloqueos 3 y 4 si es solo volumétrico o sin obra)
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node handoff" href="#fases" onclick="navigateToView('fases'); return false;">
+              ⇢ Handoff a Fase 4 · Preparación y Modelado en Cabinet Vision (Etapas CV-1 a CV-8)
+              <small>CV-1 Piezas · CV-2 Materiales · CV-3 Cantos (general y 45°) · CV-4 Listas · CV-5 Métodos</small>
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node blocker" href="#task-4-3" onclick="openFichaFromMap('task-4-3', event)">
+              Etapa CV-6 y BLOQUEO 5 (NO-GO) · Checkpoint de Completitud al crear formalmente el proyecto en CV
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node" href="#task-5-1" onclick="openFichaFromMap('task-5-1', event)">
+              Fase 5 · Ingeniería de Producto (CV-7/CV-8): Parametrización, Minifix, taquetes, barrenos CNC y BOM
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node control" href="#task-5-2" onclick="openFichaFromMap('task-5-2', event)">
+              FILTRO ANTI-ERROR 2 · Revisión cruzada Modelo de Ingeniería (CV) ↔ Modelo a Detalle (Diseño)
+              <small>¿Lo que estamos a punto de fabricar sigue siendo exactamente lo que Diseño concibió y vendió?</small>
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node blocker" href="#task-5-3" onclick="openFichaFromMap('task-5-3', event)">
+              GATE MAESTRO 2 · GO FABRICACIÓN (Bloqueo 6 si hay discrepancia dimensional o colisión CNC)
+            </a>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <div class="files">
+              <a class="file" href="#task-6-1" onclick="openFichaFromMap('task-6-1', event)">
+                <span class="badge control">PDF</span>
+                <strong>Planos de ensamble</strong>
+                <small>Montaje y despiece</small>
+              </a>
+              <a class="file" href="#task-6-1" onclick="openFichaFromMap('task-6-1', event)">
+                <span class="badge control">NEST</span>
+                <strong>Listas de corte</strong>
+                <small>Seccionadora / Nesting</small>
+              </a>
+              <a class="file" href="#task-6-1" onclick="openFichaFromMap('task-6-1', event)">
+                <span class="badge engineering">NC / GCODE</span>
+                <strong>Programas CNC</strong>
+                <small>Mecanizado validado</small>
+              </a>
+              <a class="file" href="#task-6-1" onclick="openFichaFromMap('task-6-1', event)">
+                <span class="badge">LABEL</span>
+                <strong>Etiquetas código barras</strong>
+                <small>Trazabilidad por pieza</small>
+              </a>
+              <a class="file" href="#task-6-3" onclick="openFichaFromMap('task-6-3', event)">
+                <span class="badge procurement">CSV → ODOO</span>
+                <strong>Importación BOM</strong>
+                <small>Cero recaptura manual</small>
+              </a>
             </div>
-            <div class="glass-panel p-3.5 rounded-xl border border-emerald-500/30 text-center bg-emerald-950/20">
-              <span class="text-2xl font-black text-emerald-400">2</span>
-              <span class="block text-[11px] text-emerald-300 uppercase tracking-wider font-semibold mt-0.5">Filtros Anti-Error</span>
+            <div class="arrow" aria-hidden="true">↓</div>
+
+            <a class="node control end" href="#task-6-2" onclick="openFichaFromMap('task-6-2', event)">
+              Fin y Regla de Cambios · Todo cambio regresa al Modelo Maestro y regenera el paquete completo
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna Lateral Derecha: Accesos rápidos, Simbología y Evidencia Visual -->
+        <aside aria-label="Atajos, simbología y visualización">
+          <div class="panel">
+            <h3>¿Qué necesitas hacer?</h3>
+            <div class="quick" style="margin-top:0.65rem">
+              <button type="button" onclick="navigateToView('simulador')">
+                <span>Auditar Gate 1 o Gate 2 en vivo</span>
+                <span>→</span>
+              </button>
+              <button type="button" onclick="navigateToView('comparativa')">
+                <span>Consultar matriz Diseño vs. Ingeniería</span>
+                <span>→</span>
+              </button>
+              <button type="button" onclick="navigateToView('bloqueos')">
+                <span>Revisar los 6 Bloqueos NO-GO y costos</span>
+                <span>→</span>
+              </button>
+              <button type="button" onclick="navigateToView('fichas', 'engineering')">
+                <span>Ver etapas CV-1 a CV-8 en Cabinet Vision</span>
+                <span>→</span>
+              </button>
+              <button type="button" onclick="navigateToView('odoo')">
+                <span>Abrir Modo Presentación para el equipo</span>
+                <span>→</span>
+              </button>
             </div>
+          </div>
+
+          <div class="panel">
+            <h3>Cómo leer el mapa</h3>
+            <ul class="key">
+              <li><span class="symbol">●</span> Inicio o cierre del flujo</li>
+              <li><span class="symbol design">🎨</span> Actividad de Diseño</li>
+              <li><span class="symbol">⚙️</span> Actividad de Ingeniería / CV</li>
+              <li><span class="symbol decision">◆</span> Decisión o clasificación</li>
+              <li><span class="symbol control">✓</span> Filtro Anti-Error / Control</li>
+              <li><span class="symbol blocker">🛑</span> Bloqueo NO-GO / Gate</li>
+              <li><span class="symbol">⇢</span> Handoff entre áreas o software</li>
+              <li><span class="symbol">▤</span> Entregable oficial liberado</li>
+            </ul>
+          </div>
+
+          <figure class="capture">
+            <img src="assets/pipeline_automation.jpg" alt="Arquitectura visual del flujo Odoo a Cabinet Vision y CNC">
+            <figcaption>
+              <strong>Cadena de consistencia inviolable:</strong> Modelo Maestro ↔ BOM Odoo ↔ Plano ↔ Programa CNC ↔ Pieza Física.
+            </figcaption>
+          </figure>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VISTA B: FASES DEL FLUJO Y LAS 8 ETAPAS DE CABINET VISION (CV-1 A CV-8)
+         ====================================================================== -->
+    <section class="view" id="view-fases" aria-labelledby="titulo-fases" hidden>
+      <header class="hero">
+        <div>
+          <span class="eyebrow">Recorrido secuencial · 6 Fases y Subflujo Cabinet Vision</span>
+          <h2 id="titulo-fases">Línea de tiempo por fase y preparación en Cabinet Vision</h2>
+          <p>Consulta la secuencia completa dividida entre la fase pre-ingeniería (Diseño, Compras y Odoo) y la fase de ingeniería y planta (Cabinet Vision CV-1 a CV-8, Doble Filtro y Fabricación).</p>
+        </div>
+        <div class="review">
+          <strong>Ecuación crítica del espesor (CV-2)</strong>
+          <p><code>Espacio − Tablero − Laminado − Forro = Pieza</code>. Una variación de 1 mm altera barrenados, uniones y programas CNC.</p>
+        </div>
+      </header>
+
+      <div class="split">
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="badge design">Bloque I · Fases 1 a 3</span>
+              <h3 style="margin-top:0.3rem">Comercial, Compras Odoo y Diseño a Detalle</h3>
+            </div>
+            <span class="small muted">Cierra en Gate 1</span>
+          </div>
+          <ol class="timeline" id="timeline-bloque-1"></ol>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="badge engineering">Bloque II · Fases 4 a 6</span>
+              <h3 style="margin-top:0.3rem">Cabinet Vision, Doble Filtro y GO Fabricación</h3>
+            </div>
+            <span class="small muted">Cierra en Gate 2 y Odoo</span>
+          </div>
+          <ol class="timeline" id="timeline-bloque-2"></ol>
+        </article>
+      </div>
+
+      <!-- Panel Especial: Las 8 Etapas Internas de Cabinet Vision (CV-1 a CV-8) -->
+      <div class="panel block">
+        <div class="panel-head">
+          <div>
+            <span class="badge engineering">Subflujo Técnico Obligatorio · Fase 4</span>
+            <h3 style="margin-top:0.3rem">Las 8 Etapas de Configuración en Cabinet Vision (CV-1 a CV-8)</h3>
+          </div>
+          <span class="small muted">Prohibido crear o modelar el proyecto en CV-6 si falta algún elemento de CV-1 a CV-5</span>
+        </div>
+
+        <div class="records" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+          <div class="record">
+            <span class="badge engineering">CV-1 · Piezas</span>
+            <h4>Catálogo de partes especiales</h4>
+            <p class="small muted">Creación previa de componentes no estándar: cerchas estructurales, tapas curvas y forros especiales.</p>
+          </div>
+          <div class="record">
+            <span class="badge procurement">CV-2 · Materiales</span>
+            <h4>Identidad Odoo + Espesor real</h4>
+            <p class="small muted">Nombre corto idéntico a Odoo, Referencia Interna única y espesor calibrado con muestra física o ficha técnica.</p>
+          </div>
+          <div class="record">
+            <span class="badge engineering">CV-3 · Cubrecantos</span>
+            <h4>General vs. Especial 45°</h4>
+            <p class="small muted">Asociación de cubrecanto estándar y cubrecanto de mayor espesor para encuentros con bisel a 45°.</p>
+          </div>
+          <div class="record">
+            <span class="badge engineering">CV-4 · Listas (BOMs)</span>
+            <h4>Segmentación por módulo</h4>
+            <p class="small muted">Configuración de listas separadas por gabinetes, alacenas, puertas independientes, cajones y herrajes.</p>
+          </div>
+          <div class="record">
+            <span class="badge engineering">CV-5 · Métodos</span>
+            <h4>Método de construcción</h4>
+            <p class="small muted">Reglas de unión, offsets de fondos, holguras, encuentros y comportamiento paramétrico del proyecto.</p>
+          </div>
+          <div class="record record-blocker">
+            <span class="badge blocker">CV-6 · BLOQUEO 5</span>
+            <h4>Creación formal del proyecto</h4>
+            <p class="small muted">Checkpoint de completitud en pantalla. Si falta un solo material, canto, lista o método → <strong>NO-GO</strong>.</p>
+          </div>
+          <div class="record">
+            <span class="badge engineering">CV-7 · Modelado 3D</span>
+            <h4>Modelado técnico de ingeniería</h4>
+            <p class="small muted">Construcción 3D fiel al diseño a detalle y al levantamiento de obra para despiece automático.</p>
+          </div>
+          <div class="record record-control">
+            <span class="badge control">CV-8 · Parametrización</span>
+            <h4>Escalamiento y límites curvos</h4>
+            <p class="small muted">Escalamiento paramétrico en muebles rectos; fijación geométrica en cerchas y paños curvos orgánicos.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- MAIN VIEWS CONTAINER -->
-    <main class="max-w-7xl mx-auto px-4 lg:px-8 py-6 w-full flex-1">
-
-      <!-- ========================================================
-           VISTA 1: EXPLORADOR DEL FLUJO (PIPELINE & CARDS)
-           ======================================================== -->
-      <section id="pipeline-view">
-        
-        <!-- BARRA DE CONTROLES: FILTROS POR CÓDIGO DE COLOR Y BÚSQUEDA -->
-        <div class="glass-panel rounded-2xl p-4 mb-8 border border-white/10 flex flex-wrap items-center justify-between gap-4">
-          
-          <!-- Filtros de Categoría -->
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1 hidden sm:inline">Filtrar:</span>
-            
-            <button data-filter="all" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-white/10 text-white border border-white/20 active">
-              Todos
-            </button>
-            <button data-filter="design" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-purple-900/30 text-purple-300 border border-purple-500/40 hover:bg-purple-900/50 flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-purple-400"></span>
-              🎨 Tareas de Diseño
-            </button>
-            <button data-filter="engineering" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-900/30 text-cyan-300 border border-cyan-500/40 hover:bg-cyan-900/50 flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
-              ⚙️ Tareas de Ingeniería
-            </button>
-            <button data-filter="procurement" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-900/30 text-amber-300 border border-amber-500/40 hover:bg-amber-900/50 flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-amber-400"></span>
-              📦 Compras / Odoo
-            </button>
-            <button data-filter="blocker" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-red-950/40 text-red-300 border border-red-500/50 hover:bg-red-900/50 flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-red-500"></span>
-              🛑 Bloqueos NO-GO
-            </button>
-            <button data-filter="critical" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-yellow-900/30 text-yellow-300 border border-yellow-500/40 hover:bg-yellow-900/50 flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
-              ⚠️ Puntos Críticos
-            </button>
-            <button data-filter="fabrication" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-900/30 text-emerald-300 border border-emerald-500/40 hover:bg-emerald-900/50 flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-              🚀 GO Fabricación
-            </button>
-          </div>
-
-          <!-- Búsqueda y Botones de Expansión Masiva -->
-          <div class="flex items-center gap-3 w-full lg:w-auto">
-            <div class="relative flex-1 lg:w-64">
-              <input type="text" id="search-input" placeholder="Buscar tarea, material, rol..." class="w-full px-3.5 py-1.5 pl-9 rounded-xl bg-slate-900/90 border border-white/10 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors">
-              <svg class="w-4 h-4 text-slate-500 absolute left-3 top-2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </div>
-
-            <button id="btn-expand-all" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors border border-white/5 whitespace-nowrap" title="Desplegar todas las tareas">
-              Expandir Todo
-            </button>
-            <button id="btn-collapse-all" class="px-2.5 py-1.5 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors border border-white/5 whitespace-nowrap" title="Colapsar todas las tareas">
-              Colapsar
-            </button>
-          </div>
-
-        </div>
-
-        <!-- CONTENEDOR DINÁMICO DE FASES Y TAREAS -->
-        <div id="pipeline-container"></div>
-      </section>
-
-      <!-- ========================================================
-           VISTA 2: MODO PRESENTACIÓN (SLIDESHOW INTEGRADO)
-           ======================================================== -->
-      <section id="presentation-view" class="hidden">
-        <div class="glass-panel rounded-3xl p-6 lg:p-10 border border-white/15 relative overflow-hidden shadow-2xl">
-          
-          <!-- Barra superior de diapositiva -->
-          <div class="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-white/10">
-            <div class="flex items-center gap-3">
-              <span id="pres-badge" class="px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/20 text-indigo-300 border border-indigo-500/40">
-                Presentación Ejecutiva
-              </span>
-              <span id="pres-counter" class="text-xs font-mono text-slate-400">
-                Diapositiva 1 de 6
-              </span>
-            </div>
-            
-            <!-- Controles de Navegación -->
-            <div class="flex items-center gap-2">
-              <button onclick="prevSlide()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-white/10 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-              </button>
-              <button onclick="nextSlide()" class="p-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 hover:text-white border border-white/10 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Barra de Progreso de Diapositiva -->
-          <div class="w-full bg-slate-800/60 rounded-full h-1.5 mb-8 overflow-hidden">
-            <div id="pres-progress-bar" class="pres-progress bg-gradient-to-r from-purple-500 via-indigo-500 to-cyan-400 h-1.5 rounded-full" style="width: 16.6%"></div>
-          </div>
-
-          <!-- Contenido Principal de Diapositiva -->
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div class="lg:col-span-7 space-y-6">
-              <div>
-                <h3 id="pres-title" class="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight leading-tight">
-                  Flujo Maestro Bulldog Design
-                </h3>
-                <p id="pres-subtitle" class="text-base md:text-lg text-indigo-300 font-medium mt-1">
-                  De la Venta a la Fabricación de Alta Precisión en Cabinet Vision
-                </p>
-              </div>
-
-              <!-- Cita Inspiracional / Regla de Oro -->
-              <div class="p-4 rounded-2xl bg-indigo-950/30 border-l-4 border-indigo-500 border-r border-t border-b border-indigo-500/20">
-                <p id="pres-quote" class="italic text-sm text-indigo-200/90 leading-relaxed font-light">
-                  "La precisión del resultado final depende directamente de la calidad, completitud y estabilidad de la información utilizada desde el inicio."
-                </p>
-              </div>
-
-              <!-- Puntos Clave de la Diapositiva -->
-              <div>
-                <h4 class="text-xs uppercase font-bold tracking-wider text-slate-400 mb-3">Puntos Clave para el Equipo:</h4>
-                <ul id="pres-bullets" class="space-y-3">
-                  <!-- Inyectado dinámicamente -->
-                </ul>
-              </div>
-            </div>
-
-            <!-- Imagen Generada Gemini en Alta Resolución -->
-            <div class="lg:col-span-5">
-              <div class="relative rounded-2xl overflow-hidden border border-white/15 shadow-2xl group">
-                <img id="pres-image" src="assets/hero_banner.jpg" alt="Slide Visual" class="w-full h-80 object-cover object-center group-hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
-                <div class="absolute bottom-3 left-3 right-3 text-center">
-                  <span class="px-2.5 py-1 rounded bg-black/60 backdrop-blur-md text-[11px] text-white/90 border border-white/10 font-mono">
-                    Render generado por Gemini para Bulldog Design
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Shortcuts Hint -->
-          <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
-            <span class="flex items-center gap-1.5">
-              <kbd class="px-2 py-0.5 bg-slate-800 rounded border border-white/10 font-mono text-[10px] text-slate-300">←</kbd>
-              <kbd class="px-2 py-0.5 bg-slate-800 rounded border border-white/10 font-mono text-[10px] text-slate-300">→</kbd>
-              o <kbd class="px-2 py-0.5 bg-slate-800 rounded border border-white/10 font-mono text-[10px] text-slate-300">Espacio</kbd> para navegar
-            </span>
-            <span class="text-slate-400">Presentación Oficial de Procesos</span>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ========================================================
-           VISTA 3: COMPARATIVA DISEÑO VS INGENIERÍA
-           ======================================================== -->
-      <section id="comparison-view" class="hidden space-y-8">
-        
-        <!-- Banner con Imagen Split View de Gemini -->
-        <div class="glass-panel rounded-3xl p-6 lg:p-8 border border-white/10 relative overflow-hidden">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div class="lg:col-span-6 space-y-4">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r from-purple-500/20 to-cyan-500/20 text-white border border-white/10">
-                Diferenciación Operativa Fundamental
-              </span>
-              <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-                Diseño vs Ingeniería: <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
-                  Dos Misiones Técnicas Complementarias
-                </span>
-              </h3>
-              
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div class="p-4 rounded-xl bg-purple-950/20 border-l-4 border-purple-500 border-r border-t border-b border-purple-500/20">
-                  <h4 class="text-xs font-bold uppercase text-purple-300 mb-1">Diseño Responde:</h4>
-                  <p class="text-sm font-semibold text-white">¿Qué producto debemos fabricar y cómo resolverlo conceptualmente?</p>
-                </div>
-                <div class="p-4 rounded-xl bg-cyan-950/20 border-l-4 border-cyan-500 border-r border-t border-b border-cyan-500/20">
-                  <h4 class="text-xs font-bold uppercase text-cyan-300 mb-1">Ingeniería Responde:</h4>
-                  <p class="text-sm font-semibold text-white">¿Cómo fabricaremos, parametrizaremos y mecanizaremos ese producto?</p>
-                </div>
-              </div>
-
-              <p class="text-xs text-slate-400 italic">
-                "Ingeniería no debe utilizarse como una extensión de Diseño para terminar decisiones que aún continúan abiertas."
-              </p>
-            </div>
-
-            <div class="lg:col-span-6">
-              <div class="rounded-2xl overflow-hidden border border-white/15 shadow-2xl relative">
-                <img src="assets/design_vs_engineering.jpg" alt="Diseño vs Ingeniería" class="w-full h-80 object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
-                <div class="absolute bottom-3 left-4 right-4 flex justify-between text-[11px] font-mono font-bold">
-                  <span class="text-purple-300 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-500/30">DISEÑO CONCEPTUAL</span>
-                  <span class="text-cyan-300 bg-cyan-950/80 px-2 py-0.5 rounded border border-cyan-500/30">INGENIERÍA CABINET VISION</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Tabla Comparativa Detallada -->
-        <div class="glass-panel rounded-2xl p-6 border border-white/10">
-          <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-            <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 14a6 6 0 110-12 6 6 0 010 12zm-1-5a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1zm0-4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-            Matriz de Responsabilidades y Alcances
-          </h4>
-          <div id="comparison-table-container"></div>
-        </div>
-
-        <!-- Caso de Estudio Práctico: La Curva Orgánica -->
-        <div class="glass-panel rounded-2xl p-6 border border-indigo-500/30 bg-gradient-to-r from-purple-950/10 via-slate-900/60 to-cyan-950/10">
-          <div class="flex items-center gap-3 mb-3">
-            <span class="w-8 h-8 rounded-lg bg-indigo-500/20 text-indigo-300 border border-indigo-500/30 flex items-center justify-center font-bold text-sm">
-              💡
-            </span>
-            <h4 class="text-base font-bold text-white">Caso Práctico de Estudio: El Mueble con Curva Orgánica</h4>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <div class="p-4 rounded-xl bg-purple-950/30 border border-purple-500/30">
-              <strong class="text-purple-300 block mb-1 font-mono uppercase">Rol de Diseño:</strong>
-              <p class="text-slate-200 leading-relaxed">
-                Diseño define la curva exacta en planta, su radio de curvatura, cómo se encuentra con los paños rectos, la ergonomía y qué textura o acabado estético debe exhibir al usuario final.
-              </p>
-            </div>
-            <div class="p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/30">
-              <strong class="text-cyan-300 block mb-1 font-mono uppercase">Rol de Ingeniería:</strong>
-              <p class="text-slate-200 leading-relaxed">
-                Ingeniería determina las cerchas estructurales ocultas, el espesor del sustrato curvable, el radio de compensación de broca CNC, el laminado que no se quiebre en curvadora y el mecanizado de ensamble.
-              </p>
-            </div>
-          </div>
-        </div>
-
-      </section>
-
-      <!-- ========================================================
-           VISTA 4: SIMULADOR DE GATES ANTI-ERROR (AUDITOR)
-           ======================================================== -->
-      <section id="simulator-view" class="hidden space-y-8">
-        
-        <!-- Header del Simulador con Imagen Gemini -->
-        <div class="glass-panel rounded-3xl p-6 lg:p-8 border border-white/10 relative overflow-hidden">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            
-            <div class="lg:col-span-7 space-y-4">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
-                Auditor de Calidad en Tiempo Real
-              </span>
-              <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
-                Simulador de Gates Anti-Error <br>
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-300">
-                  ¿Tu Proyecto Está Listo para Avanzar?
-                </span>
-              </h3>
-              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                Prueba en vivo la política estricta de contención. Marca cada requisito técnico verificado: si falta un solo elemento crítico, el sistema activa automáticamente la alerta <strong class="text-red-400">NO-GO BLOQUEADO</strong> para salvaguardar la operación.
-              </p>
-            </div>
-
-            <div class="lg:col-span-5">
-              <div class="rounded-2xl overflow-hidden border border-white/15 shadow-xl relative">
-                <img src="assets/gatekeepers.jpg" alt="Gatekeeper Quality Control" class="w-full h-52 object-cover">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none"></div>
-                <div class="absolute bottom-2 left-3 right-3 text-center">
-                  <span class="px-2 py-0.5 rounded bg-black/60 text-[10px] text-emerald-300 font-mono">
-                    Control de Calidad: Doble Filtro Anti-Error
-                  </span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Checklists Interactivos de Gate 1 y Gate 2 -->
-        <div id="gate-simulator-container"></div>
-
-      </section>
-
-      <!-- ========================================================
-           VISTA 5: DASHBOARD DE BLOQUEOS & RETRABAJOS
-           ======================================================== -->
-      <section id="blockers-view" class="hidden space-y-8">
-        
-        <div class="glass-panel rounded-3xl p-6 lg:p-8 border border-red-500/30 bg-gradient-to-br from-red-950/20 to-slate-900/60">
-          <div class="max-w-3xl">
-            <span class="px-3 py-1 rounded-full text-xs font-bold bg-red-600/30 text-red-300 border border-red-500/50 mb-3 inline-block">
-              Política de Contención de Costos
-            </span>
-            <h3 class="text-2xl sm:text-3xl font-black text-white leading-tight">
-              Los 6 Bloqueos Maestros (NO-GO) & Matriz de Retrabajo
-            </h3>
-            <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed">
-              Un error no detectado en Compras o Diseño se multiplica exponencialmente conforme avanza hacia la fábrica. Un cambio tardío en máquina puede costar hasta <strong class="text-red-400 font-mono">100x</strong> más que una corrección previa.
-            </p>
-          </div>
-        </div>
-
-        <!-- Tarjetas de los 6 Bloqueos -->
+    <!-- ======================================================================
+         VISTA C: GUÍA OPERATIVA POR FICHAS (18 FICHAS CON BUSCADOR Y FILTROS)
+         ====================================================================== -->
+    <section class="view" id="view-fichas" aria-labelledby="titulo-fichas" hidden>
+      <header class="hero">
         <div>
-          <h4 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-            <svg class="w-5 h-5 text-red-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
-            Detalle Técnico de los 6 Puntos de Detención Obligatoria
-          </h4>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="blockers-cards-container"></div>
+          <span class="eyebrow">Instrucciones detalladas · 18 Fichas Operativas</span>
+          <h2 id="titulo-fichas">Guía operativa por actividad y área responsable</h2>
+          <p>Abre cualquier ficha para consultar su referencia documental, área responsable, software, prerrequisitos de entrada, entregables de salida y reglas críticas.</p>
         </div>
-
-        <!-- Matriz de Impacto Exponencial de Retrabajos -->
-        <div class="glass-panel rounded-2xl p-6 border border-white/10">
-          <h4 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
-            <svg class="w-5 h-5 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M12 7a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0V8.414l-4.293 4.293a1 1 0 01-1.414 0L8 10.414l-4.293 4.293a1 1 0 01-1.414-1.414l5-5a1 1 0 011.414 0L11 10.586 14.586 7H12z" clip-rule="evenodd"></path></svg>
-            Costo Exponencial del Retrabajo por Etapa de Detección
-          </h4>
-          <p class="text-xs text-slate-400 mb-4">
-            Demostración empírica de por qué la rigurosidad debe iniciar en la información de entrada y no en el corte.
-          </p>
-          <div id="rework-matrix-container"></div>
+        <div class="review">
+          <strong>Trazabilidad documental</strong>
+          <p>Cada ficha conserva la referencia exacta a las secciones (§3 a §62) del documento maestro <code>Bulldog_Flujo_Integral_R00</code>.</p>
         </div>
+      </header>
 
-      </section>
+      <div class="search">
+        <label for="search-input"><strong>Buscar actividad, sección, material, rol o entregable</strong></label>
+        <input id="search-input" type="search" placeholder="Ej. Mireya, Minifix, CV-6, Bloqueo, levantamiento, 45° o Odoo..." autocomplete="off">
+        <span id="search-status" class="small muted" role="status"></span>
+      </div>
 
-    </main>
+      <div class="toolbar" aria-label="Filtrar fichas por categoría">
+        <button class="button" type="button" data-filter="all" aria-pressed="true">Todas (18)</button>
+        <button class="button" type="button" data-filter="design" aria-pressed="false">🎨 Diseño</button>
+        <button class="button" type="button" data-filter="procurement" aria-pressed="false">📦 Compras / Odoo</button>
+        <button class="button" type="button" data-filter="engineering" aria-pressed="false">⚙️ Ingeniería / CV</button>
+        <button class="button" type="button" data-filter="blocker" aria-pressed="false">🛑 Bloqueos NO-GO (4)</button>
+        <button class="button" type="button" data-filter="critical" aria-pressed="false">⚠️ Puntos Críticos</button>
+        <button class="button" type="button" data-filter="fabrication" aria-pressed="false">🚀 GO Fabricación</button>
+        <button class="button" type="button" id="btn-expand-all" style="margin-left:auto">Expandir todas</button>
+        <button class="button" type="button" id="btn-collapse-all">Contraer todas</button>
+      </div>
 
-    <!-- FOOTER -->
-    <footer class="glass-panel border-t border-white/10 mt-12 py-6 px-4 lg:px-8 text-center text-xs text-slate-500">
-      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-          <span>Sistema Operativo Bulldog Design • Cabinet Vision 2026</span>
-        </div>
-        <div class="font-mono text-[11px] text-slate-400">
-          Convención Oficial Odoo (Mireya & Luis) • Trazabilidad Total
-        </div>
+      <div id="fichas-container"></div>
+    </section>
+
+    <!-- ======================================================================
+         VISTA D: COMPARATIVA DISEÑO VS. INGENIERÍA Y CASO CURVA ORGÁNICA
+         ====================================================================== -->
+    <section class="view" id="view-comparativa" aria-labelledby="titulo-comparativa" hidden>
+      <header class="hero">
         <div>
-          "Definir → Validar → Liberar → Ejecutar"
+          <span class="eyebrow">Delimitación técnica de responsabilidades · Sec. 18–20</span>
+          <h2 id="titulo-comparativa">Diseño vs. Ingeniería de Producto</h2>
+          <p>Dos misiones técnicas complementarias. Dividir las decisiones en la etapa donde resulta más eficiente resolverlas evita colapsar a Ingeniería con definiciones abiertas.</p>
+        </div>
+        <div class="review">
+          <strong>Principio de frontera operativa</strong>
+          <p>«Ingeniería no debe utilizarse como una extensión de Diseño para terminar decisiones que aún continúan abiertas.»</p>
+        </div>
+      </header>
+
+      <div class="split">
+        <div class="panel" style="border-top:4px solid var(--plum-border)">
+          <span class="badge design">Misión de Diseño</span>
+          <h3 style="margin-top:0.4rem">¿Qué producto debemos fabricar y cómo debe resolverse conceptualmente?</h3>
+          <p class="small muted" style="margin-top:0.4rem">Define geometría, intención formal, ergonomía, acabados aprobados por Compras, solución constructiva general, propuesta de módulos y validación contra levantamiento real en obra (Filtro 1).</p>
+        </div>
+        <div class="panel" style="border-top:4px solid var(--blue-border)">
+          <span class="badge engineering">Misión de Ingeniería</span>
+          <h3 style="margin-top:0.4rem">¿Cómo fabricaremos, conectaremos, parametrizaremos y mecanizaremos ese producto?</h3>
+          <p class="small muted" style="margin-top:0.4rem">Parametriza activos en Cabinet Vision (CV-1 a CV-8), calcula espesores milimétricos, aplica Minifix/taquetes/barrenos CNC, audita congruencia (Filtro 2) y emite planos, nesting, G-Code y BOM Odoo.</p>
         </div>
       </div>
-    </footer>
 
-  </div>
+      <div class="panel block">
+        <div class="panel-head">
+          <h3>Matriz comparativa de responsabilidades por dimensión técnica</h3>
+          <span class="badge">6 Dimensiones Operativas</span>
+        </div>
+        <div id="comparison-table-container" class="table-wrap"></div>
+      </div>
 
-  <!-- Scripts -->
-  <script src="data/workflow_data.js"></script>
-  <script src="js/app.js"></script>
+      <div class="overview block">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Caso práctico de estudio: El mueble con curva orgánica</h3>
+            <span class="badge warning">Ejemplo real de frontera</span>
+          </div>
+          <div class="split">
+            <div class="notice" style="border-left-color:var(--plum-border);background:var(--plum-bg)">
+              <strong>1. Lo que entrega Diseño</strong>
+              <p class="small" style="margin-top:0.35rem">Diseño define el trazo exacto de la curva en planta, su radio de curvatura, la tangencia con los paños rectos, la ergonomía, las vistas exteriores y el acabado estético aprobado.</p>
+            </div>
+            <div class="notice control-notice">
+              <strong>2. Lo que resuelve Ingeniería</strong>
+              <p class="small" style="margin-top:0.35rem">Ingeniería calcula las cerchas estructurales internas, el espesor del sustrato flexible, la compensación de radio de la broca CNC, el laminado que no se fracture en prensa y los herrajes de unión.</p>
+            </div>
+          </div>
+        </div>
+        <aside>
+          <figure class="capture">
+            <img src="assets/design_vs_engineering.jpg" alt="Comparativa visual Diseño Conceptual vs Ingeniería Cabinet Vision">
+            <figcaption><strong>Frontera clara:</strong> Diseño resuelve forma y obra; Ingeniería resuelve parametrización y CNC.</figcaption>
+          </figure>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VISTA E: SIMULADOR DE GATES Y SISTEMA DE DOBLE FILTRO ANTI-ERROR
+         ====================================================================== -->
+    <section class="view" id="view-simulador" aria-labelledby="titulo-simulador" hidden>
+      <header class="hero">
+        <div>
+          <span class="eyebrow">Auditoría interactiva de liberación · Doble Filtro Anti-Error</span>
+          <h2 id="titulo-simulador">Simulador de Gates (Gate 1 y Gate 2)</h2>
+          <p>Comprueba en tiempo real si un proyecto cumple las condiciones obligatorias para pasar a Ingeniería (Gate 1) o liberarse a corte y CNC en planta (Gate 2).</p>
+        </div>
+        <div class="review">
+          <strong>Política de cero excepciones</strong>
+          <p>Si falta un solo requisito crítico, el Gate permanece en estado <strong>NO-GO BLOQUEADO</strong> para evitar propagar errores a fábrica.</p>
+        </div>
+      </header>
+
+      <div class="toolbar">
+        <button type="button" class="button primary" onclick="markAllSimulatorGates(true)">✓ Simular Proyecto 100% Aprobado (GO)</button>
+        <button type="button" class="button" onclick="markAllSimulatorGates(false)">↺ Reiniciar Auditoría (NO-GO)</button>
+      </div>
+
+      <div id="gate-simulator-container"></div>
+
+      <div class="panel block">
+        <div class="panel-head">
+          <h3>Arquitectura del Sistema de Doble Filtro Anti-Error</h3>
+          <span class="badge control">Verificación cruzada</span>
+        </div>
+        <div class="split">
+          <div class="notice control-notice">
+            <strong>FILTRO ANTI-ERROR 1 · Diseño a Detalle ↔ Levantamiento Real de Obra</strong>
+            <p class="small" style="margin-top:0.35rem"><strong>Pregunta clave:</strong> ¿El producto diseñado funciona realmente dentro del espacio físico de obra (desplomes, columnas, instalaciones, accesos)?</p>
+            <p class="small muted" style="margin-top:0.25rem">Si falla → <strong>NO-GO</strong> (Se corrige en Diseño antes de tocar Cabinet Vision).</p>
+          </div>
+          <div class="notice control-notice">
+            <strong>FILTRO ANTI-ERROR 2 · Modelo de Ingeniería (CV) ↔ Modelo a Detalle (Diseño)</strong>
+            <p class="small" style="margin-top:0.35rem"><strong>Pregunta clave:</strong> ¿Lo que estamos a punto de fabricar sigue siendo exactamente lo que Diseño concibió y el cliente compró?</p>
+            <p class="small muted" style="margin-top:0.25rem">Si falla → <strong>NO-GO</strong> (Se ajusta en Cabinet Vision antes de generar código CNC).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VISTA F: LOS 6 BLOQUEOS MAESTROS (NO-GO) Y MATRIZ DE RETRABAJO (1x A 100x)
+         ====================================================================== -->
+    <section class="view" id="view-bloqueos" aria-labelledby="titulo-bloqueos" hidden>
+      <header class="hero">
+        <div>
+          <span class="eyebrow">Política de contención de costos · Sec. 55–62</span>
+          <h2 id="titulo-bloqueos">Los 6 Bloqueos Maestros (NO-GO) y Costo Exponencial del Retrabajo</h2>
+          <p>Un error omitido en Compras o Diseño se multiplica hasta 100 veces cuando llega a corte CNC o instalación en sitio. Cada bloqueo protege la rentabilidad y el calendario de planta.</p>
+        </div>
+        <div class="review">
+          <strong>Escala de impacto</strong>
+          <p>Corregir en Odoo cuesta <strong>1x</strong> (minutos); corregir en obra cuesta <strong>100x</strong> (1 a 2 semanas de paro y reposición de material).</p>
+        </div>
+      </header>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Registro de los 6 puntos de detención obligatoria (NO-GO #1 a NO-GO #6)</h3>
+          <span class="badge blocker">Aplicación estricta</span>
+        </div>
+        <div class="records" id="blockers-cards-container"></div>
+      </div>
+
+      <div class="panel block">
+        <div class="panel-head">
+          <h3>Matriz de multiplicación exponencial del costo de retrabajo (1x → 100x)</h3>
+          <span class="badge warning">Evidencia operativa</span>
+        </div>
+        <div id="rework-matrix-container" class="table-wrap"></div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         VISTA G: CONTRATOS DE TRANSFERENCIA ODOO Y MODO PRESENTACIÓN EJECUTIVA
+         ====================================================================== -->
+    <section class="view" id="view-odoo" aria-labelledby="titulo-odoo" hidden>
+      <header class="hero">
+        <div>
+          <span class="eyebrow">Integración de sistemas · Odoo ↔ Cabinet Vision ↔ Planta</span>
+          <h2 id="titulo-odoo">Contratos de transferencia y presentación ejecutiva</h2>
+          <p>Verifica los contratos de datos entre Compras, Odoo, Diseño, Cabinet Vision y Maquinados, o proyecta las 6 láminas ejecutivas para capacitación del equipo.</p>
+        </div>
+        <div class="review">
+          <strong>Identificador maestro único</strong>
+          <p>La <strong>Referencia Interna de Odoo</strong> y el <strong>Nombre Corto</strong> (Mireya &amp; Luis) gobiernan toda la cadena de importación automática.</p>
+        </div>
+      </header>
+
+      <!-- Mapa de Contratos de Transferencia (Estilo Manual Costos Ibero) -->
+      <div class="panel">
+        <div class="panel-head">
+          <h3>Mapa de transferencia: Origen → Destino funcional y criterio de aceptación</h3>
+          <span class="badge control">4 Transferencias Críticas</span>
+        </div>
+        <div class="matrix">
+          <div class="transfer">
+            <div>
+              <span class="badge procurement">TR-01 · Compras → Odoo ERP</span>
+              <h4>Documento Base Definitivo de Materiales</h4>
+              <p class="small muted">Acabado, espesor calibrado, proveedor, costo, lead time y unidad de compra.</p>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div>
+              <span class="badge control">Catálogo Maestro Odoo (Bloqueos 1 y 2)</span>
+              <h4>Alta con Nombre Corto + Referencia Interna</h4>
+              <p class="small">Convención Mireya &amp; Luis (ej. <code>MDF BCO FR 1C 18</code>). Sin duplicados ni nombres largos que Cabinet Vision trunque.</p>
+            </div>
+          </div>
+
+          <div class="transfer">
+            <div>
+              <span class="badge design">TR-02 · Diseño → Ingeniería (Gate 1)</span>
+              <h4>Modelo 3D a Detalle + Levantamiento Validado</h4>
+              <p class="small muted">Geometría definitiva, holguras, zócalos, propuesta de ensamble y Filtro 1 aprobado en obra.</p>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div>
+              <span class="badge engineering">Cabinet Vision (Etapas CV-1 a CV-6)</span>
+              <h4>Checkpoint de Completitud (Bloqueo 5)</h4>
+              <p class="small">Asignación 100% de piezas, materiales Odoo, cubrecantos (general y 45°), listas y métodos antes de modelar.</p>
+            </div>
+          </div>
+
+          <div class="transfer">
+            <div>
+              <span class="badge engineering">TR-03 · Cabinet Vision → Planta CNC (Gate 2)</span>
+              <h4>Modelo Paramétrico Validado en Filtro 2</h4>
+              <p class="small muted">Revisión cruzada Ingeniería ↔ Diseño aprobada y herrajes Minifix/taquetes/barrenos sin colisión.</p>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div>
+              <span class="badge control">Paquete Técnico GO Fabricación</span>
+              <h4>Planos + Nesting + Código CNC + Etiquetas</h4>
+              <p class="small">Generación desde fuente única. Todo cambio posterior exige actualizar el modelo maestro y regenerar el paquete.</p>
+            </div>
+          </div>
+
+          <div class="transfer">
+            <div>
+              <span class="badge engineering">TR-04 · Cabinet Vision → Odoo MRP</span>
+              <h4>Reporte Estructurado de Materiales (CSV / BOM)</h4>
+              <p class="small muted">Exportación directa desde el modelo liberado en Cabinet Vision.</p>
+            </div>
+            <div class="arrow" aria-hidden="true">→</div>
+            <div>
+              <span class="badge procurement">Importación Masiva de Lista de Materiales (LdM)</span>
+              <h4>Vinculación automática por Referencia Interna</h4>
+              <p class="small">Cero recaptura manual. Si un solo material difiere en nombre o referencia respecto a Odoo, la importación se bloquea.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carrusel / Modo Presentación Ejecutiva de 6 Diapositivas -->
+      <div class="panel block" id="presentation-panel">
+        <div class="panel-head">
+          <div>
+            <span class="badge" id="pres-badge">Presentación Ejecutiva</span>
+            <h3 style="margin-top:0.3rem">Modo Presentación para el Equipo (<span id="pres-counter">Diapositiva 1 de 6</span>)</h3>
+          </div>
+          <div class="toolbar" style="margin:0">
+            <button type="button" class="button" onclick="prevSlide()">← Anterior</button>
+            <button type="button" class="button primary" onclick="nextSlide()">Siguiente →</button>
+          </div>
+        </div>
+
+        <div class="progress-track">
+          <div id="pres-progress-bar" class="progress-fill" style="width:16.6%"></div>
+        </div>
+
+        <div class="overview" style="margin-top:1rem">
+          <div>
+            <h2 id="pres-title">Flujo Maestro Bulldog Design</h2>
+            <p class="muted" id="pres-subtitle" style="margin-top:0.35rem;font-weight:600">De la Venta a la Fabricación de Alta Precisión en Cabinet Vision</p>
+            <div class="notice block" style="margin-top:0.9rem">
+              <p id="pres-quote" style="font-style:italic"></p>
+            </div>
+            <h4 style="margin-top:1rem">Puntos clave para el equipo:</h4>
+            <ul id="pres-bullets" style="margin-top:0.5rem;padding-left:1.3rem"></ul>
+          </div>
+          <aside>
+            <figure class="capture">
+              <img id="pres-image" src="assets/hero_banner.jpg" alt="Lámina visual de presentación">
+              <figcaption class="small muted">Usa las teclas <code>←</code> y <code>→</code> para cambiar de lámina.</figcaption>
+            </figure>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="data/workflow_data.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
