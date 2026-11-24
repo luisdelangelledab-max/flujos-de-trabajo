@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
 <link rel="icon" href="data:,">
-<title>Manual visual de maquinado · Ibero (Cabinet Vision, Odoo y Producción)</title>
+<title>Manual visual de maquinado · Paquete de Producción (Cabinet Vision, S2M/C2M, Odoo)</title>
 <style>
 :root{--ink:#14283a;--muted:#496073;--paper:#f3f6f8;--white:#fff;--line:#d8e2e8;--nav:#142638;--navtext:#d4e0e9;--blue:#225786;--blue-bg:#eaf3fc;--teal:#146357;--teal-bg:#e3f5ee;--amber:#795000;--amber-bg:#fff2d1;--plum:#633b6d;--plum-bg:#f4edf6;--crimson:#8a1f2d;--crimson-bg:#fdecef;--focus:#1564b4}
 *{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--paper);font:16px/1.55 "Instrument Sans","Segoe UI",sans-serif}button,input{font:inherit}a{color:var(--blue);text-underline-offset:3px}a:hover{text-decoration-thickness:2px}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--focus);outline-offset:4px}h1,h2,h3,h4,p,figure{margin:0}h1,h2,h3,h4{line-height:1.15}h1{font-size:clamp(2.05rem,3.8vw,3.45rem);letter-spacing:-.05em;max-width:20ch}h2{font-size:clamp(1.7rem,3.2vw,2.5rem);letter-spacing:-.04em}h3{font-size:1.2rem;letter-spacing:-.015em}h4{font-size:1.02rem}small,.small{font-size:.86rem}.muted{color:var(--muted)}code,.id,kbd{font-family:"IBM Plex Mono",Consolas,monospace;font-size:.84em;overflow-wrap:anywhere}kbd{display:inline-block;padding:.08rem .38rem;border:1px solid #b5c7d3;border-bottom-width:2px;border-radius:.3rem;background:#f8fbfd;color:var(--ink);font-weight:650}.id{font-weight:700;color:var(--blue)}.skip{position:absolute;top:1rem;left:1rem;z-index:5;background:white;padding:.6rem;transform:translateY(-180%)}.skip:focus{transform:none}.shell{display:grid;grid-template-columns:15.8rem minmax(0,1fr);min-height:100vh}.sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:1.4rem;padding:1.6rem 1.1rem;background:var(--nav);color:var(--navtext);overflow:auto}.brand{display:flex;gap:.8rem;align-items:center;margin:.15rem .45rem}.brand-mark{display:grid;place-items:center;width:2.35rem;height:2.35rem;flex:none;border-radius:.55rem;background:#d4f1e8;color:#144339;font-weight:750;font-size:.95rem}.brand strong{display:block;color:white;line-height:1.25}.sidebar nav{display:grid;gap:.3rem}.sidebar nav a{display:flex;align-items:center;gap:.65rem;min-height:2.65rem;padding:.48rem .65rem;border-radius:.55rem;color:var(--navtext);text-decoration:none;font-size:.93rem}.sidebar nav a:hover{background:#253d51}.sidebar nav a[aria-current=page]{color:#f2fffb;background:#245049}.sidebar nav .letter{font:.73rem Consolas,monospace;color:#b2cbd8;min-width:1rem}.sidebar a:focus-visible{outline-color:#91d8ff}.sidebar footer{margin-top:auto;padding:.75rem .45rem 0;border-top:1px solid #3c5264;font-size:.83rem}.sidebar footer a{color:#c9e5fc}.content{width:min(100%,85rem);margin-inline:auto;padding:2.3rem clamp(1.1rem,3.4vw,3.6rem) 4rem;min-width:0}.view[hidden]{display:none}.view-title{margin-bottom:1.5rem}.view-title p{max-width:76ch;margin-top:.6rem;color:var(--muted)}.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(17rem,.48fr);gap:1.5rem;align-items:end;padding:.8rem 0 1.8rem}.hero p{max-width:62ch;margin-top:.85rem;color:var(--muted);font-size:1.04rem}.eyebrow{display:block;margin-bottom:.7rem;font-size:.78rem;font-weight:750;letter-spacing:.11em;text-transform:uppercase;color:var(--teal)}.hero .review{padding:1rem 1.15rem;border-left:3px solid #bd8a31;background:var(--amber-bg);border-radius:0 .55rem .55rem 0}.hero .review p{font-size:.9rem;margin-top:.35rem;color:#59421d}.panel{background:var(--white);border:1px solid var(--line);border-radius:.85rem;padding:clamp(.85rem,2vw,1.55rem);min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem}.overview{display:grid;grid-template-columns:minmax(0,1fr) minmax(15.5rem,.36fr);gap:1rem;align-items:start}.overview aside{display:grid;gap:1rem}.stack{display:grid;gap:1rem}.block{margin-top:1.15rem}.toolbar{display:flex;flex-wrap:wrap;gap:.55rem;margin:.85rem 0 1.05rem}.button{display:inline-flex;align-items:center;min-height:2.55rem;padding:.4rem .78rem;border:1px solid #b8cbd7;border-radius:.55rem;background:var(--white);color:var(--ink);text-decoration:none;cursor:pointer;font-weight:650;font-size:.93rem}.button:hover{background:var(--blue-bg)}.button.primary{background:var(--teal);color:white;border-color:var(--teal)}.button.primary:hover{background:#104e45}.button[aria-pressed=true]{background:var(--teal-bg);color:var(--teal);border-color:#6ba99b}.flow{display:grid;justify-items:stretch;gap:0;max-width:60rem;margin:auto}.arrow{font-size:1.1rem;font-weight:750;color:#5b7386;text-align:center;line-height:1.35}.node{display:block;text-align:center;border:1px solid #a9c1d2;background:#f7fbfe;border-radius:.62rem;padding:.55rem .72rem;color:var(--ink);text-decoration:none;font-weight:700;min-width:0}.node:hover{border-color:var(--focus);background:var(--blue-bg)}.node small{display:block;margin-top:.18rem;color:var(--muted);font-weight:500}.node.event{justify-self:center;border-radius:4rem;padding:.3rem 1.15rem;background:#eaf0f5;border-color:#b5c9d9}.node.decision{background:var(--amber-bg);border-color:#c7a763;color:#5e4008}.node.decision::before{content:"◆ ";font-size:.82em}.node.control{background:var(--teal-bg);border-color:#8bbeb0;color:#124f45}.node.critical{background:var(--crimson-bg);border-color:#d48b94;color:var(--crimson)}.node.handoff{background:var(--blue-bg);border-style:dashed;color:var(--blue)}.node.pending{background:var(--plum-bg);border:1px dashed #a17bad;color:var(--plum)}.node.end{justify-self:center;border-radius:4rem}.branches,.files,.split{display:grid;gap:.7rem;grid-template-columns:repeat(2,minmax(0,1fr))}.files-4{display:grid;gap:.65rem;grid-template-columns:repeat(4,minmax(0,1fr))}.file{display:flex;flex-direction:column;gap:.22rem;padding:.7rem;border:1px solid #c3d3de;border-radius:.55rem;background:#f6fafc;min-width:0;overflow-wrap:anywhere;text-decoration:none;color:var(--ink)}.file:hover{border-color:var(--focus);background:var(--blue-bg)}.file strong{font-size:.92rem}.badge{display:inline-block;width:max-content;max-width:100%;border-radius:.32rem;padding:.1rem .42rem;background:var(--blue-bg);color:var(--blue);font-weight:700;font-size:.75rem}.badge.observed{background:var(--teal-bg);color:var(--teal)}.badge.proposed{background:var(--blue-bg);color:var(--blue)}.badge.pending{background:var(--plum-bg);color:var(--plum)}.badge.warning{background:var(--amber-bg);color:var(--amber)}.badge.critical{background:var(--crimson-bg);color:var(--crimson)}.key{display:grid;gap:.45rem;padding:0;margin:.7rem 0 0;list-style:none}.key li{display:flex;gap:.6rem;align-items:center;font-size:.9rem}.symbol{min-width:1.5rem;text-align:center;border-radius:.23rem;background:var(--blue-bg);color:var(--blue);font-weight:750}.symbol.decision,.symbol.warning{background:var(--amber-bg);color:var(--amber)}.symbol.control{background:var(--teal-bg);color:var(--teal)}.symbol.critical{background:var(--crimson-bg);color:var(--crimson)}.symbol.pending{background:var(--plum-bg);color:var(--plum)}.quick{display:grid;gap:.5rem;margin-top:.75rem}.quick a{font-weight:650}.notice{border-left:3px solid #c59238;background:var(--amber-bg);border-radius:0 .55rem .55rem 0;padding:.78rem .95rem;color:#5e451a}.notice.critical{border-color:var(--crimson);background:var(--crimson-bg);color:#5c111b}.notice.pending{border-color:#94669f;background:var(--plum-bg);color:var(--plum)}.notice p+p{margin-top:.4rem}.timeline{list-style:none;padding:0;margin:0;display:grid;gap:0}.timeline li{display:grid;grid-template-columns:2.1rem minmax(0,1fr);gap:.48rem;position:relative;padding-bottom:.65rem}.timeline li:last-child{padding-bottom:0}.timeline li:not(:last-child)::before{content:"";position:absolute;left:1rem;top:1rem;bottom:-1rem;border-left:2px solid #afc4d2}.step-mark{display:grid;position:relative;place-items:center;width:2rem;height:2rem;background:var(--nav);color:white;border-radius:50%;font:.74rem Consolas,monospace;align-self:center}.timeline .node{text-align:left;padding:.62rem .8rem}.timeline .node small{margin-top:.15rem}.timeline .step-control .step-mark{background:var(--teal)}.timeline .step-critical .step-mark{background:var(--crimson)}.timeline .step-pending .step-mark{background:var(--plum)}.details-group{margin-top:1.1rem}.details-group h3{margin-bottom:.65rem}.sheet{border:1px solid var(--line);border-radius:.65rem;background:white;margin-bottom:.55rem;overflow-wrap:anywhere}.sheet[open]{border-color:#a7bfce}.sheet summary{cursor:pointer;padding:.75rem .9rem;font-weight:650}.sheet summary::marker{color:var(--blue)}.sheet summary .id{margin-right:.5rem}.sheet summary .badge{margin-left:.45rem}.sheet-body{padding:0 .95rem 1rem}.sheet-body .route{padding:.55rem .72rem;background:var(--blue-bg);color:#194568;border-radius:.4rem;margin-bottom:.65rem;font-weight:650}.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem;margin:.65rem 0}.meta>div{padding:.55rem .68rem;border-left:2px solid #c9d9e3;background:#f5f8fa}.meta dt{font-size:.75rem;font-weight:750;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}.meta dd{margin:.18rem 0 0}.sheet-body ol,.sheet-body ul{margin:.4rem 0 .8rem;padding-left:1.45rem}.sheet-body li+li{margin-top:.24rem}.capture{display:block;background:#f5f8fa;border:1px dashed #97aeba;border-radius:.5rem;padding:.7rem;margin:.65rem 0}.capture strong{display:block}.search{display:grid;gap:.32rem;max-width:38rem;margin-bottom:.8rem}.search input{border:1px solid #9fb6c6;border-radius:.45rem;padding:.6rem .72rem;background:white;color:var(--ink);width:100%}.search label{font-weight:650}.records{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem}.record{padding:.82rem;border:1px solid var(--line);border-radius:.56rem;background:white;overflow-wrap:anywhere}.record h3{font-size:1rem;margin:.4rem 0}.record p+p{margin-top:.38rem}.record .id{display:inline-block;margin-right:.4rem}.matrix{display:grid;gap:.65rem}.transfer{display:grid;grid-template-columns:minmax(0,.95fr) 1.6rem minmax(0,1.05fr);align-items:stretch;gap:.4rem}.transfer .arrow{align-self:center}.transfer>div:not(.arrow){padding:.78rem;border:1px solid var(--line);border-radius:.55rem;background:#f7fafc;min-width:0}.transfer>div:last-child{background:#f2f8f5;border-color:#9ec5b9}.transfer h3{margin:.25rem 0;font-size:1.03rem}.tree{white-space:pre-wrap;overflow-wrap:anywhere;margin:.6rem 0 0;border-radius:.5rem;padding:.85rem;background:#f1f5f8;color:var(--ink);font:.83rem/1.58 Consolas,monospace}.table-wrap{overflow-x:auto;margin-top:.65rem}table.dmn{width:100%;border-collapse:collapse;font-size:.9rem}table.dmn th,table.dmn td{border:1px solid var(--line);padding:.52rem .65rem;text-align:left;vertical-align:top}table.dmn th{background:#edf3f7;font-weight:750;color:var(--ink)}table.dmn tr.highlight td{background:#f2fbf7}.source-list{padding-left:1.3rem}.source-list li+li{margin-top:.55rem}hr{border:0;border-top:1px solid var(--line);margin:1.1rem 0}
@@ -21,19 +21,19 @@
 <aside class="sidebar">
   <div class="brand">
     <span class="brand-mark" aria-hidden="true">MQ</span>
-    <div><strong>Proyecto Ibero</strong><span class="small">Manual de maquinado</span></div>
+    <div><strong>Paquete de Producción</strong><span class="small">Manual general de maquinado</span></div>
   </div>
   <nav aria-label="Vistas del manual">
     <a href="#mapa" aria-current="page"><span class="letter" aria-hidden="true">A</span>Mapa general (12 etapas)</a>
-    <a href="#cabinet"><span class="letter" aria-hidden="true">B</span>Cabinet Vision y Carpetas</a>
+    <a href="#cabinet"><span class="letter" aria-hidden="true">B</span>Cabinet Vision, C2M y Carpetas</a>
     <a href="#odoo"><span class="letter" aria-hidden="true">C</span>Odoo y Liberación</a>
     <a href="#guia"><span class="letter" aria-hidden="true">D</span>Guía paso a paso (18 fichas)</a>
     <a href="#controles"><span class="letter" aria-hidden="true">E</span>Controles e Incidencias</a>
     <a href="#fuentes"><span class="letter" aria-hidden="true">F</span>Fuentes y Alcance</a>
   </nav>
   <footer>
-    <strong>WF-ING-MAQ-01 · Rev. 0.1</strong><br>
-    13 nov 2026 · Caso Puerta Intercom Grande<br>
+    <strong>WF-ING-MAQ-01 · Rev. 0.2</strong><br>
+    24 nov 2026 · Flujo general de lotes<br>
     <a href="#fuentes">Reglas de fidelidad y fuentes</a>
   </footer>
 </aside>
@@ -43,13 +43,13 @@
   <section class="view" id="mapa" aria-labelledby="titulo-mapa">
     <header class="hero">
       <div>
-        <span class="eyebrow">Ibero · Cabinet Vision (C2M Center), Red, Odoo y Maquinados</span>
-        <h1 id="titulo-mapa">Generación, organización y liberación de archivos de maquinado</h1>
-        <p>Convierte un lote de corte autorizado en programas NC, etiquetas y reportes PDF verificados, consolida la carpeta compartida del concepto, vincula los entregables al producto en Odoo y libera la información a Maquinados.</p>
+        <span class="eyebrow">Flujo General · Cabinet Vision · S2M / C2M Center · Red · Odoo · Maquinados</span>
+        <h1 id="titulo-mapa">Planeación de lotes de corte y liberación del Paquete de Producción</h1>
+        <p>Procedimiento general aplicable a cualquier proyecto del cual se solicite el Paquete de Producción: convierte un lote de corte autorizado en programas NC, etiquetas y reportes PDF verificados, consolida la carpeta de producción del lote, vincula los entregables en Odoo y libera la información a Maquinados.</p>
       </div>
       <div class="review">
-        <strong>Rev. 0.1 · En revisión operativa</strong>
-        <p>Caso de referencia: <b>Proyecto Ibero · Puerta Intercom Grande</b>. Ningún lote se define arbitrariamente en Ingeniería ni se da por liberado sin comunicación directa con Producción. <a href="#fuentes">Ver alcance y fuentes</a>.</p>
+        <strong>Rev. 0.2 · Flujo general actualizado</strong>
+        <p>Aplica a cualquier proyecto o lote autorizado. Ningún lote se define arbitrariamente en Ingeniería ni se da por liberado sin comunicación directa con Producción. <a href="#fuentes">Ver alcance y cambios</a>.</p>
       </div>
     </header>
 
@@ -60,39 +60,44 @@
           <span class="muted small">Selecciona cualquier nodo para abrir su ficha técnica detallada.</span>
         </div>
         <div class="flow">
-          <a class="node event" href="#MQ-01">Etapa 1 · Planeación: Recibir archivo de lotes de corte autorizado (MQ-01)</a>
+          <a class="node event" href="#MQ-01">Etapa 1 · Recepción de documentos (MQ-01)</a>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node" href="#MQ-02">Etapa 2 · Preparación: Perfil Machine Edit → Abrir proyecto Ibero en Diseño (MQ-02)</a>
+          <a class="node" href="#MQ-02">Etapa 2 · Elección de perfil en Cabinet Vision: Perfil Machine Edit → Abrir proyecto en Diseño (MQ-02)</a>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node critical" href="#MQ-03">Etapa 3 · Filtrado en C2M Center: Seleccionar concepto y validar 1.er número = cantidad del lote (MQ-03 · C02)</a>
+          <a class="node critical" href="#MQ-03">Etapa 3 · Filtrado en S2M / C2M Center: Usar «Filtrar por parte» y validar 1.er número = cantidad del lote (MQ-03 · C02)</a>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node control" href="#MQ-04">Etapa 4A · Seleccionar máquinas: Corte (Zaragoza), Enchapado (Nanxing nueva) y P2P condicional (MQ-04 · C03)</a>
-          <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node decision" href="#MQ-05">Etapa 4B · ¿Enchapadora asignada al lote? (File ‣ Preferences ‣ Geometry · MQ-05 · C04)</a>
+          <a class="node decision" href="#MQ-04">Etapa 4A · Elección de maquinaria en C2M según el «documento de lotes de maquinado autorizados» (MQ-04 · C03)</a>
           <div class="arrow" aria-hidden="true">↓</div>
           <div class="branches">
-            <a class="node control" href="#MQ-05">Enchapadora nueva Nanxing<small>Activar Premill Edge Banding (valor máx. = 3)</small></a>
-            <a class="node" href="#MQ-05">Otra enchapadora sin precorte<small>Desactivar Premill Edge Banding (sin compensación)</small></a>
+            <a class="node control" href="#MQ-04">Solo Seccionadora estipulada (Sin P2P)<small>Elegir la seccionadora indicada en el documento de lotes de maquinado autorizados · Sin P2P</small></a>
+            <a class="node control" href="#MQ-04">Seccionadora + CNC P2P estipuladas<small>Elegir ambas máquinas conforme al documento de lotes de maquinado autorizados</small></a>
           </div>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node" href="#MQ-06">Etapa 5 · Optimización: Verificar 5 puntos previos → Run → OK (MQ-06 · C05)</a>
+          <a class="node decision" href="#MQ-05">Etapa 4B · ¿El «documento de lotes de maquinado autorizados» especifica enchapado en Enchapadora Nanxing? (MQ-05 · C04)</a>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node critical" href="#MQ-07">Etapa 6 · Exportación: Crear carpetas cortas SEC, NANXING y LABEL en Producción → Output Data (MQ-07 a MQ-09 · C06)</a>
+          <div class="branches">
+            <a class="node control" href="#MQ-05">Sí · Enchapadora Nanxing (con precorte)<small>Seguir los pasos de MQ-05: File ‣ Preferences ‣ Geometry ‣ Activar Pre Mill Edgebanding ☑ (máx. 3)</small></a>
+            <a class="node" href="#MQ-05">No · Cualquier otra enchapadora (sin precorte)<small>NO seguir los pasos de activación; verificar que Pre Mill Edgebanding esté DESACTIVADO ☐</small></a>
+          </div>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node" href="#MQ-10">Etapa 7 · Reportes PDF: Material Summary (cortables) + Saw Cut List Landscape (diagramas) (MQ-10 y MQ-11)</a>
+          <a class="node" href="#MQ-06">Etapa 5 · Optimización en Cabinet Vision: Verificar 5 puntos previos → Run → OK (MQ-06 · C05)</a>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node control" href="#MQ-12">Etapa 8 · Organización: Renombrar SEC/NANXING/LABEL (F2) y cortar (Ctrl+X) a Puerta Intercom Grande (MQ-12 · C07)</a>
+          <a class="node critical" href="#MQ-07">Etapa 6 · Creación de carpetas y exportación: Carpetas cortas SEC, NANXING y LABEL → Output Data (MQ-07 a MQ-09 · C06)</a>
+          <div class="arrow" aria-hidden="true">↓</div>
+          <a class="node" href="#MQ-10">Etapa 7 · Generación de reportes PDF: Material Summary (cortables) + Saw Cut List Landscape (diagramas) (MQ-10 y MQ-11)</a>
+          <div class="arrow" aria-hidden="true">↓</div>
+          <a class="node control" href="#MQ-12">Etapa 8 · Consolidación en carpeta de producción del lote: Renombrar SEC/NANXING/LABEL (F2) y mover (Ctrl+X) (MQ-12 · C07)</a>
           <div class="arrow" aria-hidden="true">↓</div>
           <div class="files-4">
             <a class="file" href="#MQ-10"><span class="badge">PDF</span><strong>Material Summary</strong><small>Resumen materiales cortables</small></a>
             <a class="file" href="#MQ-11"><span class="badge">PDF</span><strong>Saw Cut List</strong><small>Diagramas de corte</small></a>
             <a class="file" href="#MQ-09"><span class="badge observed">SEC + LABEL</span><strong>Códigos NC y etiquetas</strong><small>Seccionadora Zaragoza y etiquetas</small></a>
-            <a class="file" href="#MQ-08"><span class="badge warning">NANXING</span><strong>P2P condicional</strong><small>Vacía en Puerta Intercom Grande</small></a>
+            <a class="file" href="#MQ-08"><span class="badge warning">NANXING</span><strong>P2P condicional</strong><small>Con programas si el lote usa P2P; vacía si no</small></a>
           </div>
           <div class="arrow" aria-hidden="true">↓</div>
           <a class="node handoff" href="#MQ-13">Etapa 9 · Integración en Odoo: Cargar en 3.ª pestaña Documentos y ruta sin comillas en Notas internas (MQ-13 a MQ-15 · C09)</a>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node critical" href="#MQ-16">Etapa 10 · Validación cruzada: Copiar ruta de Odoo en 2.ª computadora y abrir carpeta en red (MQ-16 · C10)</a>
+          <a class="node critical" href="#MQ-16">Etapa 10 · Validación cruzada: Copiar ruta de Odoo en 2.ª computadora y abrir carpeta de producción del lote (MQ-16 · C10)</a>
           <div class="arrow" aria-hidden="true">↓</div>
           <a class="node decision" href="#MQ-17">Etapas 11 y 12 · Liberación a Maquinados y condición de acceso en planta</a>
           <div class="arrow" aria-hidden="true">↓</div>
@@ -101,7 +106,7 @@
             <a class="node pending" href="#MQ-18">Etapa 12 · Flujo B (Sin Odoo en seccionadora)<small>Nota visible con ruta en PC de máquina + explicación al operador (C12)</small></a>
           </div>
           <div class="arrow" aria-hidden="true">↓</div>
-          <a class="node control end" href="#controles">Fin del procedimiento · Lote liberado, accesible y confirmado con Producción</a>
+          <a class="node control end" href="#controles">Fin del procedimiento · Paquete de Producción liberado y confirmado con Maquinados</a>
         </div>
       </div>
 
@@ -109,10 +114,11 @@
         <div class="panel">
           <h3>¿Qué necesitas consultar?</h3>
           <div class="quick">
-            <a href="#MQ-03">Validar cantidad filtrada en C2M Center</a>
-            <a href="#MQ-05">Configurar Premill Edge Banding (= 3)</a>
+            <a href="#MQ-03">Filtrar por parte y validar cantidad en S2M/C2M</a>
+            <a href="#MQ-04">Decisión de maquinaria en C2M (Seccionadora + P2P)</a>
+            <a href="#MQ-05">Configurar Pre Mill Edgebanding (solo Nanxing)</a>
             <a href="#MQ-07">Crear carpetas cortas SEC, NANXING y LABEL</a>
-            <a href="#MQ-12">Consolidar la carpeta del concepto</a>
+            <a href="#MQ-12">Consolidar la carpeta de producción del lote</a>
             <a href="#MQ-15">Pegar ruta sin comillas en Odoo</a>
             <a href="#MQ-17">Revisar los 8 puntos de liberación a Maquinados</a>
             <a href="#MQ-18">Aplicar Flujo B en PC de seccionadora</a>
@@ -132,7 +138,7 @@
         </div>
         <div class="panel">
           <h3>Resumen de las 12 etapas</h3>
-          <p class="small muted">1. Planeación · 2. Preparación · 3. Filtrado · 4. Configuración · 5. Optimización · 6. Exportación · 7. Reportes · 8. Organización · 9. Integración Odoo · 10. Validación 2.ª PC · 11. Comunicación · 12. Acceso alternativo.</p>
+          <p class="small muted">1. Recepción de documentos · 2. Perfil CV · 3. Filtrar por parte (S2M/C2M) · 4. Maquinaria C2M y Pre Mill Edgebanding (solo Nanxing) · 5. Optimización · 6. Carpetas y Exportación · 7. Reportes PDF · 8. Consolidación del lote · 9. Odoo · 10. Validación 2.ª PC · 11. Comunicación · 12. Flujo B.</p>
         </div>
       </aside>
     </div>
@@ -142,28 +148,29 @@
   <section class="view" id="cabinet" aria-labelledby="titulo-cabinet" hidden>
     <header class="view-title">
       <span class="eyebrow">Etapas 1 a 8 · Flujo principal de generación y organización</span>
-      <h2 id="titulo-cabinet">Cabinet Vision (C2M Center) y Carpeta Compartida</h2>
-      <p>Ejecuta desde la verificación previa del lote de corte hasta la consolidación de los dos reportes PDF y las tres subcarpetas de máquina dentro de la carpeta del concepto en <code>Producción</code>.</p>
+      <h2 id="titulo-cabinet">Cabinet Vision (S2M / C2M Center) y Carpeta de Producción del Lote</h2>
+      <p>Ejecuta desde la recepción del archivo de lotes de corte autorizado hasta la consolidación de los dos reportes PDF y las tres subcarpetas de máquina dentro de la carpeta de producción del lote.</p>
     </header>
 
     <div class="toolbar">
       <a class="button" href="#MQ-01">1. Lote autorizado</a>
-      <a class="button" href="#MQ-03">3. Filtro y cantidad</a>
-      <a class="button" href="#MQ-05">4. Premill Edge Banding</a>
+      <a class="button" href="#MQ-03">3. Filtrar por parte</a>
+      <a class="button" href="#MQ-04">4A. Maquinaria C2M</a>
+      <a class="button" href="#MQ-05">4B. Pre Mill Edgebanding</a>
       <a class="button" href="#MQ-07">6. Carpetas cortas y Output Data</a>
-      <a class="button" href="#MQ-12">8. Consolidación final</a>
+      <a class="button" href="#MQ-12">8. Consolidación del lote</a>
     </div>
 
     <div class="split">
       <article class="panel">
         <div class="panel-head">
-          <div><span class="badge">Etapas 1 a 5</span><h3>Planeación, filtrado, máquinas y optimización</h3></div>
+          <div><span class="badge">Etapas 1 a 5</span><h3>Recepción, filtrado por parte, maquinaria C2M y optimización</h3></div>
         </div>
         <ol class="timeline" id="pasos-cv-config"></ol>
       </article>
       <article class="panel">
         <div class="panel-head">
-          <div><span class="badge">Etapas 6 a 8</span><h3>Exportación NC/etiquetas, PDFs y consolidación</h3></div>
+          <div><span class="badge">Etapas 6 a 8</span><h3>Exportación NC/etiquetas, PDFs y consolidación del lote</h3></div>
         </div>
         <ol class="timeline" id="pasos-cv-export"></ol>
       </article>
@@ -171,51 +178,86 @@
 
     <div class="split block">
       <aside class="notice critical">
-        <strong>★ Advertencia crítica · Premill Edge Banding en cada lote</strong>
-        <p>En <b>File ‣ Preferences ‣ Geometry</b>, el valor máximo está en <b>3</b> y no se modifica. Activa la casilla únicamente cuando el lote vaya a la <b>Enchapadora nueva Nanxing</b> (con precorte). Desactívala para cualquier otra enchapadora sin precorte. Nunca asumas que Cabinet Vision conservó el ajuste del lote anterior. <a href="#MQ-05">Abrir ficha MQ-05</a> · <a href="#I-02">Ver incidencia I-02</a>.</p>
+        <strong>★ Regla crítica · Sin selector de enchapadora: seguir «documento de lotes de maquinado autorizados»</strong>
+        <p>En Cabinet Vision <b>no existe una opción para elegir la enchapadora</b>. Los pasos de <code>File ‣ Preferences ‣ Geometry ‣ Pre Mill Edgebanding</code> (valor máx. <b>3</b> sin modificar) <b>solo deben seguirse si en el «documento de lotes de maquinado autorizados» se especifica que el lote se enchapará en la Enchapadora Nanxing</b> (con precorte). Si especifica cualquier otra enchapadora (sin precorte), asegúrate de que permanezca <b>DESACTIVADO</b>. Nunca asumas que Cabinet Vision conservó el ajuste del lote anterior. <a href="#MQ-05">Abrir ficha MQ-05</a> · <a href="#I-02">Ver incidencia I-02</a>.</p>
       </aside>
       <aside class="notice">
-        <strong>! Limitación de longitud de ruta y alcance de Material Summary</strong>
-        <p>Cabinet Vision puede fallar si la ruta en <b>Output Data</b> es demasiado larga; por ello se exporta primero a <code>Producción/SEC</code>, <code>NANXING</code> y <code>LABEL</code> y luego se cortan (<kbd>Ctrl</kbd>+<kbd>X</kbd>) hacia la carpeta del concepto. Además, <b>Material Summary</b> solo lista materiales cortables (no es una BOM integral con herrajes ni eléctricos). <a href="#I-03">Ver I-03</a> · <a href="#I-05">Ver I-05</a>.</p>
+        <strong>! Filtrar por parte, rutas cortas y alcance de Material Summary</strong>
+        <p>En S2M / C2M Center la opción correcta es <b>Filtrar por parte</b> (no filtrado de mobiliario). Además, como Cabinet Vision puede fallar si la ruta en <b>Output Data</b> es demasiado larga, se exporta primero a carpetas cortas (<code>SEC</code>, <code>NANXING</code>, <code>LABEL</code>) y luego se mueven (<kbd>Ctrl</kbd>+<kbd>X</kbd>) hacia la <b>carpeta de producción del lote</b>. Recuerda que <b>Material Summary</b> solo lista materiales cortables. <a href="#I-03">Ver I-03</a> · <a href="#I-05">Ver I-05</a>.</p>
       </aside>
     </div>
 
     <div class="panel block">
       <div class="panel-head">
-        <h3>Matriz de decisión por lote: Enchapadora, Premill Edge Banding y Máquina P2P</h3>
-        <span class="small muted">La fila resaltada corresponde al ejercicio de Puerta Intercom Grande (Ibero).</span>
+        <h3>Tabla de configuración: Pre Mill Edgebanding según Enchapadora del Lote Autorizado</h3>
+        <span class="small muted">Ruta en Cabinet Vision: <code>File ‣ Preferences ‣ Geometry ‣ Pre Mill Edgebanding</code></span>
       </div>
       <div class="table-wrap">
         <table class="dmn">
           <thead>
             <tr>
-              <th>Regla</th>
-              <th>Enchapadora asignada</th>
-              <th>¿Lleva máquina secundaria P2P?</th>
-              <th><code>Premill Edge Banding</code> (valor máx. = 3)</th>
-              <th>Rutas en <code>Output Data</code></th>
-              <th>Carpeta <code>NANXING_&lt;Concepto&gt;</code></th>
+              <th>Parámetro</th>
+              <th>Enchapadora Nanxing (Nueva · Con precorte)</th>
+              <th>Cualquier otra enchapadora (Vieja · Sin precorte)</th>
             </tr>
           </thead>
           <tbody>
             <tr class="highlight">
-              <td><strong>R1 · Caso Ibero (Puerta Intercom Grande)</strong></td>
-              <td>Enchapadora nueva Nanxing (con precorte)</td>
-              <td><strong>No</strong> (perforaciones manuales)</td>
+              <td><strong>Precorte</strong></td>
+              <td>Sí</td>
+              <td>No</td>
+            </tr>
+            <tr>
+              <td><strong>Preferences</strong></td>
+              <td><code>Geometry</code></td>
+              <td><code>Geometry</code></td>
+            </tr>
+            <tr>
+              <td><strong>Pre Mill Edgebanding</strong></td>
+              <td><span class="badge observed">Activado ☑ (casilla seleccionada · máx. 3)</span></td>
+              <td><span class="badge warning">Desactivado ☐ (casilla no seleccionada)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel block">
+      <div class="panel-head">
+        <h3>Matriz de decisión por lote: Maquinaria en C2M, Pre Mill Edgebanding y Máquina P2P</h3>
+        <span class="small muted">La selección de enchapadora proviene del archivo de lotes de corte autorizado; en C2M se selecciona la Seccionadora (Zaragoza) y la P2P condicional.</span>
+      </div>
+      <div class="table-wrap">
+        <table class="dmn">
+          <thead>
+            <tr>
+              <th>Escenario del lote</th>
+              <th>Enchapadora en doc. autorizado</th>
+              <th>¿Lleva máquina secundaria P2P?</th>
+              <th><code>Pre Mill Edgebanding</code> (máx. = 3)</th>
+              <th>Rutas en <code>Output Data</code></th>
+              <th>Carpeta <code>NANXING_&lt;Lote&gt;</code></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight">
+              <td><strong>E1 · Nanxing sin P2P</strong></td>
+              <td>Enchapadora Nanxing (con precorte)</td>
+              <td><strong>No</strong> (operaciones manuales)</td>
               <td><span class="badge observed">ACTIVADO (☑ · máx. 3)</span></td>
               <td><code>Image/Label</code> → <code>LABEL</code> · <code>Zaragoza</code> → <code>SEC</code> · P2P sin ruta</td>
               <td>Se crea y permanece <strong>vacía</strong></td>
             </tr>
             <tr>
-              <td><strong>R2 · Lote con Nanxing nueva + P2P</strong></td>
-              <td>Enchapadora nueva Nanxing (con precorte)</td>
+              <td><strong>E2 · Nanxing + P2P</strong></td>
+              <td>Enchapadora Nanxing (con precorte)</td>
               <td><strong>Sí</strong> (ej. CNC P2P Nanxing)</td>
               <td><span class="badge observed">ACTIVADO (☑ · máx. 3)</span></td>
               <td><code>Image/Label</code> → <code>LABEL</code> · <code>Zaragoza</code> → <code>SEC</code> · P2P → <code>NANXING</code></td>
               <td>Contiene los <strong>programas P2P</strong></td>
             </tr>
             <tr>
-              <td><strong>R3 · Otra enchapadora sin P2P</strong></td>
+              <td><strong>E3 · Otra enchapadora sin P2P</strong></td>
               <td>Otra enchapadora (sin precorte)</td>
               <td><strong>No</strong> (operaciones manuales)</td>
               <td><span class="badge warning">DESACTIVADO (☐)</span></td>
@@ -223,7 +265,7 @@
               <td>Se crea y permanece <strong>vacía</strong></td>
             </tr>
             <tr>
-              <td><strong>R4 · Otra enchapadora + P2P</strong></td>
+              <td><strong>E4 · Otra enchapadora + P2P</strong></td>
               <td>Otra enchapadora (sin precorte)</td>
               <td><strong>Sí</strong> (ej. CNC P2P Nanxing)</td>
               <td><span class="badge warning">DESACTIVADO (☐)</span></td>
@@ -238,30 +280,28 @@
     <div class="split block">
       <div class="panel">
         <h3>Fase A · Estructura temporal de salida corta (Etapa 6)</h3>
-        <p class="small muted">Se crean en la raíz de <code>Producción</code> con <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>, duplicación y <kbd>F2</kbd>; rutas copiadas con <kbd>F4</kbd>.</p>
-        <pre class="tree">Luis del Ángel/
-└── Ibero/
-    └── Producción/
-        ├── Puerta Intercom Grande/
-        ├── SEC/        ← Dimensionadora Zaragoza
-        ├── NANXING/    ← P2P (sin ruta en este ejemplo)
-        └── LABEL/      ← Image Output Path y Label Output Path</pre>
+        <p class="small muted">Se crean en la raíz de <code>Producción</code> del proyecto con <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>N</kbd>, duplicación y <kbd>F2</kbd>; rutas copiadas con <kbd>F4</kbd>.</p>
+        <pre class="tree">&lt;Proyecto&gt;/
+└── Producción/
+    ├── &lt;Carpeta de producción del lote&gt;/
+    ├── SEC/        ← Seccionadora (ej. Zaragoza)
+    ├── NANXING/    ← P2P (solo si el lote lleva P2P)
+    └── LABEL/      ← Image Output Path y Label Output Path</pre>
       </div>
       <div class="panel">
-        <h3>Fase B · Estructura final consolidada por concepto (Etapa 8)</h3>
-        <p class="small muted">Tras exportar PDFs, se renombran con <kbd>F2</kbd>, se cortan con <kbd>Ctrl</kbd>+<kbd>X</kbd> y se pegan dentro del concepto.</p>
-        <pre class="tree">Luis del Ángel/
-└── Ibero/
-    └── Producción/
-        └── Puerta Intercom Grande/
-            ├── Lista de materiales_Puerta Intercom Grande.pdf
-            ├── Diagramas de corte_Puerta Intercom Grande.pdf
-            ├── SEC_Puerta Intercom Grande/
-            │   └── [Programas de seccionadora]
-            ├── NANXING_Puerta Intercom Grande/
-            │   └── [Sin archivos para este lote]
-            └── LABEL_Puerta Intercom Grande/
-                └── [Archivos e imágenes de etiquetado]</pre>
+        <h3>Fase B · Estructura final en la carpeta de producción del lote (Etapa 8)</h3>
+        <p class="small muted">Tras exportar PDFs, se renombran con <kbd>F2</kbd>, se cortan con <kbd>Ctrl</kbd>+<kbd>X</kbd> y se pegan dentro de la carpeta de producción del lote.</p>
+        <pre class="tree">&lt;Proyecto&gt;/
+└── Producción/
+    └── &lt;Carpeta de producción del lote&gt;/
+        ├── Lista de materiales_&lt;Lote&gt;.pdf
+        ├── Diagramas de corte_&lt;Lote&gt;.pdf
+        ├── SEC_&lt;Lote&gt;/
+        │   └── [Programas de seccionadora]
+        ├── NANXING_&lt;Lote&gt;/
+        │   └── [Programas P2P si aplica, o vacía]
+        └── LABEL_&lt;Lote&gt;/
+            └── [Archivos e imágenes de etiquetado]</pre>
       </div>
     </div>
 
@@ -275,7 +315,7 @@
     <header class="view-title">
       <span class="eyebrow">Etapas 9 a 12 · Flujos complementarios A y B</span>
       <h2 id="titulo-odoo">Vinculación en Odoo, Validación en 2.ª PC y Liberación a Maquinados</h2>
-      <p>Garantiza que los entregables consolidados puedan localizarse desde la tarjeta del producto en Odoo, que la ruta compartida funcione en otro equipo y que Maquinados reciba la liberación formal (o mediante nota directa en la PC de la seccionadora cuando no disponga de Odoo).</p>
+      <p>Garantiza que los entregables consolidados en la carpeta de producción del lote puedan localizarse desde la tarjeta del producto en Odoo, que la ruta compartida funcione en otro equipo y que Maquinados reciba la liberación formal (o mediante nota directa en la PC de la seccionadora cuando no disponga de Odoo).</p>
     </header>
 
     <div class="split">
@@ -292,7 +332,7 @@
         <ol class="timeline" id="pasos-odoo-b"></ol>
         <aside class="notice block">
           <strong>Condición de aplicación del Flujo B</strong>
-          <p>Se utiliza únicamente cuando la laptop/PC de la seccionadora no tiene acceso a Odoo, no existe usuario de producción habilitado o el operador necesita consultar los archivos directamente en su máquina. No sustituye el flujo principal ni la organización en la carpeta compartida.</p>
+          <p>Se utiliza únicamente cuando la laptop/PC de la seccionadora no tiene acceso a Odoo, no existe usuario de producción habilitado o el operador necesita consultar los archivos directamente en su máquina. No sustituye el flujo principal ni la organización en la carpeta de producción del lote.</p>
         </aside>
       </article>
     </div>
@@ -300,11 +340,11 @@
     <div class="split block">
       <aside class="notice critical">
         <strong>★ Distinción crítica en Odoo: Referencia interna vs. Ruta en Notas internas</strong>
-        <p>Al copiar la carpeta con <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>, pega la dirección únicamente en <b>Notas internas</b> y <b>elimina las comillas iniciales y finales (<code>"..."</code>)</b> antes de guardar. No confundas ni sobrescribas la <b>Referencia interna</b> del producto con la ruta de red. <a href="#MQ-15">Abrir ficha MQ-15</a> · <a href="#I-06">Ver I-06</a>.</p>
+        <p>Al copiar la carpeta de producción del lote con <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>, pega la dirección únicamente en <b>Notas internas</b> y <b>elimina las comillas iniciales y finales (<code>"..."</code>)</b> antes de guardar. No confundas ni sobrescribas la <b>Referencia interna</b> del producto con la ruta de red. <a href="#MQ-15">Abrir ficha MQ-15</a> · <a href="#I-06">Ver I-06</a>.</p>
       </aside>
       <aside class="notice critical">
         <strong>★ Regla de cierre operativo con Maquinados</strong>
-        <p>La exportación de archivos y su carga en Odoo <b>no concluyen la liberación</b>. Es obligatorio realizar una comunicación directa (presencial, llamada o Google Meet) confirmando concepto, cantidad, archivos, máquinas, ubicación, consulta en Odoo, acuerdos de lote y operaciones manuales vs. máquina. <a href="#MQ-17">Abrir ficha MQ-17</a>.</p>
+        <p>La exportación de archivos y su carga en Odoo <b>no concluyen la liberación</b>. Es obligatorio realizar una comunicación directa (presencial, llamada o Google Meet) confirmando concepto/lote, cantidad, archivos, máquinas, ubicación, consulta en Odoo, acuerdos de lote y operaciones manuales vs. máquina. <a href="#MQ-17">Abrir ficha MQ-17</a>.</p>
       </aside>
     </div>
 
@@ -322,18 +362,18 @@
     <header class="view-title">
       <span class="eyebrow">Instrucciones operativas verificables</span>
       <h2 id="titulo-guia">Guía paso a paso (18 fichas · MQ-01 a MQ-18)</h2>
-      <p>Cada ficha documenta los 8 atributos obligatorios del procedimiento: punto de partida, ubicación exacta, acción secuencial, configuración, condición de aplicación, resultado esperado, verificación y error potencial con su recuperación.</p>
+      <p>Cada ficha documenta los 8 atributos obligatorios del procedimiento general: punto de partida, ubicación exacta, acción secuencial, configuración, condición de aplicación, resultado esperado, verificación y error potencial con su recuperación.</p>
     </header>
 
     <div class="search">
       <label for="buscar">Buscar por actividad, menú, atajo, máquina o identificador</label>
-      <input id="buscar" type="search" placeholder="Ej. Premill, Zaragoza, Ctrl + Shift + C, Output Data o MQ-05" autocomplete="off">
+      <input id="buscar" type="search" placeholder="Ej. Pre Mill, filtrar por parte, Zaragoza, C2M, Ctrl + Shift + C o MQ-05" autocomplete="off">
       <span id="resultado" class="small muted" role="status"></span>
     </div>
 
     <div class="toolbar" aria-label="Filtrar fichas por tramo">
       <button class="button" type="button" data-filter="todos" aria-pressed="true">Todas (18)</button>
-      <button class="button" type="button" data-filter="CV" aria-pressed="false">Planeación y C2M (MQ-01 a MQ-06)</button>
+      <button class="button" type="button" data-filter="CV" aria-pressed="false">Planeación, S2M y C2M (MQ-01 a MQ-06)</button>
       <button class="button" type="button" data-filter="EXP" aria-pressed="false">Exportación y Reportes (MQ-07 a MQ-12)</button>
       <button class="button" type="button" data-filter="ODOO" aria-pressed="false">Odoo y 2.ª PC (MQ-13 a MQ-16)</button>
       <button class="button" type="button" data-filter="LIB" aria-pressed="false">Liberación y Flujo B (MQ-17 y MQ-18)</button>
@@ -370,30 +410,30 @@
   <!-- VISTA F: FUENTES Y ALCANCE -->
   <section class="view" id="fuentes" aria-labelledby="titulo-fuentes" hidden>
     <header class="view-title">
-      <span class="eyebrow">WF-ING-MAQ-01 · Revisión 0.1 · 13 nov 2026</span>
-      <h2 id="titulo-fuentes">Fuentes, Reglas de Fidelidad y Alcance</h2>
-      <p>Este manual transforma la narración operativa de generación y liberación de archivos de maquinado en un procedimiento estandarizado y verificable, preservando intacta la distinción entre hechos observados, recomendaciones operativas y validaciones pendientes.</p>
+      <span class="eyebrow">WF-ING-MAQ-01 · Revisión 0.2 · 24 nov 2026</span>
+      <h2 id="titulo-fuentes">Fuentes, Reglas de Fidelidad y Alcance General</h2>
+      <p>Este manual estandariza el flujo general de planeación de lotes de corte y generación del Paquete de Producción para cualquier proyecto, incorporando las correcciones del equipo sobre S2M/C2M, filtrado por parte, regla de enchapadora (sin selector propio) y carpeta de producción del lote.</p>
     </header>
 
     <div class="panel">
       <h3>Autoridad y uso de cada fuente</h3>
       <ul class="source-list">
-        <li id="F01"><strong>F01 · Narración operativa de ejecución (Caso Ibero · Puerta Intercom Grande).</strong> «Instrucción operativa para Codex: Documentación del flujo de generación, organización y liberación de archivos de maquinado desde Cabinet Vision hacia Odoo y Producción», §§1–19. Fuente primaria de la secuencia de 12 etapas, configuraciones de máquina, atajos de teclado y flujos complementarios A y B.</li>
-        <li id="F02"><strong>F02 · Sistema de Workflows Visuales Operativos y Base Enciclopédica.</strong> Especificación local del proyecto para lectura progresiva, estructura de fichas, reglas de integridad y contratos de handoff. <a href="Sistema%20de%20Workflows%20Visuales%20Operativos.md">Especificación maestra</a> · <a href="base-enciclopedica-del-proyecto.md">Base enciclopédica</a> · <a href="Procedimiento%20operativo%20de%20archivos%20de%20maquinado%20Ibero.md">SOP en Markdown</a>.</li>
-        <li id="F03"><strong>F03 · Cerebro IA (Graphify) · Método «Documentar workflows visuales operativos».</strong> Nota canónica <code>04_PROCESOS/GESTION_PROYECTOS/DOCUMENTAR_WORKFLOWS_VISUALES.md</code> y aprendizaje validado <code>apr-f9d02c40db954b79</code> (v3), aplicados como método de estructuración progresiva y verificación técnica. <a href="Manual%20visual%20de%20costos%20Ibero.html">Manual visual de costos Ibero (precedente)</a>.</li>
-        <li id="F04"><strong>F04 · Cerebro IA · Funciones y estándares de Ingeniería de Producto (DT-GO-002).</strong> Nota <code>01_CONOCIMIENTO/INGENIERIA_PRODUCTO/FUNCIONES_Y_ESTANDARES_INGENIERIA.md</code>. Contextualiza la coordinación con Maquinados para definición de lotes, programación para seccionadoras y CNC punto por punto Nanxing, y resguardo documental en Odoo.</li>
-        <li id="F05"><strong>F05 · Documentación técnica de Hexagon Cabinet Vision / S2M Center.</strong> Referencia externa para Screen to Machine Center, optimización de corte y generación de salidas NC y reportes. Los rótulos exactos narrados (<code>Machine Edit</code>, <code>C2M Center</code>, <code>Premill Edge Banding</code>, <code>NC Codes and Labels</code>, <code>Output Data</code>, <code>Material Summary</code>, <code>Saw Cut List Landscape</code>) se conservan fielmente y se cotejan en la estación real (<a href="#P-02">P-02</a>).</li>
-        <li id="F06"><strong>F06 · Cerebro IA · Proyecto IBERO-GIA y Arquitectura Odoo Manufacturing.</strong> Notas <code>02_PROYECTOS/IBERO_GIA/IBERO_GIA.md</code> y <code>01_CONOCIMIENTO/ODOO/ODOO.md</code> (<code>apr-b67b8b2dbdc7412f</code>). Acreditan el contexto del proyecto Ibero y la separación entre referencia interna del producto y metadatos operativos.</li>
+        <li id="F01"><strong>F01 · Procedimiento operativo general y retroalimentación de equipo (Rev. 0.2).</strong> Consolidación de la secuencia base en Cabinet Vision (S2M / C2M Center), red compartida, Odoo y Maquinados, generalizada para cualquier proyecto con solicitud de Paquete de Producción.</li>
+        <li id="F02"><strong>F02 · Sistema de Workflows Visuales Operativos y Base Enciclopédica.</strong> Especificación local para lectura progresiva, estructura de fichas, reglas de integridad y contratos de handoff.</li>
+        <li id="F03"><strong>F03 · Cerebro IA (Graphify) · Método «Documentar workflows visuales operativos».</strong> Nota canónica <code>04_PROCESOS/GESTION_PROYECTOS/DOCUMENTAR_WORKFLOWS_VISUALES.md</code> aplicada como método de estructuración progresiva y verificación técnica.</li>
+        <li id="F04"><strong>F04 · Cerebro IA · Funciones y estándares de Ingeniería de Producto (DT-GO-002).</strong> Nota <code>01_CONOCIMIENTO/INGENIERIA_PRODUCTO/FUNCIONES_Y_ESTANDARES_INGENIERIA.md</code>. Contextualiza la coordinación con Maquinados para definición de lotes, programación para seccionadora y CNC P2P, y resguardo documental en Odoo.</li>
+        <li id="F05"><strong>F05 · Documentación técnica de Hexagon Cabinet Vision / S2M / C2M Center.</strong> Referencia para perfil <code>Machine Edit</code>, opción <code>Filtrar por parte</code>, <code>Preferences ‣ Geometry ‣ Pre Mill Edgebanding</code>, <code>NC Codes and Labels</code>, <code>Output Data</code>, <code>Material Summary</code> y <code>Saw Cut List Landscape</code>.</li>
+        <li id="F06"><strong>F06 · Cerebro IA · Arquitectura Odoo Manufacturing.</strong> Nota <code>01_CONOCIMIENTO/ODOO/ODOO.md</code>. Acredita la separación entre referencia interna del producto y metadatos operativos en <code>Notas internas</code>.</li>
       </ul>
     </div>
 
     <div class="panel block">
-      <h3>Clasificación epistémica y reglas de fidelidad aplicadas</h3>
+      <h3>Correcciones incorporadas en Rev. 0.2 (24 nov 2026)</h3>
       <dl class="meta">
-        <div><dt>Reportado (Observado)</dt><dd>Paso, configuración, atajo de teclado, ruta o mensaje del sistema descrito directamente en la ejecución de Puerta Intercom Grande.</dd></div>
-        <div><dt>Punto Crítico (★)</dt><dd>Operación donde una omisión o supuesto altera las dimensiones de corte (Premill Edge Banding), la cantidad de muebles, la escritura de archivos o la disponibilidad en Producción.</dd></div>
-        <div><dt>Recomendación operativa</dt><dd>Práctica sugerida en el relato para facilitar la operación (perfil Machine Edit, historial de portapapeles, conservar las 3 carpetas estándar y priorizar Odoo como canal habitual).</dd></div>
-        <div><dt>Pendiente de validación</dt><dd>Captura de pantalla, atajo de duplicación o formato de carga de carpetas en Odoo que requiere confirmación directa en la estación real sin inventar pantallas ni botones.</dd></div>
+        <div><dt>Generalización por proyecto</dt><dd>Eliminación total de referencias a proyectos o muebles específicos; aplica a cualquier proyecto y lote con solicitud de Paquete de Producción.</dd></div>
+        <div><dt>Filtrar por parte (S2M / C2M)</dt><dd>Se corrige el término erróneo «filtrado de mobiliario» por la opción real <code>Filtrar por parte</code> en S2M / C2M Center.</dd></div>
+        <div><dt>Regla real de enchapadora y C2M</dt><dd>No existe selector de enchapadora en Cabinet Vision. Se sigue el documento de lotes de corte autorizado y se activa <code>Pre Mill Edgebanding</code> únicamente si es la Enchapadora Nanxing (con precorte); en cualquier otra se desactiva. Se añade punto de decisión de maquinaria en C2M.</dd></div>
+        <div><dt>Carpeta de producción del lote</dt><dd>Toda referencia de almacenamiento y entrega alude de forma uniforme a la <b>carpeta de producción del lote</b> dentro de <code>&lt;Proyecto&gt;/Producción/</code>.</dd></div>
       </dl>
     </div>
   </section>
@@ -404,478 +444,473 @@
 "use strict";
 const actividades = [
   {
-    id:"MQ-01", etapa:"Etapa 1 · Planeación", grupo:"Etapas 1 a 5 · Planeación, filtrado, máquinas y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
-    titulo:"Verificar el archivo autorizado de configuración de lotes de corte", breve:"Líder de Ingeniería + Maquinados → 8 datos del lote", fuente:"F01 §2 · F04", estado:"Reportado",
-    origen:"Solicitud de programación antes de iniciar cualquier operación en Cabinet Vision.",
-    ubicacion:"Archivo de configuración de lotes de corte o lotes de maquinado.",
-    ruta:"Líder de Ingeniería + Maquinados ‣ Archivo de configuración de lotes de corte ‣ Verificar 8 campos del lote",
-    objetivo:"Asegurar que la agrupación y las máquinas procesadas respondan exactamente a la estrategia acordada con Maquinados.",
-    entrada:"Archivo de configuración de lotes de corte/maquinado autorizado.",
-    salida:"Parámetros del lote confirmados: proyecto, concepto, cantidad, agrupación, seccionadora, enchapadora, P2P condicional e indicaciones especiales.",
-    configuracion:"Proyecto: Ibero · Concepto: Puerta Intercom Grande · Corte: Dimensionadora Zaragoza (Nanxing) · Enchapado: Enchapadora nueva Nanxing · P2P: Sin máquina P2P (perforaciones manuales).",
-    condicion:"Obligatoria antes de abrir o procesar el lote en Cabinet Vision. Un lote puede ser un mueble, varias unidades del mismo concepto o una combinación de muebles diferentes.",
+    id:"MQ-01", etapa:"Etapa 1 · Recepción de documentos", grupo:"Etapas 1 a 5 · Recepción de documentos, filtrado por parte, C2M y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
+    titulo:"Recepción de documentos: documento de lotes de maquinado autorizados", breve:"Recepción del documento de lotes de maquinado autorizados → 8 datos del lote", fuente:"F01 · F04", estado:"Reportado",
+    origen:"Solicitud de Paquete de Producción para un proyecto antes de iniciar cualquier operación en Cabinet Vision.",
+    ubicacion:"Documento de lotes de maquinado autorizados.",
+    ruta:"Recepción de documentos ‣ Documento de lotes de maquinado autorizados ‣ Verificar los 8 campos del lote",
+    objetivo:"Recibir el documento de lotes de maquinado autorizados y confirmar la agrupación, seccionadora, enchapadora y máquinas posteriores estipuladas.",
+    entrada:"Documento de lotes de maquinado autorizados del proyecto.",
+    salida:"Parámetros del lote confirmados: proyecto, concepto/lote, cantidad, agrupación, seccionadora estipulada, enchapadora estipulada, P2P condicional e indicaciones especiales.",
+    configuracion:"Campos obligatorios del documento de lotes de maquinado autorizados: 1) Proyecto, 2) Concepto/lote, 3) Cantidad de unidades, 4) Agrupación, 5) Seccionadora estipulada, 6) Enchapadora estipulada (Nanxing con precorte u otra sin precorte), 7) Máquina P2P condicional y 8) Indicaciones especiales.",
+    condicion:"Obligatoria antes de abrir o procesar el lote en Cabinet Vision. Todas las elecciones de máquina del flujo deben corresponder exactamente a lo estipulado en el documento de lotes de maquinado autorizados.",
     acciones:[
-      "Consulta el archivo de configuración de lotes de corte o lotes de maquinado proporcionado por el líder de Ingeniería en coordinación con Maquinados.",
-      "Verifica los 8 elementos del lote: 1) Proyecto (Ibero), 2) Concepto (Puerta Intercom Grande), 3) Cantidad de unidades del lote, 4) Agrupación de muebles que se procesan juntos, 5) Seccionadora asignada, 6) Enchapadora asignada, 7) Máquina de perforado/maquinado posterior cuando corresponda y 8) Indicaciones especiales.",
-      "Respeta la regla fundamental: Ingeniería no debe definir arbitrariamente los lotes durante la generación de programas. Si detectas cualquier discrepancia entre lo solicitado y lo configurado en Cabinet Vision, resuélvela antes de continuar."
+      "Recibe el «documento de lotes de maquinado autorizados» proporcionado por el líder de Ingeniería en coordinación con Maquinados.",
+      "Verifica los 8 elementos del lote, poniendo especial atención en qué seccionadora, qué enchapadora y qué máquina P2P (si aplica) están estipuladas en el documento.",
+      "Respeta la regla fundamental: Ingeniería no debe definir lotes ni elegir máquinas arbitrariamente; toda elección de máquina en el flujo debe seguir estrictamente el «documento de lotes de maquinado autorizados»."
     ],
-    control:"C01 · El lote cuenta con definición autorizada completa y sin discrepancias pendientes.",
-    error:"Definir o reagrupar lotes por decisión unilateral durante la programación o asumir qué máquinas se usarán sin revisar el archivo.",
-    recuperacion:"Detén la preparación y concilia el archivo de lotes con el líder de Ingeniería y el área de Maquinados antes de continuar.",
+    control:"C01 · Se recibió el «documento de lotes de maquinado autorizados» con definición completa y sin discrepancias.",
+    error:"Definir o reagrupar lotes por decisión unilateral o elegir máquinas distintas a las estipuladas en el documento de lotes de maquinado autorizados.",
+    recuperacion:"Detén la preparación y concilia el «documento de lotes de maquinado autorizados» con el líder de Ingeniería y el área de Maquinados antes de continuar.",
     links:["C01","P-01","MQ-02","MQ-03"],
-    captura:"Captura pendiente (P-01): archivo o tabla de configuración de lotes de corte mostrando el registro autorizado de Puerta Intercom Grande."
+    captura:"Captura pendiente (P-01): plantilla o registro del documento de lotes de maquinado autorizados."
   },
   {
-    id:"MQ-02", etapa:"Etapa 2 · Preparación", grupo:"Etapas 1 a 5 · Planeación, filtrado, máquinas y optimización en Cabinet Vision", variante:"CV", critico:false, tipo:"control",
-    titulo:"Seleccionar el perfil Machine Edit y abrir el proyecto en el workspace de Diseño", breve:"Perfil Machine Edit → Proyecto Ibero → Diseño", fuente:"F01 §3", estado:"Reportado",
+    id:"MQ-02", etapa:"Etapa 2 · Elección de perfil", grupo:"Etapas 1 a 5 · Recepción, filtrado por parte, C2M y optimización en Cabinet Vision", variante:"CV", critico:false, tipo:"control",
+    titulo:"Seleccionar el perfil Machine Edit y abrir el proyecto en Diseño", breve:"Perfil Machine Edit → Proyecto del lote → Workspace de Diseño", fuente:"F01 · F05", estado:"Reportado",
     origen:"Selector de perfil de inicio de Cabinet Vision.",
-    ubicacion:"Inicio de Cabinet Vision ‣ Selector de perfil ‣ Apertura de archivo ‣ Workspace de Diseño.",
-    ruta:"Perfil Machine Edit ‣ Abrir Cabinet Vision ‣ Abrir proyecto Ibero ‣ Confirmar proyecto ‣ Workspace de Diseño",
-    objetivo:"Iniciar sesión con capacidades completas de maquinado y edición/generación de reportes sobre el proyecto correcto.",
-    entrada:"Archivo del proyecto previamente proporcionado (Ibero) y lote validado.",
-    salida:"Proyecto Ibero abierto en el workspace de Diseño bajo el perfil Machine Edit.",
-    configuracion:"Perfil preferente: Machine Edit (permite generar o modificar determinados reportes durante el mismo proceso). Proyecto: Ibero.",
-    condicion:"Obligatoria al iniciar la corrida en Cabinet Vision.",
+    ubicacion:"Inicio de Cabinet Vision ‣ Selector de perfil ‣ Apertura de proyecto ‣ Workspace de Diseño.",
+    ruta:"Perfil Machine Edit ‣ Abrir Cabinet Vision ‣ Abrir archivo del proyecto ‣ Confirmar proyecto ‣ Workspace de Diseño",
+    objetivo:"Iniciar sesión con capacidades completas de maquinado y edición/generación de reportes sobre el proyecto correspondiente al Paquete de Producción.",
+    entrada:"Archivo del proyecto vigente y archivo de lotes de corte autorizado.",
+    salida:"Proyecto abierto en el workspace de Diseño bajo el perfil Machine Edit.",
+    configuracion:"Perfil preferente: Machine Edit (habilita operaciones de maquinado y edición de reportes durante el flujo).",
+    condicion:"Obligatoria al iniciar cada corrida en Cabinet Vision.",
     acciones:[
-      "Selecciona el perfil de Cabinet Vision relacionado con las operaciones de maquinado, preferentemente Machine Edit.",
+      "Selecciona el perfil de Cabinet Vision correspondiente a las operaciones de maquinado, preferentemente Machine Edit.",
       "Abre Cabinet Vision.",
-      "Abre el archivo del proyecto previamente proporcionado (Ibero).",
-      "Confirma que se trata exactamente del proyecto correcto.",
+      "Abre el archivo del proyecto correspondiente al Paquete de Producción solicitado.",
+      "Confirma que se trata exactamente del proyecto y revisión vigentes.",
       "Accede al workspace de Diseño."
     ],
-    control:"C01 · Perfil Machine Edit activo, proyecto Ibero confirmado y workspace de Diseño en pantalla.",
-    error:"Entrar con un perfil distinto que bloquee ajustes de reportes o abrir una versión equivocada del proyecto.",
+    control:"C01 · Perfil Machine Edit activo, proyecto correcto confirmado y workspace de Diseño en pantalla.",
+    error:"Entrar con un perfil distinto que limite reportes o abrir una versión desactualizada del proyecto.",
     recuperacion:"Cierra el archivo, reinicia Cabinet Vision con el perfil Machine Edit y abre el archivo vigente del proyecto.",
     links:["C01","P-02","MQ-03"],
-    captura:"Captura pendiente (P-02): selector de perfil con Machine Edit seleccionado y pantalla del workspace de Diseño con el proyecto Ibero."
+    captura:"Captura pendiente (P-02): selector de perfil con Machine Edit seleccionado y pantalla del workspace de Diseño."
   },
   {
-    id:"MQ-03", etapa:"Etapa 3 · Filtrado", grupo:"Etapas 1 a 5 · Planeación, filtrado, máquinas y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
-    titulo:"Abrir C2M Center, filtrar el concepto y validar la cantidad de muebles del lote", breve:"C2M Center → Filtrar → Puerta Intercom Grande → OK → 1.er número", fuente:"F01 §4 · F05", estado:"Reportado",
-    origen:"Workspace de Diseño en Cabinet Vision con el proyecto Ibero abierto.",
-    ubicacion:"Extremo derecho de las pestañas del workspace de Diseño ‣ Pestaña C2M Center (Screen to Machine Center) ‣ Función de filtrado.",
-    ruta:"Workspace de Diseño ‣ Pestaña C2M Center (extremo derecho) ‣ Función de filtrado ‣ Puerta Intercom Grande ‣ OK ‣ Revisar 1.er número",
-    objetivo:"Aislar exclusivamente el mobiliario del lote y comprobar que la cantidad de unidades configurada en diseño coincida con el lote autorizado.",
-    entrada:"Concepto y cantidad autorizados en el archivo de lotes de corte.",
-    salida:"Mobiliario filtrado (Puerta Intercom Grande) y cantidad de muebles conciliada.",
-    configuracion:"Concepto filtrado: Puerta Intercom Grande. El primer número mostrado en el resultado del filtro indica la cantidad de muebles incluidos en el procesamiento.",
+    id:"MQ-03", etapa:"Etapa 3 · Filtrado en S2M / C2M", grupo:"Etapas 1 a 5 · Recepción, filtrado por parte, C2M y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
+    titulo:"Abrir S2M / C2M Center, aplicar «Filtrar por parte» y validar cantidad del lote", breve:"C2M Center → Filtrar por parte → OK → Validar 1.er número vs. lote", fuente:"F01 · F05", estado:"Reportado",
+    origen:"Workspace de Diseño en Cabinet Vision con el proyecto abierto.",
+    ubicacion:"Extremo derecho de las pestañas del workspace de Diseño ‣ Pestaña C2M Center (Screen to Machine / S2M) ‣ Opción «Filtrar por parte».",
+    ruta:"Workspace de Diseño ‣ Pestaña C2M Center (S2M) ‣ Filtrar por parte ‣ Seleccionar partes/concepto del lote ‣ OK ‣ Revisar 1.er número",
+    objetivo:"Aislar exclusivamente las partes del lote mediante «Filtrar por parte» y comprobar que el primer número del resultado coincida con el lote autorizado.",
+    entrada:"Partes/concepto y cantidad autorizados en el archivo de lotes de corte.",
+    salida:"Lote aislado mediante «Filtrar por parte» y cantidad conciliada.",
+    configuracion:"Opción correcta: Filtrar por parte (NO filtrado de mobiliario). El primer número mostrado en el resultado del filtro indica la cantidad incluida en el procesamiento.",
     condicion:"Obligatoria en todo lote. Punto de control bloqueante: únicamente continuar cuando la cantidad filtrada coincida con el lote autorizado.",
     acciones:[
-      "Dentro del workspace de Diseño, localiza y abre la pestaña C2M Center situada al extremo derecho.",
-      "Localiza la función de filtrado del mobiliario.",
-      "Selecciona el concepto que corresponde al lote de corte (para este ejercicio, Puerta Intercom Grande).",
+      "Dentro del workspace de Diseño, abre la pestaña C2M Center (S2M) situada al extremo derecho.",
+      "Ubica y utiliza la opción correcta «Filtrar por parte» (evitando confundirla con filtrado general de mobiliario).",
+      "Selecciona las partes o el concepto que corresponden al lote de corte autorizado.",
       "Confirma la selección mediante el botón OK.",
-      "Revisa el resultado del filtro: identifica el primer número mostrado, que corresponde a la cantidad de muebles incluidos en el procesamiento (configurada previamente en el concepto dentro de la vista de diseño).",
-      "Compara ese primer número contra la cantidad establecida en el archivo de lotes de corte."
+      "Revisa el resultado del filtro: identifica el primer número mostrado y compáralo contra la cantidad establecida en el archivo de lotes de corte."
     ],
-    control:"C02 (Punto de control obligatorio) · El primer número del resultado del filtro coincide exactamente con la cantidad del lote autorizado.",
-    error:"Continuar cuando el primer número muestra una cantidad distinta de la autorizada o dejar otros muebles seleccionados en el filtro.",
-    recuperacion:"No continúes a la selección de máquinas. Si el filtro incluye otros ítems, corrígelo y pulsa OK. Si la cantidad del concepto difiere de la del lote, corrige la cantidad en la vista de diseño o concilia con el líder de Ingeniería antes de seguir.",
+    control:"C02 (Punto de control bloqueante) · Se usó «Filtrar por parte» y el primer número del resultado coincide exactamente con el lote autorizado.",
+    error:"Usar un filtro incorrecto de mobiliario, dejar partes de otros lotes seleccionadas o continuar cuando el primer número difiere del lote autorizado.",
+    recuperacion:"No pases a selección de maquinaria. Corrige el filtro en «Filtrar por parte» y pulsa OK; si la cantidad de diseño difiere del lote, concilia con el líder de Ingeniería.",
     links:["C02","I-01","P-01","P-02","MQ-04"],
-    captura:"Captura pendiente (P-02): pestaña C2M Center, ventana de filtrado con Puerta Intercom Grande, botón OK y primer número del resultado."
+    captura:"Captura pendiente (P-02): pestaña C2M Center, opción «Filtrar por parte», botón OK y primer número del resultado."
   },
   {
-    id:"MQ-04", etapa:"Etapa 4 · Configuración (Máquinas)", grupo:"Etapas 1 a 5 · Planeación, filtrado, máquinas y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
-    titulo:"Seleccionar seccionadora, enchapadora y máquina secundaria P2P condicional", breve:"Menú izquierdo inferior → Corte, Enchapado y P2P", fuente:"F01 §5 · F04", estado:"Reportado",
-    origen:"Screen to Machine Center (C2M Center) con el filtro y la cantidad ya validados.",
-    ubicacion:"Parte inferior del menú lateral izquierdo de Screen to Machine Center.",
-    ruta:"Screen to Machine Center ‣ Menú lateral izquierdo (parte inferior) ‣ Corte + Enchapado + Maquinado posterior (P2P)",
-    objetivo:"Asignar las máquinas reales que procesarán el lote en taller según el archivo de configuración de lotes.",
-    entrada:"Asignación de máquinas del lote autorizado.",
-    salida:"Tres categorías de máquinas revisadas y configuradas en Screen to Machine Center.",
-    configuracion:"Caso Puerta Intercom Grande: 1) Corte = Dimensionadora Zaragoza (correspondiente a una Nanxing); 2) Enchapado = Enchapadora nueva Nanxing; 3) Maquinado posterior = Sin máquina P2P (las perforaciones posteriores se realizan manualmente cuando corresponda).",
-    condicion:"Revisar las 3 categorías es obligatorio. Asignar una máquina secundaria P2P es condicional: no debe asumirse como obligatoria para todas las puertas o muebles; en otros muebles sí se seleccionará una P2P (como la Nanxing) cuando lo indique el archivo de lotes.",
+    id:"MQ-04", etapa:"Etapa 4A · Maquinaria en C2M", grupo:"Etapas 1 a 5 · Recepción de documentos, filtrado por parte, C2M y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
+    titulo:"Elegir en C2M Center la maquinaria estipulada en el «documento de lotes de maquinado autorizados»", breve:"C2M Center → Elegir Seccionadora y P2P (si aplica) estipuladas en el documento de lotes de maquinado autorizados", fuente:"F01 · F04", estado:"Reportado",
+    origen:"C2M Center (S2M) con el filtro por parte y la cantidad ya validados.",
+    ubicacion:"Panel lateral izquierdo de C2M Center (Screen to Machine Center) ‣ Selectores de maquinaria.",
+    ruta:"Consultar «documento de lotes de maquinado autorizados» ‣ C2M Center ‣ Elegir Seccionadora estipulada + Evaluar P2P estipulada (Sí/No)",
+    objetivo:"Asegurar que toda elección de maquinaria en C2M Center (seccionadora y máquina secundaria P2P condicional) corresponda exactamente a la máquina estipulada en el «documento de lotes de maquinado autorizados».",
+    entrada:"Maquinaria estipulada en el «documento de lotes de maquinado autorizados».",
+    salida:"Seccionadora y decisión de P2P configuradas en C2M conforme al documento autorizado.",
+    configuracion:"Regla general para todas las elecciones de máquina: seleccionar siempre la máquina estipulada en el «documento de lotes de maquinado autorizados» (1. Corte/Seccionadora estipulada, ej. Dimensionadora Zaragoza; 2. Maquinado posterior P2P únicamente si el documento estipula máquina P2P, de lo contrario sin P2P). Nota: NO existe selector de enchapadora en Cabinet Vision.",
+    condicion:"Punto de toma de decisión obligatorio. Ninguna máquina se elige por criterio propio ni se hereda del lote anterior; aplica para todas las elecciones de máquina en el flujo.",
     acciones:[
-      "En la parte inferior del menú lateral izquierdo de Screen to Machine Center, localiza las tres categorías de máquinas.",
-      "En Máquina de corte o dimensionadora, selecciona Dimensionadora Zaragoza (correspondiente a una Nanxing).",
-      "En Máquina de enchapado, selecciona Enchapadora nueva Nanxing.",
-      "En Máquina de maquinado posterior al corte (CNC punto a punto / P2P), verifica qué exige el lote: para Puerta Intercom Grande déjala sin máquina P2P (las perforaciones posteriores se hacen manualmente); para muebles que sí requieran P2P según el archivo de lotes, selecciona la máquina P2P correspondiente."
+      "Consulta el «documento de lotes de maquinado autorizados» para confirmar exactamente qué máquinas están estipuladas para el lote.",
+      "En el panel de maquinaria de C2M Center, selecciona en Máquina de corte o dimensionadora la seccionadora estipulada en el «documento de lotes de maquinado autorizados».",
+      "Evalúa la decisión P2P conforme al mismo documento: si el «documento de lotes de maquinado autorizados» estipula maquinado posterior en CNC punto a punto, selecciona la máquina P2P estipulada; si no lo estipula (perforaciones manuales), déjala sin máquina P2P.",
+      "Recuerda que no existe selector de enchapadora en Cabinet Vision; pasa a MQ-05 para revisar si el documento especifica Enchapadora Nanxing."
     ],
-    control:"C03 · Las tres categorías inferiores del panel izquierdo coinciden con el archivo de configuración de lotes de maquinado.",
-    error:"Asumir por defecto que todos los conceptos llevan máquina P2P o conservar la seccionadora/enchapadora del lote anterior.",
-    recuperacion:"Modifica los selectores inferiores del menú lateral izquierdo para que reflejen exactamente el lote autorizado antes de revisar Preferences.",
+    control:"C03 · Todas las máquinas elegidas en C2M coinciden exactamente con las estipuladas en el «documento de lotes de maquinado autorizados».",
+    error:"Elegir una máquina distinta a la estipulada en el «documento de lotes de maquinado autorizados», asumir P2P por defecto o conservar la máquina del lote anterior.",
+    recuperacion:"Ajusta los selectores de maquinaria en C2M para que reflejen exactamente lo estipulado en el «documento de lotes de maquinado autorizados» antes de continuar.",
     links:["C03","P-02","P-08","MQ-05"],
-    captura:"Captura pendiente (P-02): selectores inferiores del menú lateral izquierdo mostrando Dimensionadora Zaragoza, Enchapadora nueva Nanxing y sin P2P."
+    captura:"Captura pendiente (P-02): selectores de maquinaria en C2M Center coincidiendo con el documento de lotes de maquinado autorizados."
   },
   {
-    id:"MQ-05", etapa:"Etapa 4 · Configuración (Precorte)", grupo:"Etapas 1 a 5 · Planeación, filtrado, máquinas y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
-    titulo:"Configurar Premill Edge Banding en Geometry según la enchapadora asignada", breve:"File ‣ Preferences (engrane) ‣ Geometry ‣ Premill Edge Banding (máx. 3)", fuente:"F01 §6", estado:"Reportado",
-    origen:"Screen to Machine Center tras configurar las máquinas del lote.",
-    ubicacion:"Área superior izquierda de Screen to Machine Center (debajo de la barra superior) ‣ Menú File ‣ Preferences (engrane) ‣ Pestaña Geometry.",
-    ruta:"Screen to Machine Center ‣ File (arriba a la izquierda, bajo barra superior) ‣ Preferences (engrane) ‣ Geometry ‣ Premill Edge Banding",
-    objetivo:"Alinear la compensación dimensional por precorte de cubrecanto con la enchapadora física que procesará las piezas.",
-    entrada:"Enchapadora asignada al lote en el archivo de configuración.",
-    salida:"Casilla Premill Edge Banding activada o desactivada correctamente, conservando el valor máximo en 3.",
-    configuracion:"Valor máximo configurado = 3 (no debe modificarse). Si la enchapadora es Enchapadora nueva Nanxing: Activar casilla Premill Edge Banding. Si es cualquier otra enchapadora sin precorte: Desactivar casilla Premill Edge Banding.",
-    condicion:"La revisión en File ‣ Preferences ‣ Geometry es obligatoria en CADA lote. La activación de la casilla es condicional (solo para la enchapadora nueva Nanxing). En Puerta Intercom Grande debe permanecer activado.",
+    id:"MQ-05", etapa:"Etapa 4B · Enchapado y Precorte", grupo:"Etapas 1 a 5 · Recepción de documentos, filtrado por parte, C2M y optimización en Cabinet Vision", variante:"CV", critico:true, tipo:"critical",
+    titulo:"Configurar Pre Mill Edgebanding (solo si el documento especifica Enchapadora Nanxing)", breve:"SOLO seguir si el «documento de lotes de maquinado autorizados» especifica Enchapadora Nanxing → File ‣ Preferences ‣ Geometry", fuente:"F01 · F05", estado:"Reportado",
+    origen:"C2M Center tras elegir la maquinaria estipulada en el «documento de lotes de maquinado autorizados».",
+    ubicacion:"Área superior izquierda de C2M Center (debajo de la barra superior) ‣ Menú File ‣ Preferences (engrane) ‣ Pestaña Geometry.",
+    ruta:"Verificar enchapadora en «documento de lotes de maquinado autorizados» ‣ SI es Enchapadora Nanxing: File ‣ Preferences ‣ Geometry ‣ Activar Pre Mill Edgebanding ☑ (máx. 3)",
+    objetivo:"Aplicar los pasos de activación de Pre Mill Edgebanding ÚNICAMENTE cuando en el «documento de lotes de maquinado autorizados» se especifique que el lote se enchapará en la Enchapadora Nanxing (con precorte).",
+    entrada:"Enchapadora estipulada en el «documento de lotes de maquinado autorizados».",
+    salida:"Pasos de activación ejecutados solo si es Enchapadora Nanxing (casilla ☑, máx. 3); para cualquier otra enchapadora, casilla DESACTIVADA ☐.",
+    configuracion:"No existe selector de enchapadora en Cabinet Vision. Regla estricta: estos pasos SOLO deben seguirse si el «documento de lotes de maquinado autorizados» especifica que se enchapará en la Enchapadora Nanxing (con precorte) → Pre Mill Edgebanding ACTIVADO ☑ (valor máx. = 3 sin modificar). Si especifica cualquier otra enchapadora (sin precorte) → NO activar (verificar que quede DESACTIVADO ☐).",
+    condicion:"Estos pasos solo deben seguirse si en el «documento de lotes de maquinado autorizados» se especifica que el lote se enchapará en la Enchapadora Nanxing. Si el lote va a otra enchapadora, únicamente confirma que Pre Mill Edgebanding esté desactivado.",
     acciones:[
-      "En Screen to Machine Center, localiza el menú File situado en el área superior izquierda, debajo de la barra superior, y ábrelo.",
-      "Selecciona Preferences, identificado mediante el ícono de engrane correspondiente.",
-      "Ingresa a la pestaña Geometry y localiza la opción Premill Edge Banding.",
-      "Verifica que el valor máximo configurado esté en 3 y consérvalo sin modificarlo.",
-      "Aplica la regla según la enchapadora del lote: si el lote está destinado a la Enchapadora nueva Nanxing (como en Puerta Intercom Grande), activa la casilla Premill Edge Banding; si está destinado a otra enchapadora sin función de precorte, desactiva la casilla Premill Edge Banding."
+      "Verifica primero en el «documento de lotes de maquinado autorizados» qué enchapadora está estipulada para el lote (en Cabinet Vision no existe opción para elegirla).",
+      "Si el documento NO especifica Enchapadora Nanxing (es otra enchapadora sin precorte), NO sigas los pasos de activación; solo asegúrate de que Pre Mill Edgebanding permanezca desactivado.",
+      "SOLO si el «documento de lotes de maquinado autorizados» especifica que se enchapará en la Enchapadora Nanxing, abre en C2M Center el menú File (arriba a la izquierda, bajo la barra superior) y selecciona Preferences (ícono de engrane).",
+      "Ingresa a la pestaña Geometry y localiza la opción Pre Mill Edgebanding.",
+      "Verifica que el valor máximo configurado esté en 3 (sin modificarlo) y ACTIVA la casilla Pre Mill Edgebanding."
     ],
-    control:"C04 (Advertencia crítica) · Estado de Premill Edge Banding y valor máximo 3 comprobados explícitamente para el lote actual.",
-    error:"Asumir que Cabinet Vision guarda la configuración apropiada del procesamiento anterior, dejando el precorte activo para una enchapadora sin precorte o inactivo para la Nanxing nueva.",
-    recuperacion:"Corrige la casilla Premill Edge Banding en File ‣ Preferences ‣ Geometry y vuelve a ejecutar la optimización completa antes de generar códigos NC o reportes.",
+    control:"C04 (Advertencia crítica) · Los pasos de activación de Pre Mill Edgebanding se aplicaron únicamente si el «documento de lotes de maquinado autorizados» especifica Enchapadora Nanxing (máx. 3); de lo contrario, permanece desactivado.",
+    error:"Seguir estos pasos de activación cuando el lote va a una enchapadora sin precorte, o asumir que Cabinet Vision conserva el ajuste del lote anterior.",
+    recuperacion:"Corrige la casilla Pre Mill Edgebanding en File ‣ Preferences ‣ Geometry conforme al «documento de lotes de maquinado autorizados» y vuelve a ejecutar Run → OK.",
     links:["C04","I-02","P-02","MQ-06"],
-    captura:"Captura pendiente (P-02): menú File ‣ Preferences y pestaña Geometry con Premill Edge Banding activado y valor máximo en 3."
+    captura:"Captura pendiente (P-02): menú File ‣ Preferences ‣ Geometry mostrando Pre Mill Edgebanding y valor máximo 3 (aplicable solo con Enchapadora Nanxing)."
   },
   {
-    id:"MQ-06", etapa:"Etapa 5 · Optimización", grupo:"Etapas 1 a 5 · Planeación, filtrado, máquinas y optimización en Cabinet Vision", variante:"CV", critico:false, tipo:"control",
-    titulo:"Confirmar los 5 puntos previos y ejecutar la optimización (Run → OK)", breve:"Verificar 5 parámetros → Optimizar → Run → OK", fuente:"F01 §7", estado:"Reportado",
-    origen:"Screen to Machine Center con filtro, máquinas y Premill Edge Banding configurados.",
-    ubicacion:"Screen to Machine Center ‣ Comando de optimización ‣ Botón Run ‣ Confirmación OK.",
-    ruta:"Screen to Machine Center ‣ Verificar 5 puntos ‣ Ejecutar optimización ‣ Run ‣ Esperar procesamiento ‣ OK",
-    objetivo:"Generar el desarrollo de la optimización y los diagramas de corte del lote validado.",
-    entrada:"Lote filtrado (C02), máquinas seleccionadas (C03) y Premill Edge Banding verificado (C04).",
-    salida:"Diagramas de corte y desarrollo de la optimización visualizados en Screen to Machine Center.",
-    configuracion:"Verificación previa de 5 elementos: 1) lote seleccionado, 2) dimensionadora asignada, 3) enchapadora asignada, 4) existencia o no de máquina secundaria P2P y 5) estado de Premill Edge Banding.",
+    id:"MQ-06", etapa:"Etapa 5 · Optimización", grupo:"Etapas 1 a 5 · Recepción, filtrado por parte, C2M y optimización en Cabinet Vision", variante:"CV", critico:false, tipo:"control",
+    titulo:"Confirmar parámetros previos y ejecutar la optimización en Cabinet Vision (Run → OK)", breve:"Verificar 5 parámetros → Optimizar → Run → OK", fuente:"F01 · F05", estado:"Reportado",
+    origen:"C2M Center con «Filtrar por parte», maquinaria C2M y Pre Mill Edgebanding configurados.",
+    ubicacion:"C2M Center ‣ Comando de optimización ‣ Botón Run ‣ Confirmación OK.",
+    ruta:"C2M Center ‣ Verificar 5 puntos ‣ Ejecutar optimización ‣ Run ‣ Esperar procesamiento ‣ OK",
+    objetivo:"Generar la optimización y los diagramas de corte del lote validado en Cabinet Vision.",
+    entrada:"Lote filtrado por parte (C02), maquinaria C2M seleccionada (C03) y Pre Mill Edgebanding verificado (C04).",
+    salida:"Diagramas de corte y desarrollo de la optimización visualizados en C2M Center.",
+    configuracion:"Verificación previa de 5 elementos: 1) lote filtrado por parte, 2) seccionadora asignada, 3) enchapadora del doc. autorizado, 4) existencia o no de P2P y 5) estado de Pre Mill Edgebanding.",
     condicion:"Obligatoria antes de exportar códigos NC, etiquetas y reportes PDF.",
     acciones:[
-      "Verifica nuevamente: 1) el lote seleccionado, 2) la dimensionadora asignada, 3) la enchapadora asignada, 4) si existe o no máquina secundaria de maquinado y 5) el estado de Premill Edge Banding.",
+      "Verifica nuevamente: 1) lote filtrado por parte, 2) seccionadora asignada, 3) enchapadora del documento autorizado, 4) decisión P2P y 5) estado de Pre Mill Edgebanding.",
       "Ejecuta la optimización y selecciona Run.",
       "Espera a que termine el procesamiento y confirma pulsando OK.",
-      "Comprueba que Cabinet Vision muestra los diagramas de corte y el desarrollo de la optimización. No cierres el flujo aquí: continúa con la generación y guardado de archivos para Producción."
+      "Comprueba que Cabinet Vision muestra los diagramas de corte y el desarrollo de la optimización. Continúa con la creación de carpetas y exportación."
     ],
     control:"C05 · La optimización concluye con OK y presenta los diagramas de corte de los tableros del lote.",
-    error:"Omitir la confirmación de alguno de los 5 puntos previos o creer que el procedimiento termina al ver los diagramas en pantalla.",
-    recuperacion:"Si detectas cualquier ajuste incorrecto tras optimizar, corrígelo y vuelve a ejecutar Run → OK antes de pulsar NC Codes and Labels.",
+    error:"Omitir alguno de los 5 puntos previos o dar por terminado el flujo al ver los diagramas en pantalla.",
+    recuperacion:"Si modificas cualquier parámetro tras optimizar, repite Run → OK antes de pulsar NC Codes and Labels.",
     links:["C02","C03","C04","C05","P-02","MQ-07"],
-    captura:"Captura pendiente (P-02): botón Run, diálogo OK y vista de los tableros apilados y diagramas de corte optimizados."
+    captura:"Captura pendiente (P-02): botón Run, diálogo OK y vista de diagramas de corte optimizados."
   },
   {
-    id:"MQ-07", etapa:"Etapa 6 · Exportación (Carpetas cortas)", grupo:"Etapas 6 a 8 · Exportación, reportes PDF y consolidación de carpeta", variante:"EXP", critico:true, tipo:"critical",
-    titulo:"Abrir Output Data y crear las carpetas temporales SEC, NANXING y LABEL en Producción", breve:"NC Codes and Labels → Output Data · Crear SEC, NANXING y LABEL con rutas cortas", fuente:"F01 §§8–9", estado:"Reportado",
-    origen:"Screen to Machine Center optimizado y Explorador de archivos en la carpeta compartida del proyecto.",
-    ubicacion:"Screen to Machine Center ‣ Botón NC Codes and Labels (ventana Output Data) · Explorador de archivos ‣ Luis del Ángel / Ibero / Producción.",
-    ruta:"C2M Center ‣ NC Codes and Labels ‣ Explorador: Luis del Ángel / Ibero / Producción ‣ Ctrl+Shift+N (SEC) ‣ Duplicar 2 veces ‣ F2 (NANXING, LABEL) ‣ F4 (copiar rutas)",
-    objetivo:"Preparar directorios de salida con rutas cortas directamente en Producción para evitar fallos de lectura/procesamiento en Cabinet Vision.",
-    entrada:"Ruta compartida Luis del Ángel / Ibero / Producción.",
-    salida:"Carpeta del concepto (Puerta Intercom Grande) y tres carpetas temporales estándar (SEC, NANXING, LABEL) creadas en Producción, con sus rutas copiadas.",
-    configuracion:"Carpetas en Luis del Ángel / Ibero / Producción: 1) Puerta Intercom Grande (carpeta del concepto), 2) SEC (programas de seccionadora), 3) NANXING (programas P2P) y 4) LABEL (etiquetado). Atajos observados: Ctrl + Shift + N (crear carpeta), F2 (renombrar), F4 (acceder a la ruta en barra de direcciones).",
-    condicion:"Obligatoria en cada lote. Las tres carpetas (SEC, NANXING y LABEL) se crean siempre como estructura estándar aunque el lote no utilice máquina secundaria P2P.",
+    id:"MQ-07", etapa:"Etapa 6 · Creación de carpetas (Rutas cortas)", grupo:"Etapas 6 a 8 · Creación de carpetas, exportación, reportes PDF y consolidación", variante:"EXP", critico:true, tipo:"critical",
+    titulo:"Abrir Output Data y crear las carpetas temporales SEC, NANXING y LABEL", breve:"NC Codes and Labels → Output Data · Crear SEC, NANXING y LABEL en Producción", fuente:"F01", estado:"Reportado",
+    origen:"C2M Center optimizado y Explorador de archivos en la carpeta de Producción del proyecto.",
+    ubicacion:"C2M Center ‣ Botón NC Codes and Labels (ventana Output Data) · Explorador de archivos ‣ <Proyecto> / Producción.",
+    ruta:"C2M Center ‣ NC Codes and Labels ‣ Explorador: <Proyecto>/Producción ‣ Ctrl+Shift+N (SEC) ‣ Duplicar 2 veces ‣ F2 (NANXING, LABEL) ‣ F4",
+    objetivo:"Preparar directorios temporales de salida con rutas cortas para evitar fallos de lectura/escritura en Cabinet Vision antes de consolidar en la carpeta de producción del lote.",
+    entrada:"Carpeta compartida <Proyecto> / Producción.",
+    salida:"Carpeta de producción del lote y tres carpetas temporales estándar (SEC, NANXING, LABEL) creadas en Producción, con sus rutas copiadas.",
+    configuracion:"Carpetas en <Proyecto> / Producción: 1) <Carpeta de producción del lote>, 2) SEC (seccionadora), 3) NANXING (P2P) y 4) LABEL (etiquetado). Atajos: Ctrl + Shift + N (crear), F2 (renombrar), F4 (copiar ruta).",
+    condicion:"Obligatoria en cada lote. Las tres carpetas (SEC, NANXING y LABEL) se crean como estructura estándar aunque el lote no utilice máquina secundaria P2P.",
     acciones:[
-      "En Screen to Machine Center, selecciona el botón NC Codes and Labels para abrir la ventana emergente Output Data.",
-      "En el explorador de archivos, accede a Luis del Ángel / Ibero / Producción y asegúrate de crear la carpeta del concepto: Puerta Intercom Grande.",
-      "Para evitar rutas demasiado largas que Cabinet Vision no pueda leer o procesar, permanece dentro de Producción y presiona Ctrl + Shift + N para crear la carpeta SEC.",
-      "Duplica la carpeta SEC dos veces dentro de Producción.",
-      "Renombra las dos copias presionando F2 y asígnales los nombres NANXING y LABEL. Confirma que existen las tres carpetas (SEC, NANXING y LABEL).",
-      "Para cada carpeta, entra en ella, presiona F4 para acceder a la barra de ruta, copia la dirección completa y regresa a la carpeta anterior (Producción). Se recomienda mantener habilitado el historial del portapapeles para recuperar y pegar las tres rutas en Output Data."
+      "En C2M Center, selecciona NC Codes and Labels para abrir la ventana emergente Output Data.",
+      "En el explorador de archivos, accede a <Proyecto> / Producción y verifica o crea la carpeta de producción del lote.",
+      "Para evitar rutas demasiado largas que Cabinet Vision no pueda procesar, permanece en Producción y presiona Ctrl + Shift + N para crear la carpeta SEC.",
+      "Duplica la carpeta SEC dos veces dentro de Producción y renombra las copias con F2 como NANXING y LABEL.",
+      "Para cada carpeta (SEC, NANXING cuando aplique, y LABEL), entra en ella, presiona F4, copia la ruta corta y regresa a Producción."
     ],
-    control:"C06 · Existen Puerta Intercom Grande, SEC, NANXING y LABEL directamente dentro de Producción y sus rutas cortas están listas para pegarse.",
-    error:"Crear SEC, NANXING y LABEL dentro de subcarpetas profundas alargando la ruta, o reutilizar carpetas temporales con archivos residuales de otro lote.",
+    control:"C06 · Existen la carpeta de producción del lote, SEC, NANXING y LABEL en Producción, y sus rutas cortas están listas.",
+    error:"Crear SEC, NANXING y LABEL dentro de subcarpetas profundas alargando la ruta, o reutilizar carpetas con archivos de otro lote.",
     recuperacion:"Crea siempre SEC, NANXING y LABEL directamente bajo Producción y verifica que estén vacías antes de exportar.",
     links:["C06","I-03","P-02","P-03","MQ-08"],
-    captura:"Captura pendiente (P-03): ventana Output Data y explorador en Luis del Ángel / Ibero / Producción mostrando Puerta Intercom Grande, SEC, NANXING y LABEL."
+    captura:"Captura pendiente (P-03): ventana Output Data y explorador en <Proyecto>/Producción con la carpeta de producción del lote, SEC, NANXING y LABEL."
   },
   {
-    id:"MQ-08", etapa:"Etapa 6 · Exportación (Rutas en Output Data)", grupo:"Etapas 6 a 8 · Exportación, reportes PDF y consolidación de carpeta", variante:"EXP", critico:true, tipo:"critical",
-    titulo:"Asignar las rutas de LABEL y SEC en la ventana Output Data", breve:"Image y Label → LABEL · Dimensionadora Zaragoza → SEC · P2P condicional", fuente:"F01 §10", estado:"Reportado",
-    origen:"Ventana emergente Output Data en Screen to Machine Center.",
-    ubicacion:"Screen to Machine Center ‣ Ventana emergente Output Data.",
-    ruta:"Output Data ‣ Image Output Path (LABEL) + Label Output Path (LABEL) + Dimensionadora Zaragoza (SEC) + Salida P2P (según lote)",
+    id:"MQ-08", etapa:"Etapa 6 · Exportación (Rutas en Output Data)", grupo:"Etapas 6 a 8 · Creación de carpetas, exportación, reportes PDF y consolidación", variante:"EXP", critico:true, tipo:"critical",
+    titulo:"Asignar las rutas de LABEL, SEC y P2P condicional en Output Data", breve:"Image y Label → LABEL · Seccionadora → SEC · P2P → NANXING (si aplica)", fuente:"F01", estado:"Reportado",
+    origen:"Ventana emergente Output Data en C2M Center.",
+    ubicacion:"C2M Center ‣ Ventana emergente Output Data.",
+    ruta:"Output Data ‣ Image Output Path (LABEL) + Label Output Path (LABEL) + Seccionadora Zaragoza (SEC) + Salida P2P (NANXING si aplica)",
     objetivo:"Dirigir cada flujo de salida de Cabinet Vision hacia su carpeta temporal corta correspondiente.",
-    entrada:"Rutas completas de las carpetas LABEL y SEC (y NANXING cuando aplique) en el portapapeles.",
+    entrada:"Rutas completas de las carpetas LABEL y SEC (y NANXING cuando el lote lleve P2P).",
     salida:"Campos de ruta configurados y verificados en Output Data.",
-    configuracion:"Image Output Path = ruta de carpeta LABEL · Label Output Path = ruta de carpeta LABEL · Dimensionadora Zaragoza = ruta de carpeta SEC · Salida de máquina P2P = Sin configurar en Puerta Intercom Grande (asignar carpeta NANXING cuando el lote sí lleve máquina P2P).",
-    condicion:"Configurar Image Output Path, Label Output Path y la seccionadora es obligatorio; configurar la salida P2P es condicional y depende de si el lote lleva maquinado secundario.",
+    configuracion:"Image Output Path = carpeta LABEL · Label Output Path = carpeta LABEL · Seccionadora (Zaragoza) = carpeta SEC · Salida P2P = carpeta NANXING únicamente si el lote lleva máquina secundaria P2P (sin configurar si no lleva P2P).",
+    condicion:"Configurar Image Output Path, Label Output Path y la seccionadora es obligatorio; configurar la salida P2P es condicional según la decisión tomada en MQ-04.",
     acciones:[
-      "Regresa a la ventana emergente Output Data en Screen to Machine Center.",
+      "Regresa a la ventana emergente Output Data en C2M Center.",
       "En Image Output Path, pega la ruta de la carpeta LABEL.",
       "En Label Output Path, pega la ruta de la carpeta LABEL.",
-      "En el campo Dimensionadora Zaragoza, pega la ruta de la carpeta SEC.",
-      "Deja sin configurar la salida de máquina P2P para Puerta Intercom Grande (en lotes con máquina P2P asignada, pega ahí la ruta de la carpeta NANXING).",
+      "En el campo de la seccionadora (ej. Dimensionadora Zaragoza), pega la ruta de la carpeta SEC.",
+      "En la salida de máquina P2P: si el lote lleva P2P según MQ-04, pega la ruta de NANXING; si no lleva P2P, déjala sin configurar.",
       "Verifica cuidadosamente que ninguna ruta apunte a una carpeta incorrecta o a un lote anterior."
     ],
-    control:"C06 · Image Output Path y Label Output Path apuntan a LABEL; Dimensionadora Zaragoza apunta a SEC; ninguna ruta es errónea.",
+    control:"C06 · Image/Label apuntan a LABEL, Seccionadora apunta a SEC y P2P coincide con la decisión del lote.",
     error:"Invertir las rutas de SEC y LABEL o dejar una ruta antigua en Output Data.",
     recuperacion:"Corrige las rutas en Output Data antes de ejecutar la exportación.",
     links:["C06","I-03","P-02","P-08","MQ-09"],
-    captura:"Captura pendiente (P-02): ventana Output Data con las rutas asignadas a LABEL y SEC."
+    captura:"Captura pendiente (P-02): ventana Output Data con las rutas asignadas."
   },
   {
-    id:"MQ-09", etapa:"Etapa 6 · Exportación (Ejecución NC)", grupo:"Etapas 6 a 8 · Exportación, reportes PDF y consolidación de carpeta", variante:"EXP", critico:true, tipo:"critical",
-    titulo:"Ejecutar la generación de códigos NC y etiquetas y comprobar los archivos en destino", breve:"Ejecutar Output Data → Starting Output Runtime / Create SCM Automatic Fields → OK", fuente:"F01 §11", estado:"Reportado",
+    id:"MQ-09", etapa:"Etapa 6 · Exportación (Ejecución NC)", grupo:"Etapas 6 a 8 · Creación de carpetas, exportación, reportes PDF y consolidación", variante:"EXP", critico:true, tipo:"critical",
+    titulo:"Ejecutar la generación de códigos NC y etiquetas y comprobar archivos en destino", breve:"Ejecutar Output Data → Starting Output Runtime / Create SCM Automatic Fields → OK", fuente:"F01", estado:"Reportado",
     origen:"Ventana Output Data con rutas verificadas.",
-    ubicacion:"Ventana Output Data ‣ Ventanas de progreso del sistema ‣ Confirmación OK ‣ Carpetas SEC y LABEL en el explorador.",
-    ruta:"Output Data ‣ Ejecutar generación ‣ Observar comandos ‣ Cerrar ventanas cuando corresponda ‣ OK ‣ Revisar carpetas SEC y LABEL",
-    objetivo:"Emitir los programas de seccionadora y los archivos de etiquetado verificando su existencia real en las carpetas de salida.",
+    ubicacion:"Ventana Output Data ‣ Ventanas de progreso del sistema ‣ Confirmación OK ‣ Carpetas SEC, LABEL (y NANXING) en explorador.",
+    ruta:"Output Data ‣ Ejecutar generación ‣ Observar comandos ‣ Cerrar ventanas cuando corresponda ‣ OK ‣ Revisar carpetas destino",
+    objetivo:"Emitir los programas de seccionadora, P2P (si aplica) y archivos de etiquetado verificando su existencia real en disco.",
     entrada:"Rutas configuradas en Output Data y optimización vigente.",
-    salida:"Programas de seccionadora en SEC y archivos/imágenes de etiquetas en LABEL.",
+    salida:"Programas de seccionadora en SEC, etiquetas en LABEL y programas P2P en NANXING (cuando aplique).",
     configuracion:"Conservar intactos los nombres reales de los archivos generados por Cabinet Vision.",
-    condicion:"Obligatoria en todo lote. Los mensajes del sistema (Starting Output Runtime, Create SCM Automatic Fields) no son prueba suficiente por sí solos.",
+    condicion:"Obligatoria en todo lote. Los mensajes del sistema no son prueba suficiente por sí solos.",
     acciones:[
       "Desde Output Data, ejecuta la generación de archivos.",
-      "Observa el procesamiento de los comandos y espera a que finalice la ejecución (pueden aparecer mensajes como Starting Output Runtime y Create SCM Automatic Fields).",
-      "Revisa los mensajes del sistema, cierra las ventanas de ejecución cuando corresponda, espera a que aparezca la confirmación OK y pulsa OK para finalizar.",
-      "Abre las carpetas SEC y LABEL en el explorador de archivos para comprobar que los archivos se generaron realmente."
+      "Observa el procesamiento de los comandos y espera a que finalice (pueden aparecer mensajes como Starting Output Runtime y Create SCM Automatic Fields).",
+      "Cierra las ventanas de ejecución cuando corresponda, espera a que aparezca OK y pulsa OK para finalizar.",
+      "Abre las carpetas SEC y LABEL (y NANXING si el lote lleva P2P) en el explorador de archivos para comprobar que los archivos se generaron realmente."
     ],
-    control:"C07 · Las carpetas SEC y LABEL contienen los archivos generados por Cabinet Vision para el lote.",
-    error:"Dar por válida la exportación únicamente porque aparecieron los mensajes Starting Output Runtime / Create SCM Automatic Fields o el botón OK.",
-    recuperacion:"Si falta algún archivo en SEC o LABEL, revisa las rutas en Output Data y repite la exportación antes de renombrar o mover carpetas.",
+    control:"C07 · Las carpetas de salida contienen los archivos reales generados por Cabinet Vision para el lote.",
+    error:"Dar por válida la exportación únicamente por los mensajes del sistema o el botón OK sin revisar las carpetas.",
+    recuperacion:"Si falta algún archivo en SEC, LABEL o NANXING, revisa las rutas en Output Data y repite la exportación antes de mover carpetas.",
     links:["C07","I-04","P-02","P-03","MQ-10"],
-    captura:"Captura pendiente (P-02, P-03): mensajes Starting Output Runtime / Create SCM Automatic Fields y contenido generado en SEC y LABEL."
+    captura:"Captura pendiente (P-02, P-03): mensajes del sistema y contenido generado en SEC, LABEL y NANXING."
   },
   {
-    id:"MQ-10", etapa:"Etapa 7 · Reportes (Material Summary)", grupo:"Etapas 6 a 8 · Exportación, reportes PDF y consolidación de carpeta", variante:"EXP", critico:false, tipo:"control",
-    titulo:"Exportar el Reporte 1: Material Summary (Resumen de materiales cortables) en PDF", breve:"Reports (bajo tableros apilados) → Material Summary → PDF", fuente:"F01 §12 (Reporte 1)", estado:"Reportado",
-    origen:"Screen to Machine Center tras exportar códigos NC y etiquetas.",
-    ubicacion:"Menú lateral izquierdo de Screen to Machine Center (debajo del área donde se visualizan los tableros apilados) ‣ Sección Reports ‣ Material Summary.",
-    ruta:"C2M Center ‣ Menú izquierdo (bajo tableros apilados) ‣ Reports ‣ Material Summary ‣ Exportar en PDF ‣ Guardar en Puerta Intercom Grande",
-    objetivo:"Guardar el resumen de los materiales cortables considerados en la optimización dentro de la carpeta del concepto.",
-    entrada:"Optimización activa del lote en Screen to Machine Center.",
-    salida:"Archivo Lista de materiales_Puerta Intercom Grande.pdf guardado en Producción / Puerta Intercom Grande.",
-    configuracion:"Nombre propuesto: Lista de materiales_Puerta Intercom Grande.pdf. Alcance estricto: resumen de materiales cortables (tableros/paneles) incluidos en la optimización; NO confundir con la lista de materiales integral de fabricación (no necesariamente incluye herrajes, adhesivos, componentes eléctricos u otros insumos).",
+    id:"MQ-10", etapa:"Etapa 7 · Reportes (Material Summary)", grupo:"Etapas 6 a 8 · Creación de carpetas, exportación, reportes PDF y consolidación", variante:"EXP", critico:false, tipo:"control",
+    titulo:"Generar el Reporte 1: Material Summary (Materiales cortables) en PDF", breve:"Reports (bajo tableros apilados) → Material Summary → PDF en carpeta del lote", fuente:"F01 · F05", estado:"Reportado",
+    origen:"C2M Center tras exportar códigos NC y etiquetas.",
+    ubicacion:"Menú lateral izquierdo de C2M Center (debajo de tableros apilados) ‣ Sección Reports ‣ Material Summary.",
+    ruta:"C2M Center ‣ Menú izquierdo ‣ Reports ‣ Material Summary ‣ Exportar en PDF ‣ Guardar en carpeta de producción del lote",
+    objetivo:"Guardar el resumen de materiales cortables de la optimización dentro de la carpeta de producción del lote.",
+    entrada:"Optimización activa del lote en C2M Center.",
+    salida:"Archivo Lista de materiales_<Lote>.pdf guardado en la carpeta de producción del lote.",
+    configuracion:"Nombre propuesto: Lista de materiales_<Lote>.pdf. Alcance estricto: resumen de materiales cortables (tableros/paneles); NO confundir con la BOM integral de fabricación (herrajes, adhesivos, eléctricos).",
     condicion:"Obligatoria en todo lote.",
     acciones:[
-      "En el menú lateral izquierdo de Screen to Machine Center, debajo del área donde se visualizan los tableros apilados, ubica la sección Reports.",
+      "En el menú lateral izquierdo de C2M Center, debajo del área de tableros apilados, ubica la sección Reports.",
       "Selecciona el reporte Material Summary.",
       "Expórtalo en formato PDF.",
-      "Accede a la carpeta del concepto en Producción (Luis del Ángel / Ibero / Producción / Puerta Intercom Grande) y guárdalo con el nombre Lista de materiales_Puerta Intercom Grande.pdf."
+      "Guárdalo dentro de la carpeta de producción del lote con el nombre Lista de materiales_<Lote>.pdf."
     ],
-    control:"C07 · Existe el archivo Lista de materiales_Puerta Intercom Grande.pdf en la carpeta del concepto y su contenido corresponde al resumen de materiales de corte.",
-    error:"Confundir Material Summary con una BOM integral de compras/ingeniería o guardarlo fuera de la carpeta del concepto.",
-    recuperacion:"Precisa siempre en la entrega que este PDF cubre exclusivamente materiales cortables; si se guardó en otra ubicación, muévelo a la carpeta del concepto.",
+    control:"C07 · Existe el archivo Lista de materiales_<Lote>.pdf en la carpeta de producción del lote.",
+    error:"Confundir Material Summary con una BOM integral de compras/ingeniería o guardarlo fuera de la carpeta de producción del lote.",
+    recuperacion:"Precisa en la entrega que este PDF cubre exclusivamente materiales cortables; si se guardó en otra ubicación, muévelo a la carpeta de producción del lote.",
     links:["C07","I-05","P-02","P-03","MQ-11"],
-    captura:"Captura pendiente (P-02, P-03): ubicación de Reports ‣ Material Summary y vista del PDF Lista de materiales_Puerta Intercom Grande.pdf."
+    captura:"Captura pendiente (P-02, P-03): ubicación de Reports ‣ Material Summary y vista del PDF generado."
   },
   {
-    id:"MQ-11", etapa:"Etapa 7 · Reportes (Saw Cut List Landscape)", grupo:"Etapas 6 a 8 · Exportación, reportes PDF y consolidación de carpeta", variante:"EXP", critico:false, tipo:"control",
-    titulo:"Exportar el Reporte 2: Saw Cut List Landscape (Diagramas de corte) en PDF", breve:"Reports → Saw Cut List Landscape → Export Report → Adobe PDF", fuente:"F01 §12 (Reporte 2)", estado:"Reportado",
-    origen:"Sección Reports en el menú lateral izquierdo de Screen to Machine Center.",
-    ubicacion:"Screen to Machine Center ‣ Menú izquierdo ‣ Reports ‣ Saw Cut List Landscape ‣ Herramientas superiores ‣ Export Report ‣ Adobe PDF.",
-    ruta:"Reports ‣ Saw Cut List Landscape ‣ Export Report (barra superior) ‣ Adobe PDF ‣ Guardar en Puerta Intercom Grande",
-    objetivo:"Emitir los diagramas de corte en PDF para consulta del operador y contraste con los programas de la seccionadora.",
-    entrada:"Optimización activa del lote en Screen to Machine Center.",
-    salida:"Archivo Diagramas de corte_Puerta Intercom Grande.pdf guardado en Producción / Puerta Intercom Grande.",
-    configuracion:"Reporte: Saw Cut List Landscape · Función superior: Export Report → Adobe PDF · Nombre propuesto: Diagramas de corte_Puerta Intercom Grande.pdf.",
+    id:"MQ-11", etapa:"Etapa 7 · Reportes (Saw Cut List)", grupo:"Etapas 6 a 8 · Creación de carpetas, exportación, reportes PDF y consolidación", variante:"EXP", critico:false, tipo:"control",
+    titulo:"Generar el Reporte 2: Saw Cut List Landscape (Diagramas de corte) en PDF", breve:"Reports → Saw Cut List Landscape → Export Report → Adobe PDF", fuente:"F01 · F05", estado:"Reportado",
+    origen:"Sección Reports en el menú lateral izquierdo de C2M Center.",
+    ubicacion:"C2M Center ‣ Menú izquierdo ‣ Reports ‣ Saw Cut List Landscape ‣ Herramientas superiores ‣ Export Report ‣ Adobe PDF.",
+    ruta:"Reports ‣ Saw Cut List Landscape ‣ Export Report ‣ Adobe PDF ‣ Guardar en carpeta de producción del lote",
+    objetivo:"Emitir los diagramas de corte en PDF dentro de la carpeta de producción del lote para consulta del operador.",
+    entrada:"Optimización activa del lote en C2M Center.",
+    salida:"Archivo Diagramas de corte_<Lote>.pdf guardado en la carpeta de producción del lote.",
+    configuracion:"Reporte: Saw Cut List Landscape · Función superior: Export Report → Adobe PDF · Nombre propuesto: Diagramas de corte_<Lote>.pdf.",
     condicion:"Obligatoria en todo lote.",
     acciones:[
       "En la sección Reports del menú lateral izquierdo, selecciona Saw Cut List Landscape.",
       "Utiliza la función Export Report disponible en las herramientas superiores.",
       "Selecciona Adobe PDF e inicia la exportación.",
-      "Guarda el archivo dentro de la carpeta Puerta Intercom Grande con el nombre Diagramas de corte_Puerta Intercom Grande.pdf.",
-      "Verifica que dentro de la carpeta del concepto existan ya los dos reportes en PDF."
+      "Guarda el archivo dentro de la carpeta de producción del lote con el nombre Diagramas de corte_<Lote>.pdf.",
+      "Verifica que dentro de la carpeta de producción del lote existan ya ambos reportes en PDF."
     ],
-    control:"C07 · Existen ambos reportes PDF en la carpeta Puerta Intercom Grande y los diagramas coinciden con la optimización.",
+    control:"C07 · Existen ambos reportes PDF en la carpeta de producción del lote y los diagramas coinciden con la optimización.",
     error:"Omitir el reporte de diagramas de corte o exportar en un formato distinto de Adobe PDF.",
-    recuperacion:"Vuelve a abrir Saw Cut List Landscape y repite Export Report → Adobe PDF hacia la carpeta del concepto.",
+    recuperacion:"Vuelve a abrir Saw Cut List Landscape y repite Export Report → Adobe PDF hacia la carpeta de producción del lote.",
     links:["C07","P-02","P-03","MQ-12"],
-    captura:"Captura pendiente (P-02, P-03): Saw Cut List Landscape, botón superior Export Report, opción Adobe PDF y archivo guardado."
+    captura:"Captura pendiente (P-02, P-03): Saw Cut List Landscape, Export Report, Adobe PDF y archivo guardado."
   },
   {
-    id:"MQ-12", etapa:"Etapa 8 · Organización", grupo:"Etapas 6 a 8 · Exportación, reportes PDF y consolidación de carpeta", variante:"EXP", critico:true, tipo:"critical",
-    titulo:"Renombrar SEC, NANXING y LABEL, moverlas a la carpeta del concepto y verificar los 7 puntos", breve:"F2 (añadir _Concepto) → Ctrl+X → pegar en Puerta Intercom Grande → verificar 7 puntos", fuente:"F01 §13", estado:"Reportado",
-    origen:"Carpeta Luis del Ángel / Ibero / Producción en el Explorador de archivos.",
-    ubicacion:"Explorador de archivos ‣ Luis del Ángel / Ibero / Producción ‣ Carpeta Puerta Intercom Grande.",
-    ruta:"Producción ‣ Identificar SEC, NANXING y LABEL ‣ Renombrar con sufijo del concepto (F2) ‣ Cortar (Ctrl+X) ‣ Pegar en Puerta Intercom Grande ‣ Verificar 7 puntos",
-    objetivo:"Consolidar todos los entregables de máquina y reportes en una sola carpeta por concepto sin perder los nombres originales de los archivos internos.",
-    entrada:"Carpetas temporales SEC, NANXING y LABEL en Producción + 2 reportes PDF dentro de Puerta Intercom Grande.",
-    salida:"Carpeta Puerta Intercom Grande consolidada con los 2 PDFs y las 3 subcarpetas renombradas (SEC_..., NANXING_..., LABEL_...).",
-    configuracion:"Subcarpetas renombradas: SEC_Puerta Intercom Grande, NANXING_Puerta Intercom Grande y LABEL_Puerta Intercom Grande. Los archivos internos generados por Cabinet Vision conservan sus nombres originales.",
-    condicion:"Obligatoria al concluir la exportación de máquina y de reportes PDF. Cierra el flujo principal de generación desde Cabinet Vision.",
+    id:"MQ-12", etapa:"Etapa 8 · Consolidación del lote", grupo:"Etapas 6 a 8 · Creación de carpetas, exportación, reportes PDF y consolidación", variante:"EXP", critico:true, tipo:"critical",
+    titulo:"Renombrar SEC, NANXING y LABEL, moverlas a la carpeta de producción del lote y verificar 7 puntos", breve:"F2 (añadir _<Lote>) → Ctrl+X → pegar en carpeta de producción del lote → 7 puntos", fuente:"F01", estado:"Reportado",
+    origen:"Carpeta <Proyecto> / Producción en el Explorador de archivos.",
+    ubicacion:"Explorador de archivos ‣ <Proyecto> / Producción ‣ Carpeta de producción del lote.",
+    ruta:"Producción ‣ Renombrar SEC, NANXING y LABEL con sufijo del lote (F2) ‣ Cortar (Ctrl+X) ‣ Pegar en carpeta de producción del lote ‣ Verificar 7 puntos",
+    objetivo:"Consolidar todos los entregables de máquina y reportes PDF dentro de la carpeta de producción del lote conservando los nombres internos de los archivos.",
+    entrada:"Carpetas temporales SEC, NANXING y LABEL en Producción + 2 reportes PDF dentro de la carpeta de producción del lote.",
+    salida:"Carpeta de producción del lote consolidada con los 2 PDFs y las 3 subcarpetas renombradas (SEC_<Lote>, NANXING_<Lote>, LABEL_<Lote>).",
+    configuracion:"Subcarpetas renombradas: SEC_<Lote>, NANXING_<Lote> y LABEL_<Lote>. Los archivos internos generados por Cabinet Vision conservan sus nombres originales.",
+    condicion:"Obligatoria al concluir la exportación de máquina y de reportes PDF. Cierra la generación del Paquete de Producción desde Cabinet Vision.",
     acciones:[
-      "Regresa a la carpeta Producción en el explorador de archivos e identifica las carpetas SEC, NANXING y LABEL.",
-      "Renombra las tres carpetas para identificar el concepto conservando su clasificación original: SEC_Puerta Intercom Grande, NANXING_Puerta Intercom Grande y LABEL_Puerta Intercom Grande.",
-      "Selecciona las tres carpetas renombradas y córtalas mediante Ctrl + X.",
-      "Ingresa a la carpeta Puerta Intercom Grande y pégalas dentro.",
-      "Ejecuta la verificación obligatoria de 7 puntos: 1) existe el PDF de materiales cortables, 2) existe el PDF de diagramas de corte, 3) SEC contiene los archivos de seccionadora, 4) LABEL contiene los archivos de etiquetado, 5) NANXING permanece vacía cuando no hay máquina secundaria (o contiene programas P2P si se asignó), 6) los archivos corresponden al concepto y lote procesados y 7) los nombres y rutas identifican el mobiliario sin ambigüedades."
+      "Regresa a Producción en el explorador de archivos e identifica las carpetas SEC, NANXING y LABEL.",
+      "Renombra las tres carpetas con F2 agregando el identificador del lote: SEC_<Lote>, NANXING_<Lote> y LABEL_<Lote>.",
+      "Selecciona las tres carpetas renombradas, córtalas con Ctrl + X y pégalas dentro de la carpeta de producción del lote.",
+      "Ejecuta la verificación obligatoria de 7 puntos: 1) PDF de materiales cortables, 2) PDF de diagramas de corte, 3) SEC con programas de seccionadora, 4) LABEL con archivos de etiquetado, 5) NANXING con programas P2P (o vacía si no lleva P2P), 6) correspondencia exacta con el lote y 7) nombres y rutas sin ambigüedades."
     ],
-    control:"C07 (Verificación obligatoria de cierre del flujo principal) · Los 7 criterios se cumplen sin eliminar archivos generados ni sobrescribir entregables de otros lotes.",
-    error:"Renombrar o mover las carpetas antes de terminar la exportación en Output Data, o modificar los nombres internos de los programas NC y etiquetas.",
-    recuperacion:"Si falta algún entregable o no corresponde al lote, regénéralo desde Screen to Machine Center antes de pasar a Odoo.",
+    control:"C07 (Verificación obligatoria de cierre) · Los 7 criterios se cumplen en la carpeta de producción del lote sin sobrescribir otros lotes.",
+    error:"Mover las carpetas antes de terminar Output Data o alterar los nombres internos de programas NC y etiquetas.",
+    recuperacion:"Si falta algún entregable o no corresponde al lote, regénéralo desde C2M Center antes de pasar a Odoo.",
     links:["C07","P-03","MQ-13"],
-    captura:"Captura pendiente (P-03): árbol final dentro de Luis del Ángel / Ibero / Producción / Puerta Intercom Grande con los 2 PDFs y las 3 subcarpetas."
+    captura:"Captura pendiente (P-03): contenido final de la carpeta de producción del lote con los 2 PDFs y las 3 subcarpetas."
   },
   {
-    id:"MQ-13", etapa:"Etapa 9 · Integración en Odoo (Identificación)", grupo:"Etapas 9 y 10 · Vinculación al producto en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:false, tipo:"control",
-    titulo:"Localizar y verificar la tarjeta del producto en Odoo (Manufactura ‣ Productos)", breve:"Odoo → Manufactura → Productos → Filtro Ibero → Puerta Intercom Grande", fuente:"F01 §14 · F06", estado:"Reportado",
-    origen:"Paquete consolidado en la carpeta compartida y sesión iniciada en Odoo.",
-    ubicacion:"Odoo ‣ Módulo Manufactura ‣ Productos ‣ Filtro de proyecto Ibero ‣ Tarjeta del producto.",
-    ruta:"Odoo ‣ Ingresar con usuario ‣ Manufactura ‣ Productos ‣ Filtro proyecto: Ibero ‣ Puerta Intercom Grande ‣ Verificar 4 datos",
-    objetivo:"Confirmar que la tarjeta del producto en Odoo corresponde exactamente al concepto fabricado antes de adjuntar entregables.",
-    entrada:"Nombre del proyecto (Ibero) y concepto procesado (Puerta Intercom Grande).",
-    salida:"Tarjeta del producto Puerta Intercom Grande abierta y verificada en Odoo.",
-    configuracion:"Comprobación de 4 datos: 1) Nombre del producto, 2) Proyecto al que pertenece (Ibero), 3) Imagen de referencia (cuando exista) y 4) Correspondencia con el concepto seleccionado en Cabinet Vision.",
+    id:"MQ-13", etapa:"Etapa 9 · Integración en Odoo (Identificación)", grupo:"Etapas 9 y 10 · Recopilación en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:false, tipo:"control",
+    titulo:"Localizar y verificar la tarjeta del producto en Odoo (Manufactura ‣ Productos)", breve:"Odoo → Manufactura → Productos → Filtro del proyecto → Tarjeta del producto", fuente:"F01 · F06", estado:"Reportado",
+    origen:"Paquete consolidado en la carpeta de producción del lote y sesión iniciada en Odoo.",
+    ubicacion:"Odoo ‣ Módulo Manufactura ‣ Productos ‣ Filtro del proyecto ‣ Tarjeta del producto.",
+    ruta:"Odoo ‣ Ingresar con usuario ‣ Manufactura ‣ Productos ‣ Filtrar por proyecto ‣ Abrir producto del lote ‣ Verificar 4 datos",
+    objetivo:"Confirmar que la tarjeta del producto en Odoo corresponde exactamente al proyecto y concepto/lote fabricado antes de adjuntar entregables.",
+    entrada:"Nombre del proyecto y concepto/lote procesado.",
+    salida:"Tarjeta del producto correspondiente abierta y verificada en Odoo.",
+    configuracion:"Comprobación de 4 datos: 1) Nombre del producto, 2) Proyecto al que pertenece, 3) Imagen de referencia (cuando exista) y 4) Correspondencia con lo procesado en Cabinet Vision.",
     condicion:"Obligatoria antes de cargar documentos o registrar la ruta en Notas internas.",
     acciones:[
       "Abre Odoo e ingresa con el usuario correspondiente.",
       "Entra al módulo Manufactura y accede a Productos.",
-      "Aplica el filtro de proyecto previamente configurado y selecciona el proyecto Ibero.",
-      "Localiza Puerta Intercom Grande y abre la tarjeta del producto.",
-      "Antes de cargar archivos, comprueba que el nombre del producto, el proyecto asignado, la imagen de referencia (cuando exista) y el concepto coinciden con lo procesado en Cabinet Vision."
+      "Aplica el filtro por proyecto y selecciona el proyecto correspondiente al Paquete de Producción.",
+      "Localiza el producto del lote y abre su tarjeta.",
+      "Antes de cargar archivos, comprueba nombre, proyecto asignado, imagen de referencia (cuando exista) y correspondencia con lo procesado en Cabinet Vision."
     ],
     control:"C08 · El registro abierto en Odoo corresponde sin ambigüedad al concepto y proyecto del lote.",
-    error:"Adjuntar archivos de maquinado en un producto homónimo de otro proyecto o en otra variante de puerta.",
-    recuperacion:"Vuelve al listado de Productos en Manufactura, filtra por el proyecto Ibero y verifica los 4 criterios de identidad.",
+    error:"Adjuntar archivos de maquinado en un producto homónimo de otro proyecto o en otra variante.",
+    recuperacion:"Vuelve al listado de Productos en Manufactura, filtra por el proyecto correcto y verifica los 4 criterios.",
     links:["C08","P-04","MQ-14"],
-    captura:"Captura pendiente (P-04): listado de Productos filtrado por Ibero y tarjeta del producto Puerta Intercom Grande."
+    captura:"Captura pendiente (P-04): listado de Productos filtrado por proyecto y tarjeta del producto."
   },
   {
-    id:"MQ-14", etapa:"Etapa 9 · Integración en Odoo (Carga en Documentos)", grupo:"Etapas 9 y 10 · Vinculación al producto en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:false, tipo:"control",
-    titulo:"Cargar los entregables de fabricación en la pestaña Documentos del producto", breve:"3.ª pestaña Documentos → Cargar → PDFs, etiquetas y programas", fuente:"F01 §14 (Carga de archivos)", estado:"Reportado",
-    origen:"Tarjeta del producto Puerta Intercom Grande abierta en Odoo.",
+    id:"MQ-14", etapa:"Etapa 9 · Integración en Odoo (Carga en Documentos)", grupo:"Etapas 9 y 10 · Recopilación en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:false, tipo:"control",
+    titulo:"Cargar los entregables del Paquete de Producción en Documentos de Odoo", breve:"3.ª pestaña Documentos → Cargar → PDFs, etiquetas y programas", fuente:"F01", estado:"Reportado",
+    origen:"Tarjeta del producto abierta en Odoo.",
     ubicacion:"Tarjeta del producto en Odoo ‣ Pestaña Documentos (tercera pestaña de izquierda a derecha) ‣ Botón Cargar.",
     ruta:"Tarjeta del producto ‣ Pestaña Documentos (3.ª de izq. a der.) ‣ Cargar ‣ Incorporar PDFs, etiquetas y programas",
-    objetivo:"Respaldar y referenciar los entregables del concepto directamente dentro de la ficha del producto en Odoo.",
-    entrada:"Archivos consolidados en Luis del Ángel / Ibero / Producción / Puerta Intercom Grande.",
-    salida:"Diagrama de corte PDF, resumen de materiales cortables PDF, archivos de etiquetado y programas de seccionadora (y P2P cuando existan) disponibles en la pestaña Documentos.",
-    configuracion:"Entregables a incorporar: 1) Diagrama de corte en PDF, 2) Resumen de materiales cortables en PDF, 3) Archivos de etiquetado, 4) Programas de seccionadora y 5) Programas de maquinado secundario únicamente cuando existan.",
-    condicion:"Obligatoria para los entregables generados en el lote. Cuando los entregables de máquina sean carpetas o conjuntos de archivos, verificar qué formato de carga admite la instancia de Odoo (sin suponer que admite subir carpetas completas directamente).",
+    objetivo:"Respaldar los entregables de la carpeta de producción del lote directamente dentro de la ficha del producto en Odoo.",
+    entrada:"Archivos consolidados en la carpeta de producción del lote.",
+    salida:"Diagramas de corte PDF, resumen de materiales cortables PDF, etiquetas y programas de seccionadora (y P2P si aplica) disponibles en Documentos.",
+    configuracion:"Entregables a incorporar: 1) Diagrama de corte en PDF, 2) Resumen de materiales cortables en PDF, 3) Archivos de etiquetado, 4) Programas de seccionadora y 5) Programas P2P únicamente cuando existan.",
+    condicion:"Obligatoria para el Paquete de Producción. Verifica qué formato de carga admite la instancia de Odoo (selección múltiple o archivo comprimido).",
     acciones:[
-      "Dentro de la tarjeta del producto, localiza la pestaña Documentos (identificada en el ejemplo como la tercera pestaña de izquierda a derecha) y ábrela.",
+      "Dentro de la tarjeta del producto, abre la pestaña Documentos (tercera pestaña de izquierda a derecha).",
       "Selecciona el botón Cargar.",
-      "Incorpora los archivos correspondientes al concepto: Diagrama de corte en PDF, Resumen de materiales cortables en PDF, archivos de etiquetado, programas de seccionadora y, solo cuando existan, programas de maquinado secundario.",
-      "Conserva intactos los archivos originales dentro de la carpeta compartida en red."
+      "Incorpora los archivos de la carpeta de producción del lote: ambos PDFs, archivos de etiquetado, programas de seccionadora y, cuando existan, programas P2P.",
+      "Conserva intactos los archivos originales dentro de la carpeta de producción del lote en red."
     ],
-    control:"C08 · Los entregables del lote figuran cargados en la pestaña Documentos del producto y los originales permanecen en la carpeta compartida.",
-    error:"Suponer que el navegador cargará una carpeta completa sin verificar el formato admitido por la instancia, o mover los archivos dejando vacía la carpeta compartida.",
-    recuperacion:"Comprueba el método de carga en la instancia de Odoo (P-04) y asegúrate de copiar/cargar sin eliminar los archivos de la carpeta de red.",
+    control:"C08 · Los entregables del lote figuran en la pestaña Documentos y los originales permanecen en red.",
+    error:"Suponer que el navegador cargará carpetas completas sin verificar el formato admitido por Odoo, o mover los archivos vaciando la carpeta de red.",
+    recuperacion:"Comprueba el método de carga en Odoo (P-04) y asegúrate de cargar copias sin eliminar los archivos de la carpeta de producción del lote.",
     links:["C08","P-04","MQ-15"],
-    captura:"Captura pendiente (P-04): tercera pestaña Documentos en la tarjeta del producto con los archivos cargados."
+    captura:"Captura pendiente (P-04): pestaña Documentos en la tarjeta del producto con los archivos cargados."
   },
   {
-    id:"MQ-15", etapa:"Etapa 9 · Integración en Odoo (Ruta en Notas internas)", grupo:"Etapas 9 y 10 · Vinculación al producto en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:true, tipo:"critical",
-    titulo:"Copiar la ruta de red con Ctrl + Shift + C, quitar comillas y guardarla en Notas internas", breve:"Explorador (Ctrl+Shift+C) → Odoo Notas internas → eliminar comillas → Guardar", fuente:"F01 §14 (Registro de ruta)", estado:"Reportado",
-    origen:"Carpeta Puerta Intercom Grande en el explorador de archivos y tarjeta del producto en Odoo.",
-    ubicacion:"Explorador de archivos (carpeta Puerta Intercom Grande) ‣ Odoo ‣ Tarjeta del producto ‣ Apartado Notas internas.",
-    ruta:"Explorador: carpeta Puerta Intercom Grande ‣ Ctrl+Shift+C ‣ Odoo: Notas internas ‣ Pegar dirección ‣ Eliminar comillas iniciales y finales ‣ Guardar producto",
-    objetivo:"Registrar la dirección exacta de la carpeta compartida como ubicación operativa principal dentro de la tarjeta del producto.",
-    entrada:"Carpeta consolidada Luis del Ángel / Ibero / Producción / Puerta Intercom Grande.",
-    salida:"Ruta completa de red (sin comillas) guardada en el apartado Notas internas de la tarjeta del producto en Odoo.",
-    configuracion:"Atajo utilizado: Ctrl + Shift + C para copiar la ruta. Limpieza obligatoria: eliminar las comillas iniciales y finales (\"...\"). Distinción estricta: no confundir la referencia interna del producto (identificación en Odoo) con la ruta de red (en Notas internas).",
-    condicion:"Obligatoria en todo producto cuyos entregables de maquinado se liberen.",
+    id:"MQ-15", etapa:"Etapa 9 · Integración en Odoo (Ruta en Notas internas)", grupo:"Etapas 9 y 10 · Recopilación en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:true, tipo:"critical",
+    titulo:"Copiar ruta de la carpeta de producción del lote, quitar comillas y guardar en Notas internas", breve:"Explorador (Ctrl+Shift+C) → Odoo Notas internas → eliminar comillas → Guardar", fuente:"F01 · F06", estado:"Reportado",
+    origen:"Carpeta de producción del lote en el explorador de archivos y tarjeta del producto en Odoo.",
+    ubicacion:"Explorador de archivos (carpeta de producción del lote) ‣ Odoo ‣ Tarjeta del producto ‣ Apartado Notas internas.",
+    ruta:"Explorador: carpeta de producción del lote ‣ Ctrl+Shift+C ‣ Odoo: Notas internas ‣ Pegar ‣ Eliminar comillas ‣ Guardar producto",
+    objetivo:"Registrar la dirección exacta de la carpeta de producción del lote dentro de la tarjeta del producto en Odoo.",
+    entrada:"Carpeta de producción del lote consolidada.",
+    salida:"Ruta completa de red (sin comillas) guardada en Notas internas de Odoo.",
+    configuracion:"Atajo: Ctrl + Shift + C. Limpieza obligatoria: eliminar comillas iniciales y finales (\"...\"). No confundir ni alterar la Referencia interna del producto.",
+    condicion:"Obligatoria en todo Paquete de Producción liberado.",
     acciones:[
-      "Abre o selecciona la carpeta Puerta Intercom Grande en el explorador de archivos.",
+      "Selecciona la carpeta de producción del lote en el explorador de archivos.",
       "Copia su dirección de red utilizando Ctrl + Shift + C.",
-      "Regresa a Odoo y localiza el apartado Notas internas dentro de la tarjeta del producto.",
-      "Pega la dirección completa.",
-      "Elimina las comillas iniciales y finales que pueda contener la ruta copiada.",
-      "Verifica que la referencia interna del producto no haya sido alterada y guarda el producto."
+      "Regresa a Odoo, localiza Notas internas en la tarjeta del producto y pega la dirección.",
+      "Elimina las comillas iniciales y finales de la ruta pegada.",
+      "Verifica que la Referencia interna del producto no haya sido alterada y guarda el producto."
     ],
-    control:"C09 · La ruta en Notas internas apunta exactamente a la carpeta Puerta Intercom Grande, no tiene comillas y el producto quedó guardado.",
-    error:"Dejar las comillas iniciales y finales en la ruta, pegar una ruta local inaccesible desde red o sobrescribir la referencia interna del producto.",
-    recuperacion:"Edita Notas internas, retira las comillas, confirma que sea la dirección de red compartida y vuelve a guardar el producto.",
+    control:"C09 · La ruta en Notas internas apunta exactamente a la carpeta de producción del lote, no tiene comillas y el producto quedó guardado.",
+    error:"Dejar las comillas en la ruta, pegar una ruta local inaccesible desde red o sobrescribir la Referencia interna.",
+    recuperacion:"Edita Notas internas, retira las comillas, confirma la dirección de red compartida y vuelve a guardar.",
     links:["C09","I-06","P-04","MQ-16"],
-    captura:"Captura pendiente (P-04): apartado Notas internas de Puerta Intercom Grande mostrando la ruta completa sin comillas."
+    captura:"Captura pendiente (P-04): apartado Notas internas mostrando la ruta completa sin comillas."
   },
   {
-    id:"MQ-16", etapa:"Etapa 10 · Validación cruzada", grupo:"Etapas 9 y 10 · Vinculación al producto en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:true, tipo:"critical",
-    titulo:"Comprobar el acceso a la carpeta compartida y archivos desde una segunda computadora", breve:"2.ª PC → Odoo → Notas internas → copiar ruta → Explorador → verificar archivos", fuente:"F01 §15", estado:"Reportado",
-    origen:"Segunda computadora distinta de la que generó los archivos (conectada a otra red Wi-Fi pero con acceso a la carpeta compartida).",
-    ubicacion:"Segunda computadora ‣ Odoo (Manufactura ‣ Productos ‣ Ibero ‣ Puerta Intercom Grande ‣ Notas internas) ‣ Explorador de archivos.",
-    ruta:"2.ª computadora ‣ Odoo ‣ Manufactura ‣ Productos ‣ Filtrar Ibero ‣ Puerta Intercom Grande ‣ Copiar ruta de Notas internas ‣ Pegar en Explorador ‣ Verificar apertura",
-    objetivo:"Demostrar que la ruta registrada en Odoo y los permisos de red permiten consultar los entregables desde otro equipo independiente.",
+    id:"MQ-16", etapa:"Etapa 10 · Validación cruzada", grupo:"Etapas 9 y 10 · Recopilación en Odoo y validación en 2.ª computadora", variante:"ODOO", critico:true, tipo:"critical",
+    titulo:"Comprobar acceso a la carpeta de producción del lote desde una segunda computadora", breve:"2.ª PC → Odoo → Notas internas → copiar ruta → Explorador → verificar archivos", fuente:"F01", estado:"Reportado",
+    origen:"Segunda computadora distinta de la que generó los archivos (con acceso a la carpeta compartida).",
+    ubicacion:"Segunda computadora ‣ Odoo (Manufactura ‣ Productos ‣ Notas internas) ‣ Explorador de archivos.",
+    ruta:"2.ª computadora ‣ Odoo ‣ Filtrar proyecto ‣ Abrir producto ‣ Copiar ruta de Notas internas ‣ Pegar en Explorador ‣ Verificar apertura",
+    objetivo:"Demostrar que la ruta en Odoo y los permisos de red permiten abrir la carpeta de producción del lote desde otro equipo independiente.",
     entrada:"Producto guardado en Odoo con ruta en Notas internas.",
-    salida:"Acceso comprobado desde el segundo equipo a la carpeta Puerta Intercom Grande y a todos sus archivos.",
-    configuracion:"Verificación de acceso a: diagramas de corte (PDF), resumen de materiales cortables (PDF), archivos de etiquetado (LABEL) y programas disponibles (SEC).",
-    condicion:"Obligatoria antes de dar por válida una ruta y antes de cerrar la liberación con Maquinados.",
+    salida:"Acceso comprobado desde el segundo equipo a la carpeta de producción del lote y a todos sus archivos.",
+    configuracion:"Verificación de acceso a: diagramas de corte (PDF), resumen de materiales cortables (PDF), archivos de etiquetado (LABEL) y programas (SEC y NANXING si aplica).",
+    condicion:"Obligatoria antes de cerrar la liberación con Maquinados.",
     acciones:[
-      "Desde una segunda computadora, abre Odoo e ingresa al módulo Manufactura.",
-      "Abre Productos, filtra por el proyecto (Ibero) y selecciona el producto correspondiente (Puerta Intercom Grande).",
-      "Localiza la ruta compartida en Notas internas y cópiala.",
-      "Abre una ventana del explorador de archivos en la segunda computadora, pega la dirección y ábrela.",
-      "Verifica que abre la carpeta correcta y comprueba los permisos de acceso abriendo/visualizando los diagramas de corte, el resumen de materiales, los archivos de etiquetado y los programas disponibles."
+      "Desde una segunda computadora, abre Odoo e ingresa a Manufactura ‣ Productos.",
+      "Filtra por el proyecto correspondiente y abre la tarjeta del producto del lote.",
+      "Copia la ruta compartida desde Notas internas.",
+      "Pega la dirección en el explorador de archivos de la segunda computadora y ábrela.",
+      "Comprueba los permisos de acceso abriendo los PDFs, las etiquetas y las carpetas de programas."
     ],
-    control:"C10 · Desde el segundo equipo se abre la carpeta Puerta Intercom Grande y se consultan sin bloqueo de permisos todos los entregables del lote.",
-    error:"Dar por válida una ruta que solo resuelve en la computadora donde se generaron los archivos o que carece de permisos de lectura para otros usuarios.",
-    recuperacion:"Corrige la dirección de red en Notas internas de Odoo o solicita la habilitación de permisos de la carpeta compartida y repite la prueba en la segunda computadora.",
+    control:"C10 · Desde el segundo equipo se abre la carpeta de producción del lote y se consultan sin bloqueo todos los entregables.",
+    error:"Dar por válida una ruta que solo resuelve localmente o carece de permisos de lectura para otros usuarios.",
+    recuperacion:"Corrige la dirección de red en Notas internas o habilita permisos de red y repite la prueba en la segunda computadora.",
     links:["C10","P-05","MQ-17"],
-    captura:"Captura pendiente (P-05): prueba en la segunda computadora mostrando la ruta pegada en el explorador y la carpeta Puerta Intercom Grande abierta."
+    captura:"Captura pendiente (P-05): prueba en 2.ª computadora mostrando la ruta pegada y la carpeta de producción del lote abierta."
   },
   {
-    id:"MQ-17", etapa:"Etapa 11 · Comunicación y liberación", grupo:"Etapas 11 y 12 · Comunicación a Maquinados y acceso alternativo en seccionadora", variante:"LIB", critico:true, tipo:"critical",
-    titulo:"Realizar la comunicación directa de liberación con el área de Maquinados (8 puntos)", breve:"Reunión presencial, llamada o Google Meet → confirmar los 8 puntos del lote", fuente:"F01 §16 · F04", estado:"Reportado",
-    origen:"Entregables verificados en la carpeta compartida, vinculados en Odoo y probados desde una segunda computadora.",
+    id:"MQ-17", etapa:"Etapa 11 · Liberación a Maquinados", grupo:"Etapas 11 y 12 · Liberación a Maquinados y acceso alternativo en seccionadora", variante:"LIB", critico:true, tipo:"critical",
+    titulo:"Realizar la comunicación directa de liberación con Maquinados (8 puntos)", breve:"Reunión presencial, llamada o Google Meet → confirmar los 8 puntos del lote", fuente:"F01 · F04", estado:"Reportado",
+    origen:"Paquete de Producción verificado en la carpeta de producción del lote, vinculado en Odoo y probado en 2.ª PC.",
     ubicacion:"Reunión presencial, llamada telefónica o sesión de Google Meet con el área de Maquinados.",
     ruta:"Ingeniería ‣ Reunión presencial / Llamada / Google Meet con Maquinados ‣ Confirmar los 8 puntos obligatorios de liberación",
-    objetivo:"Garantizar que Ingeniería y Maquinados trabajen con la misma información sobre el lote liberado, las máquinas, la ubicación de los archivos y las operaciones manuales.",
-    entrada:"Paquete consolidado en red, tarjeta del producto en Odoo y acuerdos del lote de corte.",
+    objetivo:"Garantizar que Ingeniería y Maquinados trabajen con la misma información sobre el lote liberado, máquinas, ubicación y operaciones manuales.",
+    entrada:"Carpeta de producción del lote consolidada, tarjeta en Odoo y acuerdos del archivo de lotes.",
     salida:"Liberación operativa comunicada y aceptada por el responsable de Maquinados.",
-    configuracion:"Confirmación explícita de los 8 puntos: 1) Qué concepto se liberó, 2) Qué cantidad de unidades comprende el lote, 3) Qué archivos se generaron, 4) Qué máquinas se utilizarán, 5) Dónde están almacenados los entregables, 6) Cómo se pueden consultar desde Odoo, 7) Qué acuerdos previos dieron origen a la configuración del lote y 8) Qué operaciones se realizarán manualmente y cuáles mediante máquina.",
-    condicion:"Obligatoria en todos los lotes. No debe darse por concluida la liberación operativa únicamente porque los archivos ya fueron exportados y subidos a Odoo.",
+    configuracion:"Confirmación explícita de 8 puntos: 1) Proyecto y lote/concepto liberado, 2) Cantidad de unidades, 3) Archivos generados, 4) Máquinas asignadas (seccionadora, enchapadora del doc. autorizado y P2P si aplica), 5) Ubicación en carpeta de producción del lote, 6) Consulta desde Odoo, 7) Acuerdos previos del lote y 8) Operaciones manuales vs. máquina.",
+    condicion:"Obligatoria en todos los lotes. La carga en Odoo no concluye por sí sola la liberación.",
     acciones:[
-      "Establece comunicación directa con el personal involucrado de Maquinados mediante una reunión presencial, una llamada o una reunión de Google Meet.",
-      "Confirma qué concepto se liberó (Puerta Intercom Grande) y qué cantidad de unidades comprende el lote.",
-      "Confirma qué archivos se generaron (PDF de materiales cortables, PDF de diagramas de corte, programas en SEC y etiquetas en LABEL) y qué máquinas se utilizarán (Dimensionadora Zaragoza con precorte para Enchapadora nueva Nanxing, sin P2P).",
-      "Indica dónde están almacenados los entregables en la carpeta compartida y cómo consultarlos desde Odoo (Manufactura ‣ Productos ‣ Ibero ‣ Puerta Intercom Grande).",
-      "Repasa qué acuerdos previos dieron origen a la configuración del lote y precisa qué operaciones se realizarán manualmente (como las perforaciones posteriores en esta puerta) y cuáles mediante máquina."
+      "Establece comunicación directa con Maquinados (reunión presencial, llamada o Google Meet).",
+      "Confirma el proyecto, concepto/lote liberado y la cantidad de unidades.",
+      "Confirma los archivos generados (ambos PDFs, SEC, LABEL y NANXING si aplica) y las máquinas asignadas conforme al archivo de lotes.",
+      "Indica la ubicación de la carpeta de producción del lote y cómo consultarla desde Odoo.",
+      "Repasa los acuerdos previos del lote y precisa qué operaciones se realizan manualmente y cuáles en máquina."
     ],
     control:"C11 · Los 8 puntos fueron comunicados y confirmados directamente con el área de Maquinados.",
-    error:"Dar por cerrada la liberación tras exportar los archivos sin avisar ni alinear el alcance con Producción.",
-    recuperacion:"Convoca de inmediato la comunicación directa con Maquinados antes de iniciar el corte y verifica si se requiere aplicar el Flujo complementario B en la PC de la seccionadora.",
+    error:"Dar por cerrada la liberación tras exportar archivos o subirlos a Odoo sin alinear el alcance con Producción.",
+    recuperacion:"Convoca de inmediato la comunicación directa con Maquinados antes de iniciar el corte y evalúa si aplica el Flujo B.",
     links:["C11","P-06","MQ-18"],
-    captura:"Evidencia pendiente (P-06): registro o confirmación de la reunión/llamada/Meet de liberación con Maquinados."
+    captura:"Evidencia pendiente (P-06): registro o confirmación de la comunicación de liberación con Maquinados."
   },
   {
-    id:"MQ-18", etapa:"Etapa 12 · Acceso alternativo (Flujo B)", grupo:"Etapas 11 y 12 · Comunicación a Maquinados y acceso alternativo en seccionadora", variante:"LIB", critico:false, tipo:"pending",
-    titulo:"Colocar nota visible con la ruta en la PC de la seccionadora y comprobar acceso con el operador", breve:"Flujo complementario B (sin Odoo en planta): PC de seccionadora → nota visible + prueba con operador", fuente:"F01 §17", estado:"Reportado",
-    origen:"Liberación de lote cuando el equipo asignado a la seccionadora en planta no cuenta con acceso o usuario en Odoo.",
-    ubicacion:"Planta de Producción ‣ Laptop o PC asignada a la seccionadora del lote (Dimensionadora Zaragoza).",
-    ruta:"Identificar seccionadora ‣ Acceder a su laptop/PC ‣ Comprobar red compartida ‣ Crear nota visible (Proyecto + Concepto + Ruta) ‣ Explicar al operador y verificar apertura",
-    objetivo:"Resolver la limitación de acceso a Odoo en piso permitiendo que el operador consulte directamente los diagramas y programas desde la computadora de su máquina.",
-    entrada:"Ruta completa de la carpeta consolidada (Luis del Ángel / Ibero / Producción / Puerta Intercom Grande).",
-    salida:"Nota visible disponible en la PC de la seccionadora y confirmación práctica de que el operador abre la carpeta, los diagramas de corte y los programas.",
-    configuracion:"Contenido de la nota visible: Proyecto (Ibero) + Concepto (Puerta Intercom Grande) + Ruta completa de red de los entregables.",
-    condicion:"Condicional (Flujo complementario B): aplicar únicamente cuando la computadora de la seccionadora no tenga acceso a Odoo, no exista usuario de producción habilitado o el operador necesite consultar directamente los archivos desde la PC de su máquina. No reemplaza el procedimiento principal.",
+    id:"MQ-18", etapa:"Etapa 12 · Acceso alternativo (Flujo B)", grupo:"Etapas 11 y 12 · Liberación a Maquinados y acceso alternativo en seccionadora", variante:"LIB", critico:false, tipo:"pending",
+    titulo:"Colocar nota visible en la PC de la seccionadora y comprobar acceso con operador", breve:"Flujo complementario B (sin Odoo en planta): PC de seccionadora → nota visible + prueba", fuente:"F01", estado:"Reportado",
+    origen:"Liberación de lote cuando el equipo de la seccionadora en planta no tiene acceso o usuario en Odoo.",
+    ubicacion:"Planta de Producción ‣ Laptop o PC asignada a la seccionadora del lote (ej. Dimensionadora Zaragoza).",
+    ruta:"Identificar seccionadora ‣ Acceder a su laptop/PC ‣ Comprobar red ‣ Crear nota visible (Proyecto + Lote + Ruta) ‣ Verificar apertura con operador",
+    objetivo:"Permitir que el operador consulte directamente la carpeta de producción del lote desde la computadora de su máquina cuando no disponga de Odoo.",
+    entrada:"Ruta completa de la carpeta de producción del lote.",
+    salida:"Nota visible en la PC de la seccionadora y confirmación práctica de que el operador abre la carpeta, diagramas y programas.",
+    configuracion:"Contenido de la nota visible: Proyecto + Lote/Concepto + Ruta completa de red de la carpeta de producción del lote.",
+    condicion:"Condicional (Flujo complementario B): aplicar únicamente cuando la PC de la seccionadora no tenga acceso a Odoo. No reemplaza el procedimiento principal.",
     acciones:[
-      "1. Identifica la seccionadora asignada al lote (Dimensionadora Zaragoza) y 2. localiza la laptop o PC correspondiente a dicha máquina.",
-      "3. Accede directamente al equipo y 4. comprueba que puede acceder a la carpeta compartida.",
-      "5. Crea una nota visible con la ruta completa de los entregables y 6. identifica claramente en ella el proyecto (Ibero) y el concepto (Puerta Intercom Grande) al que pertenece la ruta.",
-      "7. Deja la nota en un lugar fácilmente localizable para el operador.",
-      "8. Explica personalmente al operador dónde consultar los archivos.",
-      "9. Confirma que el operador puede abrir la carpeta y 10. verifica que puede consultar los diagramas de corte y localizar los programas correspondientes."
+      "Identifica la seccionadora asignada al lote y localiza la laptop o PC correspondiente.",
+      "Accede al equipo y comprueba que tiene acceso a la carpeta compartida en red.",
+      "Crea una nota visible con la ruta completa de la carpeta de producción del lote, identificando claramente Proyecto y Lote/Concepto.",
+      "Deja la nota en un lugar fácilmente localizable y explica personalmente al operador dónde consultar los archivos.",
+      "Confirma junto con el operador que puede abrir la carpeta, visualizar los diagramas de corte y localizar los programas."
     ],
-    control:"C12 · El operador abre la carpeta compartida desde la nota en la PC de la seccionadora y visualiza los diagramas y programas del lote.",
-    error:"Dejar una ruta sin indicar proyecto ni concepto o retirarse sin comprobar que el operador logra abrir los archivos en el equipo de la máquina.",
-    recuperacion:"Acompaña al operador frente a la PC de la seccionadora, corrige la nota o la conexión a la carpeta compartida y verifica la apertura de los PDFs y de la carpeta SEC.",
+    control:"C12 · El operador abre la carpeta de producción del lote desde la nota y visualiza los diagramas y programas.",
+    error:"Dejar una ruta sin indicar proyecto ni lote o retirarse sin comprobar que el operador abre los archivos.",
+    recuperacion:"Acompaña al operador frente a la PC de la seccionadora, corrige la nota o la conexión de red y verifica la apertura.",
     links:["C12","P-07","MQ-17"],
-    captura:"Captura pendiente (P-07): nota visible en la PC de la seccionadora y carpeta del concepto abierta por el operador."
+    captura:"Captura pendiente (P-07): nota visible en la PC de la seccionadora y carpeta de producción del lote abierta por el operador."
   }
 ];
 
 const controles = [
-  ["C01","Lote de corte autorizado y proyecto correcto","El lote procede del archivo acordado por el líder de Ingeniería y Maquinados (8 campos definidos) y se abre el proyecto correcto en el perfil Machine Edit.","Detén el proceso antes de filtrar; no definas lotes arbitrariamente y resuelve cualquier discrepancia con el líder de Ingeniería.",["MQ-01","MQ-02","P-01"]],
-  ["C02","Concordancia de cantidad filtrada (★ Crítico)","En C2M Center, el primer número mostrado en el resultado del filtro coincide exactamente con la cantidad establecida en el archivo de lotes de corte.","Bloqueo obligatorio: no pases a selección de máquinas. Corrige el filtro o ajusta la cantidad configurada en la vista de diseño de Cabinet Vision.",["MQ-03","I-01","P-02"]],
-  ["C03","Selección de máquinas del lote (★ Crítico)","Las tres categorías inferiores del panel izquierdo (Dimensionadora Zaragoza, Enchapadora nueva Nanxing y presencia o ausencia de P2P) corresponden al lote autorizado.","Corrige los selectores de máquina en Screen to Machine Center conforme al archivo de lotes antes de optimizar.",["MQ-04","P-02","P-08"]],
-  ["C04","Configuración de Premill Edge Banding (★ Crítico)","En File ‣ Preferences ‣ Geometry, el valor máximo permanece en 3 y la casilla Premill Edge Banding está Activada para la Enchapadora nueva Nanxing y Desactivada para cualquier otra enchapadora sin precorte.","Revisa y corrige la casilla en cada lote; si la modificas, vuelve a ejecutar obligatoriamente la optimización (Run → OK).",["MQ-05","I-02","P-02"]],
+  ["C01","Documento de lotes de maquinado autorizados y perfil Machine Edit","El lote procede del «documento de lotes de maquinado autorizados» (8 campos, incluyendo todas las máquinas estipuladas) y se abre el proyecto vigente con el perfil Machine Edit.","Detén el proceso antes de filtrar; no definas lotes ni máquinas arbitrariamente y resuelve discrepancias con el líder de Ingeniería.",["MQ-01","MQ-02","P-01"]],
+  ["C02","Filtrar por parte y concordancia de cantidad (★ Crítico)","En S2M / C2M Center se usa la opción «Filtrar por parte» (no filtrado de mobiliario) y el primer número mostrado coincide exactamente con la cantidad del lote autorizado.","Bloqueo obligatorio: no pases a selección de maquinaria. Corrige el filtro o ajusta la cantidad en Diseño.",["MQ-03","I-01","P-02"]],
+  ["C03","Elección de maquinaria estipulada en el documento autorizado (★ Crítico)","Todas las máquinas elegidas en C2M (seccionadora y P2P condicional) corresponden exactamente a las estipuladas en el «documento de lotes de maquinado autorizados». (No existe selector de enchapadora).","Corrige los selectores de maquinaria en C2M conforme al «documento de lotes de maquinado autorizados» antes de pasar a Preferences.",["MQ-04","P-02","P-08"]],
+  ["C04","Configuración de Pre Mill Edgebanding solo para Nanxing (★ Crítico)","En File ‣ Preferences ‣ Geometry (máx. 3), los pasos de activación de Pre Mill Edgebanding solo se siguen si el «documento de lotes de maquinado autorizados» especifica Enchapadora Nanxing; para cualquier otra enchapadora permanece Desactivado.","Revisa la casilla en cada lote contra el «documento de lotes de maquinado autorizados»; si la modificas, repite obligatoriamente Run → OK.",["MQ-05","I-02","P-02"]],
   ["C05","Optimización verificada","Se comprobaron los 5 puntos previos, se ejecutó Run, se confirmó con OK y se muestran los diagramas de corte del lote.","Si cambió algún parámetro después de optimizar, repite Run → OK antes de exportar códigos NC o reportes.",["MQ-06","P-02"]],
-  ["C06","Rutas cortas en Output Data (★ Crítico)","Se crearon SEC, NANXING y LABEL directamente en Producción; Image y Label Output Path apuntan a LABEL, Dimensionadora Zaragoza apunta a SEC y ninguna ruta es errónea.","Corrige las carpetas o las rutas en Output Data antes de lanzar la exportación para evitar errores por rutas largas o cruzadas.",["MQ-07","MQ-08","I-03"]],
-  ["C07","Paquete consolidado verificado en red (★ Crítico)","En Producción / Puerta Intercom Grande existen los 2 PDFs (Material Summary y Saw Cut List Landscape) y las 3 carpetas renombradas (SEC_..., LABEL_..., NANXING_...) con los archivos reales del lote.","No confíes solo en Starting Output Runtime ni en OK; regenera cualquier salida faltante y completa el renombrado (F2) y corte (Ctrl+X).",["MQ-09","MQ-10","MQ-11","MQ-12","I-04","I-05"]],
-  ["C08","Identidad del producto y carga en Documentos (Odoo)","La tarjeta en Manufactura ‣ Productos (filtro Ibero) coincide en nombre, proyecto, imagen y concepto, y la 3.ª pestaña Documentos contiene los entregables del lote.","Selecciona el producto correcto y vuelve a cargar los entregables sin eliminar los originales de la carpeta compartida.",["MQ-13","MQ-14","P-04"]],
-  ["C09","Ruta de red limpia en Notas internas (★ Crítico)","Notas internas contiene la dirección completa de la carpeta Puerta Intercom Grande copiada con Ctrl+Shift+C, sin comillas iniciales ni finales y sin alterar la Referencia interna.","Edita Notas internas, elimina las comillas inicial y final, verifica la Referencia interna y guarda el producto.",["MQ-15","I-06","P-04"]],
-  ["C10","Acceso comprobado desde 2.ª computadora (★ Crítico)","Desde un segundo equipo se copia la ruta de Notas internas en Odoo, se pega en el explorador y se abren la carpeta del concepto, los PDFs, las etiquetas y los programas.","Corrige la ruta compartida o los permisos de red y repite la comprobación desde el segundo equipo antes de liberar.",["MQ-16","P-05"]],
-  ["C11","Comunicación directa con Maquinados (★ Crítico)","Se realizó reunión presencial, llamada o Google Meet confirmando los 8 puntos: concepto, cantidad, archivos, máquinas, ubicación, consulta en Odoo, acuerdos de lote y operaciones manuales vs. máquina.","No cierres la liberación hasta efectuar la comunicación directa y confirmar recepción con Maquinados.",["MQ-17","P-06"]],
-  ["C12","Acceso alternativo en PC de seccionadora (Flujo B)","Cuando la PC de la seccionadora no tiene acceso a Odoo, cuenta con nota visible (Proyecto + Concepto + Ruta) y el operador comprobó que abre los diagramas y programas.","Acude al equipo de la máquina, coloca o corrige la nota y verifica personalmente con el operador que puede abrir la carpeta.",["MQ-18","P-07"]]
+  ["C06","Rutas cortas en Output Data (★ Crítico)","Se crearon SEC, NANXING y LABEL directamente en Producción; Image y Label apuntan a LABEL, Seccionadora apunta a SEC y P2P a NANXING (solo si aplica).","Corrige las carpetas o rutas en Output Data antes de lanzar la exportación para evitar errores por rutas largas.",["MQ-07","MQ-08","I-03"]],
+  ["C07","Carpeta de producción del lote consolidada (★ Crítico)","Dentro de la carpeta de producción del lote existen los 2 PDFs (Material Summary y Saw Cut List Landscape) y las 3 subcarpetas renombradas (SEC_<Lote>, LABEL_<Lote>, NANXING_<Lote>) con los archivos reales.","No confíes solo en los mensajes del sistema; regenera cualquier salida faltante y completa F2 + Ctrl+X.",["MQ-09","MQ-10","MQ-11","MQ-12","I-04","I-05"]],
+  ["C08","Identidad del producto y carga en Documentos (Odoo)","La tarjeta en Manufactura ‣ Productos coincide en nombre, proyecto, imagen y lote, y la 3.ª pestaña Documentos contiene los entregables del Paquete de Producción.","Selecciona el producto correcto y vuelve a cargar los entregables sin eliminar los originales de red.",["MQ-13","MQ-14","P-04"]],
+  ["C09","Ruta de red limpia en Notas internas (★ Crítico)","Notas internas contiene la dirección de la carpeta de producción del lote copiada con Ctrl+Shift+C, sin comillas iniciales ni finales y sin alterar la Referencia interna.","Edita Notas internas, elimina las comillas, verifica la Referencia interna y guarda el producto.",["MQ-15","I-06","P-04"]],
+  ["C10","Acceso comprobado desde 2.ª computadora (★ Crítico)","Desde un segundo equipo se copia la ruta de Notas internas en Odoo, se pega en el explorador y se abren la carpeta de producción del lote y todos sus archivos.","Corrige la ruta compartida o los permisos de red y repite la comprobación desde el segundo equipo.",["MQ-16","P-05"]],
+  ["C11","Comunicación directa con Maquinados (★ Crítico)","Se realizó reunión presencial, llamada o Google Meet confirmando los 8 puntos: proyecto/lote, cantidad, archivos, máquinas, carpeta de producción del lote, consulta en Odoo, acuerdos y operaciones manuales vs. máquina.","No cierres la liberación hasta efectuar la comunicación directa y confirmar recepción con Maquinados.",["MQ-17","P-06"]],
+  ["C12","Acceso alternativo en PC de seccionadora (Flujo B)","Cuando la PC de la seccionadora no tiene acceso a Odoo, cuenta con nota visible (Proyecto + Lote + Ruta) y el operador comprobó que abre diagramas y programas.","Acude al equipo de la máquina, coloca o corrige la nota y verifica personalmente con el operador.",["MQ-18","P-07"]]
 ];
 
 const incidencias = [
-  ["I-01","Discrepancia entre cantidad en Diseño y cantidad del lote","El primer número mostrado al filtrar en C2M Center refleja la cantidad configurada previamente en el concepto dentro de la vista de diseño, que puede diferir del lote acordado.","Compara siempre ese primer número contra el archivo de lotes de corte (C02) y detén el flujo si no coinciden.",["MQ-03","C02"]],
-  ["I-02","Persistencia de Premill Edge Banding entre lotes","Cabinet Vision no ajusta automáticamente Premill Edge Banding al cambiar de enchapadora y puede conservar el estado del lote anterior.","Entra en cada lote a File ‣ Preferences ‣ Geometry y verifica que esté activado (máx. 3) solo para la Enchapadora nueva Nanxing y desactivado para las demás.",["MQ-05","C04"]],
-  ["I-03","Problema de lectura/procesamiento por rutas demasiado largas","Cuando la ruta de salida en Output Data es muy extensa, Cabinet Vision puede presentar fallos para leerla o escribir los archivos.","Crea las carpetas temporales SEC, NANXING y LABEL directamente dentro de Producción y muévelas a la carpeta del concepto hasta terminar la exportación.",["MQ-07","MQ-08","C06"]],
-  ["I-04","Mensajes de ejecución que no garantizan escritura completa","Avisos como Starting Output Runtime, Create SCM Automatic Fields y la confirmación OK indican ejecución de comandos, pero no prueban por sí solos que todos los archivos se crearon.","Verifica siempre el contenido real dentro de las carpetas SEC y LABEL en el explorador de archivos tras cerrar Output Data.",["MQ-09","C07"]],
-  ["I-05","Confusión entre Material Summary y lista de materiales integral","El PDF se nombra Lista de materiales_<Concepto>.pdf, pero Material Summary únicamente resume los materiales cortables considerados en la optimización.","Documenta y comunica expresamente que este reporte no incluye herrajes, adhesivos, componentes eléctricos ni otros insumos fuera del corte.",["MQ-10","C07"]],
-  ["I-06","Comillas en la ruta copiada con Ctrl+Shift+C y confusión con Referencia interna","El atajo Ctrl+Shift+C copia la ruta encerrada entre comillas dobles (\"...\") y existe riesgo de pegarla en el campo de identificación del SKU.","Pega la ruta exclusivamente en Notas internas, elimina las comillas inicial y final antes de guardar y conserva intacta la Referencia interna.",["MQ-15","C09"]]
+  ["I-01","Discrepancia entre cantidad en Diseño y cantidad del lote","El primer número mostrado al aplicar «Filtrar por parte» en S2M / C2M refleja la cantidad configurada en Diseño, que puede diferir del lote autorizado.","Compara siempre ese primer número contra el archivo de lotes de corte autorizado (C02) y detén el flujo si no coinciden.",["MQ-03","C02"]],
+  ["I-02","Persistencia de Pre Mill Edgebanding y ausencia de selector de enchapadora","Cabinet Vision no cuenta con selector de enchapadora y conserva el estado previo de Pre Mill Edgebanding entre lotes.","Consulta siempre la enchapadora en el documento autorizado: activa Pre Mill Edgebanding (máx. 3) únicamente para Enchapadora Nanxing y desactívalo para cualquier otra.",["MQ-05","C04"]],
+  ["I-03","Fallo de lectura/procesamiento por rutas demasiado largas","Cuando la ruta de salida en Output Data es muy extensa, Cabinet Vision puede fallar al leer o escribir los archivos.","Crea las carpetas temporales SEC, NANXING y LABEL directamente en Producción y muévelas a la carpeta de producción del lote al terminar.",["MQ-07","MQ-08","C06"]],
+  ["I-04","Mensajes de ejecución que no garantizan escritura completa","Avisos como Starting Output Runtime, Create SCM Automatic Fields y OK indican ejecución, pero no prueban que todos los archivos se hayan escrito.","Verifica siempre el contenido real dentro de SEC, LABEL y NANXING en el explorador tras cerrar Output Data.",["MQ-09","C07"]],
+  ["I-05","Confusión entre Material Summary y lista de materiales integral","El PDF se nombra Lista de materiales_<Lote>.pdf, pero Material Summary únicamente resume los materiales cortables considerados en la optimización.","Documenta y comunica expresamente que este reporte no incluye herrajes, adhesivos, eléctricos ni insumos fuera del corte.",["MQ-10","C07"]],
+  ["I-06","Comillas en ruta copiada con Ctrl+Shift+C y confusión con Referencia interna","El atajo Ctrl+Shift+C copia la ruta encerrada entre comillas dobles (\"...\") y existe riesgo de pegarla en el SKU.","Pega la ruta exclusivamente en Notas internas, elimina las comillas inicial y final antes de guardar y conserva intacta la Referencia interna.",["MQ-15","C09"]]
 ];
 
 const pendientes = [
-  ["P-01","Archivo de configuración de lotes de corte de Ibero","Falta adjuntar la captura o plantilla real del archivo de lotes donde se autorizó Puerta Intercom Grande y su cantidad exacta de unidades.","Incorporar el ejemplo del archivo de lotes de corte y el número exacto mostrado en el primer dígito del filtro.",["MQ-01","MQ-03","C01","C02"]],
-  ["P-02","Capturas de interfaz en Cabinet Vision (Machine Edit y C2M Center)","Faltan las capturas en estación del selector Machine Edit, pestaña C2M Center, filtro, selectores inferiores de máquinas, File ‣ Preferences ‣ Geometry (Premill = 3), botón Run, ventana Output Data y exportación PDF de Material Summary / Saw Cut List Landscape.","Capturar las pantallas reales durante la próxima corrida en la estación de Ingeniería y confirmar si Material Summary usa el mismo botón Export Report → Adobe PDF.",["MQ-02","MQ-03","MQ-04","MQ-05","MQ-06","MQ-08","MQ-10","MQ-11"]],
-  ["P-03","Atajo de duplicación de carpeta, ruta UNC/montada y archivos de máquina","El relato especifica Ctrl+Shift+N, F2, F4 y Ctrl+X, e indica duplicar la carpeta SEC dos veces sin detallar la combinación empleada para duplicar ni los nombres exactos generados dentro de SEC y LABEL.","Confirmar en la estación el método de duplicación de carpeta, la ruta completa en red de Luis del Ángel / Ibero / Producción y la lista de archivos creados dentro de SEC_... y LABEL_...",["MQ-07","MQ-09","MQ-12","C06","C07"]],
-  ["P-04","Formato de carga de carpetas de máquina en la pestaña Documentos de Odoo","No debe suponerse que Odoo admite subir carpetas completas directamente desde el botón Cargar de la 3.ª pestaña Documentos.","Comprobar en la instancia de Odoo si los programas de SEC y archivos de LABEL se suben seleccionando múltiples archivos o comprimidos en .zip, y capturar la tarjeta del producto.",["MQ-13","MQ-14","MQ-15","C08","C09"]],
-  ["P-05","Evidencia de la prueba desde la segunda computadora","El ejercicio comprobó el acceso desde otra computadora en otra red Wi-Fi con acceso a la carpeta compartida.","Adjuntar captura desde el segundo equipo abriendo la ruta copiada de Notas internas y mostrando los PDFs, etiquetas y programas accesibles.",["MQ-16","C10"]],
-  ["P-06","Formato de confirmación de la comunicación con Maquinados","La liberación exige reunión presencial, llamada o Google Meet confirmando los 8 puntos del lote.","Definir e incorporar la constancia breve (registro en Odoo o minuta) de que los 8 puntos fueron revisados con Maquinados.",["MQ-17","C11"]],
-  ["P-07","Ubicación y formato de la nota visible en la PC de la seccionadora (Flujo B)","Cuando se aplica el Flujo complementario B, se deja una nota visible con la ruta completa, proyecto y concepto en la laptop/PC de la seccionadora.","Capturar en el equipo de Dimensionadora Zaragoza dónde se ubica la nota visible y la validación con el operador.",["MQ-18","C12"]],
-  ["P-08","Caso con máquina secundaria P2P activa (carpeta NANXING)","En Puerta Intercom Grande no se asignó máquina P2P y la carpeta NANXING quedó vacía.","Documentar en un lote posterior que sí requiera CNC P2P Nanxing el nombre exacto del campo en Output Data y los archivos depositados en NANXING_<Concepto>.",["MQ-04","MQ-08","MQ-12","C03"]]
+  ["P-01","Plantilla del archivo autorizado de lotes de corte","Falta adjuntar la captura o plantilla estándar del archivo autorizado de lotes de corte con sus 8 campos.","Incorporar la plantilla de referencia mostrando seccionadora, enchapadora y cantidad autorizada.",["MQ-01","MQ-03","C01","C02"]],
+  ["P-02","Capturas de interfaz en Cabinet Vision (S2M / C2M Center)","Faltan las capturas de Machine Edit, opción «Filtrar por parte», selectores de seccionadora y P2P en C2M, File ‣ Preferences ‣ Geometry (Pre Mill Edgebanding = 3), Run, Output Data y reportes PDF.","Capturar las pantallas reales durante la próxima corrida en estación y confirmar botones de exportación.",["MQ-02","MQ-03","MQ-04","MQ-05","MQ-06","MQ-08","MQ-10","MQ-11"]],
+  ["P-03","Atajo de duplicación de carpeta y estructura de archivos NC","El procedimiento usa Ctrl+Shift+N, F2, F4 y Ctrl+X sin detallar la combinación empleada para duplicar SEC ni el listado exacto de extensiones generadas.","Confirmar el método de duplicación y documentar las extensiones generadas en SEC_<Lote>, LABEL_<Lote> y NANXING_<Lote>.",["MQ-07","MQ-09","MQ-12","C06","C07"]],
+  ["P-04","Formato de carga de carpetas de máquina en Documentos de Odoo","No debe suponerse que Odoo admite subir carpetas completas directamente desde el botón Cargar.","Comprobar en Odoo si los programas se suben mediante selección múltiple o .zip y capturar la tarjeta de producto.",["MQ-13","MQ-14","MQ-15","C08","C09"]],
+  ["P-05","Evidencia de prueba desde segunda computadora","Se requiere validar el acceso a la carpeta de producción del lote desde otro equipo conectado a red.","Adjuntar captura desde el segundo equipo abriendo la ruta de Notas internas.",["MQ-16","C10"]],
+  ["P-06","Formato de constancia de comunicación con Maquinados","La liberación exige reunión presencial, llamada o Google Meet confirmando los 8 puntos.","Definir la constancia breve (registro en Odoo o minuta) de que los 8 puntos fueron revisados con Maquinados.",["MQ-17","C11"]],
+  ["P-07","Ubicación y formato de la nota visible en PC de seccionadora (Flujo B)","Cuando aplica Flujo B, se deja una nota visible con Proyecto, Lote y Ruta en la PC de la seccionadora.","Capturar en la PC de la seccionadora la ubicación estándar de la nota y la validación con el operador.",["MQ-18","C12"]],
+  ["P-08","Confirmación de nomenclatura exacta y flujo con P2P activo","Queda por documentar con capturas un lote que utilice CNC P2P activo en C2M y el campo exacto en Output Data.","Documentar una corrida con P2P activo mostrando los archivos depositados en NANXING_<Lote>.",["MQ-04","MQ-08","MQ-12","C03"]]
 ];
 
 const transferencias = [
-  ["H01 · Planeación de lotes (Líder de Ingeniería + Maquinados)","Archivo de configuración de lotes de corte/maquinado con proyecto, concepto, cantidad, agrupación, seccionadora, enchapadora, P2P e indicaciones especiales.","Ingeniero de Producto (Cabinet Vision)","Comprueba que los 8 campos estén autorizados antes de filtrar en C2M Center y concilia cualquier discrepancia (C01 y C02).","Destino funcional documentado"],
-  ["H02 · Exportación y consolidación (Cabinet Vision C2M Center)","2 reportes PDF (Lista de materiales_... de cortables y Diagramas de corte_...) + 3 subcarpetas renombradas (SEC_..., NANXING_..., LABEL_...).","Carpeta compartida: Luis del Ángel / Ibero / Producción / Puerta Intercom Grande","Se exporta primero a rutas cortas en Producción y se consolida con F2 + Ctrl+X; se verifican los 7 puntos de integridad (C06 y C07).","Destino funcional documentado"],
-  ["H03 · Vinculación en ERP (Carpeta compartida → Odoo)","Archivos cargados en la 3.ª pestaña Documentos + ruta completa de red (copiada con Ctrl+Shift+C y sin comillas) en Notas internas.","Odoo · Manufactura ‣ Productos ‣ Ibero ‣ Puerta Intercom Grande","Se valida identidad del producto (C08), limpieza de comillas sin tocar Referencia interna (C09) y apertura desde 2.ª computadora (C10).","Destino funcional documentado"],
-  ["H04 · Liberación operativa principal (Ingeniería → Maquinados)","Comunicación directa (reunión presencial, llamada o Google Meet) respaldada por Odoo y la carpeta compartida.","Responsable / Área de Maquinados","Confirmación de los 8 puntos obligatorios: concepto, cantidad, archivos, máquinas, ubicación, consulta en Odoo, acuerdos previos y operaciones manuales vs. máquina (C11).","Destino funcional documentado"],
-  ["H05 · Acceso alternativo en planta · Flujo B (Ingeniería → Operador)","Nota visible en la laptop/PC de la seccionadora con Proyecto + Concepto + Ruta completa de red y explicación presencial.","Operador en PC de Seccionadora (Dimensionadora Zaragoza)","Aplica cuando el equipo de la máquina no tiene acceso/usuario en Odoo; el operador abre la carpeta desde la nota y consulta diagramas y programas (C12).","Mecanismo complementario condicional"]
+  ["H01 · Planeación de lotes (Líder de Ingeniería + Maquinados)","Archivo autorizado de lotes de corte con proyecto, concepto/lote, cantidad, agrupación, seccionadora, enchapadora (define Pre Mill Edgebanding), P2P e indicaciones.","Ingeniero de Producto (Cabinet Vision / S2M / C2M)","Comprueba los 8 campos antes de aplicar «Filtrar por parte» en C2M Center y concilia discrepancias (C01 y C02).","Destino funcional documentado"],
+  ["H02 · Exportación y consolidación (Cabinet Vision C2M Center)","2 reportes PDF (Lista de materiales_<Lote>.pdf y Diagramas de corte_<Lote>.pdf) + 3 subcarpetas renombradas (SEC_<Lote>, NANXING_<Lote>, LABEL_<Lote>).","Carpeta de producción del lote (<Proyecto>/Producción/<Lote>)","Se exporta primero a rutas cortas en Producción y se consolida con F2 + Ctrl+X; se verifican los 7 puntos de integridad (C06 y C07).","Destino funcional documentado"],
+  ["H03 · Vinculación en ERP (Carpeta de producción del lote → Odoo)","Entregables cargados en la 3.ª pestaña Documentos + ruta completa de red (copiada con Ctrl+Shift+C y sin comillas) en Notas internas.","Odoo · Manufactura ‣ Productos ‣ <Proyecto> ‣ <Producto/Lote>","Se valida identidad del producto (C08), limpieza de comillas sin tocar Referencia interna (C09) y apertura desde 2.ª computadora (C10).","Destino funcional documentado"],
+  ["H04 · Liberación operativa principal (Ingeniería → Maquinados)","Comunicación directa (reunión presencial, llamada o Google Meet) respaldada por Odoo y la carpeta de producción del lote.","Responsable / Área de Maquinados","Confirmación de los 8 puntos obligatorios: proyecto/lote, cantidad, archivos, máquinas, ubicación, consulta en Odoo, acuerdos previos y operaciones manuales vs. máquina (C11).","Destino funcional documentado"],
+  ["H05 · Acceso alternativo en planta · Flujo B (Ingeniería → Operador)","Nota visible en la laptop/PC de la seccionadora con Proyecto + Lote + Ruta completa de la carpeta de producción del lote y explicación presencial.","Operador en PC de Seccionadora","Aplica cuando el equipo de la máquina no tiene acceso/usuario en Odoo; el operador abre la carpeta desde la nota y consulta diagramas y programas (C12).","Mecanismo complementario condicional"]
 ];
 
 const el = id => document.getElementById(id);
